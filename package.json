@@ -1,0 +1,16 @@
+{
+  "name": "abot",
+  "version": "1.0.0",
+  "description": "a bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dheeraj Prakash",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "mongoose": "^5.11.8",
+    "wokcommands": "^1.1.5"
+  }
+}
