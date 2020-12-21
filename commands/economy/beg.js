@@ -5,7 +5,7 @@ module.exports = {
     expectedArgs: '',
     description: 'Beg for money... what a loser!',
     category: 'Economy',
-    // globalCooldown: '5m',
+    globalCooldown: '5m',
     run: async message => {
         const loseMoney = Math.random() > 0.875
         if (loseMoney) {
