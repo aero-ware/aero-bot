@@ -16,7 +16,7 @@ module.exports = {
         if (message.mentions.members.first() === message.member) return message.reply('Why are you trying to ban yourself?')
         if (!message.mentions.members.first().bannable) return message.reply('This member is not bannable by me (usually because of permission level)')
 
-        message.mentions.members.first().ban()
+        message.mentions.members.first().ban({ reason })
         message.reply(`${message.mentions.users.first().tag} has been banned for the reason \`${reason}\``)
 
         const dmEmbed = new MessageEmbed()

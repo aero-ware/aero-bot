@@ -15,7 +15,11 @@ const profileSchema = mongoose.Schema({
     xp: {
         type: Number,
         default: 1,
-    }
+    },
+    warns: {
+        type: Number,
+        default: 0,
+    },
 })
 
 module.exports = mongoose.model('profiles', profileSchema)

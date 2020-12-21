@@ -17,6 +17,7 @@ client.on('ready', () => {
         .setCategoryEmoji('Moderation', '🔨')
         .setCategoryEmoji('Fun', '🎉')
         .setCategoryEmoji('Misc', '📚')
+        .setCategoryEmoji('Tools', '🔧')
 })
 
 client.login(process.env.token)

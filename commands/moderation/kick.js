@@ -16,7 +16,7 @@ module.exports = {
         if (message.mentions.members.first() === message.member) return message.reply('Why are you trying to kick yourself?')
         if (!message.mentions.members.first().kickable) return message.reply('This member is not kickable by me (usually because of permission level)')
 
-        message.mentions.members.first().kick()
+        message.mentions.members.first().kick(reason)
         message.reply(`${message.mentions.users.first().tag} has been kicked for the reason \`${reason}\``)
 
         const dmEmbed = new MessageEmbed()
