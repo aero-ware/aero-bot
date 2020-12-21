@@ -5,12 +5,10 @@ module.exports = (client) => {
     const onJoin = async member => {
         let data = []
 
-        await mongo().then(async mongoose => {
-            const result = await welcomeSchema.findOne({ _id: member.guild.id })
-            if (!result) return
+        const result = await welcomeSchema.findOne({ _id: member.guild.id })
+        if (!result) return
 
-            data = [result.channelId, result.text]
-        })
+        data = [result.channelId, result.text]
 
         if (!data) return
         const [channelId, text] = data
