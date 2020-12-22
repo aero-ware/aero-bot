@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js")
+const banPurgeSchema = require('../../schemas/ban-purge-schema')
 
 module.exports = {
     commands: 'ban',
@@ -16,7 +17,10 @@ module.exports = {
         if (message.mentions.members.first() === message.member) return message.reply('Why are you trying to ban yourself?')
         if (!message.mentions.members.first().bannable) return message.reply('This member is not bannable by me (usually because of permission level)')
 
-        message.mentions.members.first().ban({ reason })
+        
+        const result = banPurgeSchema.findOne({ _id: message.guild.id })
+        const { days } = result
+        message.mentions.members.first().ban({ reason, days })
         message.reply(`${message.mentions.users.first().tag} has been banned for the reason \`${reason}\``)
 
         const dmEmbed = new MessageEmbed()

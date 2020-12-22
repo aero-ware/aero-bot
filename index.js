@@ -14,10 +14,11 @@ client.on('ready', () => {
         .setDefaultPrefix(process.env.defaultPrefix)
         .setDefaultLanguage('english')
         .setCategoryEmoji('Economy', '💰')
-        .setCategoryEmoji('Moderation', '🔨')
+        .setCategoryEmoji('Moderation', '⚔')
         .setCategoryEmoji('Fun', '🎉')
         .setCategoryEmoji('Misc', '📚')
         .setCategoryEmoji('Tools', '🔧')
+        .setCategoryEmoji('Testing', '🧪')
 })
 
 client.login(process.env.token)
