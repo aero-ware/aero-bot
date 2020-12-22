@@ -9,10 +9,10 @@ module.exports = {
     description: 'mutes a user (gives them muted role)',
     category: 'Moderation',
     permissions: 'MANAGE_MESSAGES',
-    expectedArgs: '<user ping|id> [reason]',
+    expectedArgs: '<user ping|id> [time] [reason]',
     minArgs: 1,
     run: async (message, args) => {
-        const timeString = args[1] ? args[1] : null
+        let [user, timeString, ...reason] = args
         const { mutedRoleId } = await guildSchema.findOne({ _id: message.guild.id })
         const target = message.mentions.members.first() || message.guild.members.fetch(args[0])
 
@@ -20,16 +20,16 @@ module.exports = {
         else if (target.user.bot) return message.reply('why are you muting a bot?')
 
         let muteSuccess = true
-
-        const reason = args[1]
         await target.roles.add(mutedRoleId, `muted by ${message.author.tag} - ${reason}`).then(async () => {
-            await muteSchema.create(
-                {
-                    guildId: message.guild.id,
-                    userId: target.id,
-                    endTime: Date.now() + ms(timeString)
-                }
-            )
+            if (timeString) {
+                await muteSchema.create(
+                    {
+                        guildId: message.guild.id,
+                        userId: target.id,
+                        endTime: Date.now() + ms(timeString)
+                    }
+                )
+            }
         }).catch(() => {
             muteSuccess = false
             message.reply('I cannot mute that member, they probably have higher permissions than me')
@@ -48,7 +48,7 @@ module.exports = {
                 },
                 {
                     name: 'Reason',
-                    value: `\`${reason}\``,
+                    value: `\`${reason.join(' ')}\``,
                 },
                 {
                     name: 'Duration',
