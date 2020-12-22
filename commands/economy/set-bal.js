@@ -1,4 +1,4 @@
-const economy = require("../../economy")
+const economy = require("../../util/economy")
 
 module.exports = {
     commands: ['set-bal', 'setbal'],

@@ -1,14 +1,14 @@
 const mongo = require('../mongo')
-const welcomeSchema = require('../schemas/welcome-schema')
+const guildSchema = require('../schemas/guild-schema')
 
 module.exports = (client) => {
     const onJoin = async member => {
         let data = []
 
-        const result = await welcomeSchema.findOne({ _id: member.guild.id })
+        const result = await guildSchema.findOne({ _id: member.guild.id })
         if (!result) return
 
-        data = [result.channelId, result.text]
+        data = [result.welcomeChannelId, result.welcomeText]
 
         if (!data) return
         const [channelId, text] = data

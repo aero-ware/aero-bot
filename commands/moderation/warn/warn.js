@@ -1,6 +1,4 @@
-const { MessageEmbed } = require('discord.js')
-const mongo = require('../../../mongo')
-const warnSchema = require('../../../schemas/warn-schema')
+const memberSchema = require('../../../schemas/member-schema')
 
 module.exports = {
     commands: 'warn',
@@ -27,7 +25,7 @@ module.exports = {
             reason,
         }
 
-        await warnSchema.findOneAndUpdate(
+        await memberSchema.findOneAndUpdate(
             {
                 guildId,
                 userId,

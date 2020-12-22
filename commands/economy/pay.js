@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js")
-const economy = require("../../economy")
+const economy = require("../../util/economy")
 
 
 module.exports = {

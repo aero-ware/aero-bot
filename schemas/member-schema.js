@@ -5,7 +5,7 @@ const reqString = {
     required: true
 }
 
-const profileSchema = mongoose.Schema({
+const memberSchema = mongoose.Schema({
     guildId: reqString,
     userId: reqString,
     coins: {
@@ -20,6 +20,10 @@ const profileSchema = mongoose.Schema({
         type: Number,
         default: 1,
     },
+    warnings: {
+        type: [Object],
+        default: null,
+    }
 })
 
-module.exports = mongoose.model('profiles', profileSchema)
+module.exports = mongoose.model('members', memberSchema)

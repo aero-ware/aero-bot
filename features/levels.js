@@ -1,6 +1,6 @@
 const { getMongoConnection } = require('wokcommands/mongo')
 const mongo = require('../mongo')
-const profileSchema = require('../schemas/profile-schema')
+const memberSchema = require('../schemas/member-schema')
 
 module.exports = client => {
     client.on('message', message => {
@@ -13,7 +13,7 @@ module.exports = client => {
 const getNeededXP = level => level * level * 100
 
 const addXP = async (guildId, userId, xpToAdd, message) => {
-    const result = await profileSchema.findOneAndUpdate(
+    const result = await memberSchema.findOneAndUpdate(
         {
             guildId,
             userId,
@@ -39,7 +39,7 @@ const addXP = async (guildId, userId, xpToAdd, message) => {
 
         message.reply(`You just advanced to level ${level}!`)
 
-        await profileSchema.updateOne(
+        await memberSchema.updateOne(
             {
                 guildId,
                 userId,

@@ -1,9 +1,9 @@
 const { MessageEmbed } = require("discord.js")
-const logchannelSchema = require("../schemas/logchannel-schema")
+const guildSchema = require('../schemas/guild-schema')
 
 const getLogChannel = async guild => {
-    const result = await logchannelSchema.findOne({ _id: guild.id })
-    return result ? guild.channels.cache.get(result.channelId) : null
+    const result = await guildSchema.findOne({ _id: guild.id })
+    return result ? guild.channels.cache.get(result.logChannelId) : null
 }
 
 module.exports = async client => {

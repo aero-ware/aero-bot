@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js")
-const warnSchema = require("../../../schemas/warn-schema")
+const memberSchema = require('../../../schemas/member-schema')
 
 module.exports = {
     commands: ['warns', 'warnings', 'listwarns'],
@@ -13,7 +13,7 @@ module.exports = {
 
         if (target.bot) return message.reply('bots don\'t have warns.')
 
-        const results = await warnSchema.findOne({
+        const results = await memberSchema.findOne({
                 guildId,
                 userId,
         })
