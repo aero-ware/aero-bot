@@ -1,4 +1,3 @@
-const mongo = require("../../mongo")
 const guildSchema = require("../../schemas/guild-schema")
 
 module.exports = {

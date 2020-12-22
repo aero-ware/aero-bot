@@ -1,5 +1,3 @@
-const { getMongoConnection } = require('wokcommands/mongo')
-const mongo = require('../mongo')
 const memberSchema = require('../schemas/member-schema')
 
 module.exports = client => {
