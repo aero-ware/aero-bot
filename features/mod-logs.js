@@ -43,12 +43,17 @@ module.exports = async client => {
 
     client.on('guildBanAdd', async (guild, user) => {
         const channel = await getLogChannel(guild)
+        const banInfo = await guild.fetchBans().get(user)
         const banEmbed = new MessageEmbed()
             .setTitle('Member banned')
             .addFields(
                 {
                     name: 'User',
-                    value: user,
+                    value: banInfo.user,
+                },
+                {
+                    name: 'Reason',
+                    value: banInfo.reason || 'no reason provided'
                 }
             )
             .setThumbnail(user.displayAvatarURL())

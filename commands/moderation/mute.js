@@ -12,7 +12,7 @@ module.exports = {
     expectedArgs: '<user ping|id> [time] [reason]',
     minArgs: 1,
     run: async (message, args) => {
-        let [user, timeString, ...reason] = args
+        const [user, timeString, ...reason] = args
         const { mutedRoleId } = await guildSchema.findOne({ _id: message.guild.id })
         const target = message.mentions.members.first() || message.guild.members.fetch(args[0])
 
