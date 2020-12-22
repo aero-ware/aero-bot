@@ -9,12 +9,14 @@ module.exports = {
     description: 'mutes a user (gives them muted role)',
     category: 'Moderation',
     permissions: 'MANAGE_MESSAGES',
-    expectedArgs: '<user ping|id> [time] [reason]',
-    minArgs: 1,
+    expectedArgs: '<user ping|id> <time|\'forever\'> [reason]',
+    minArgs: 2,
     run: async (message, args) => {
         const [user, timeString, ...reason] = args
         const { mutedRoleId } = await guildSchema.findOne({ _id: message.guild.id })
         const target = message.mentions.members.first() || message.guild.members.fetch(args[0])
+
+        const duration = timeString === 'forever' ? null : ms(timeString)
 
         if (target === message.member) return message.reply('why are you muting yourself?')
         else if (target.user.bot) return message.reply('why are you muting a bot?')
@@ -26,7 +28,7 @@ module.exports = {
                     {
                         guildId: message.guild.id,
                         userId: target.id,
-                        endTime: Date.now() + ms(timeString)
+                        endTime: Date.now() + duration
                     }
                 )
             }
@@ -36,7 +38,7 @@ module.exports = {
         })
         
         const formatDate = new Date(ms(timeString))
-        const formatString = niceDates(formatDate.getTime())
+        const formatString = timeString === 'forever' ? 'Forever' : niceDates(formatDate.getTime())
         if (muteSuccess) message.reply(`muted ${target.user.tag} for ${formatString}`)
         
         const muteEmbed = new MessageEmbed()
