@@ -1,6 +1,7 @@
 // me doing LITERAL MAGIC to turn a ms (number) into a nice string...
 // this really did take me longer to do than the mute command smh
 const msToTime = ms => {
+    if (!ms) return null
     const iso = new Date(ms).toISOString()
     const [date, time] = iso.split('T')
     const [hours, mins, secs] = time.split(':')

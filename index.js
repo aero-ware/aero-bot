@@ -1,6 +1,7 @@
 const { Client } = require('discord.js')
 const WOKCommands = require('wokcommands')
 const updateMutes = require('./util/mute-checker')
+const updatetempBans = require('./util/tempban-checker')
 require('dotenv').config()
 
 const client = new Client({
@@ -21,7 +22,10 @@ client.on('ready', () => {
         .setCategoryEmoji('Tools', '🔧')
         .setCategoryEmoji('Testing', '🧪')
 
-    setInterval(() => {updateMutes(client)}, 10000)
+    setInterval(() => {
+        updateMutes(client)
+        updatetempBans(client)
+    }, 5000)
 })
 
 client.login(process.env.token)
