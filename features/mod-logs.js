@@ -44,17 +44,17 @@ module.exports = async client => {
     client.on('guildBanAdd', async (guild, user) => {
         const channel = await getLogChannel(guild)
         const banInfo = await guild.fetchBans()
-        const { reason } = banInfo.get(user)
+        const { reason } = banInfo.get(user.id)
         const banEmbed = new MessageEmbed()
             .setTitle('Member banned')
             .addFields(
                 {
                     name: 'User',
-                    value: banInfo.user,
+                    value: user,
                 },
                 {
                     name: 'Reason',
-                    value: banInfo.reason || 'no reason provided'
+                    value: reason || 'no reason provided'
                 }
             )
             .setThumbnail(user.displayAvatarURL())
@@ -62,6 +62,23 @@ module.exports = async client => {
             .setTimestamp()
         
         if (channel) channel.send(banEmbed)
+    })
+
+    client.on('guildBanRemove', async (guild, user) => {
+        const channel = await getLogChannel(guild)
+        const unbanEmbed = new MessageEmbed()
+            .setTitle('User banned')
+            .addFields(
+                {
+                    name: 'User',
+                    value: user,
+                }
+            )
+            .setThumbnail(user.displayAvatarURL())
+            .setColor('#32a852')
+            .setTimestamp()
+
+        if (channel) channel.send(unbanEmbed)
     })
 }
 
