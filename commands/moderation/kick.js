@@ -29,7 +29,7 @@ module.exports = {
                 },
                 {
                     name: 'Reason',
-                    value: reason,
+                    value: reason ? reason : 'no reason provided',
                     inline: true,
                 }
             )

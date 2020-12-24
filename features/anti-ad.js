@@ -1,3 +1,5 @@
+const guildSchema = require("../schemas/guild-schema")
+
 module.exports = client => {
     const isInvite = async (guild, code) => {
         return await new Promise(resolve => {
@@ -13,7 +15,11 @@ module.exports = client => {
     }
 
     client.on('message', async message => {
-        const { memmber, content } = message
+        if (!message.guild) return // no dms
+        const { member, content, channel, guild } = message
+        if (member.hasPermission('ADMINISTRATOR')) return
+        const { adChannels } = await guildSchema.findOne({ _id: guild.id })
+        if (adChannels.includes(channel.id)) return
         const code = content.split('discord.gg/')[1]
         if (content.includes('discord.gg/')) {
             const isOurInvite = await isInvite(message.guild, code.split(' ')[0])

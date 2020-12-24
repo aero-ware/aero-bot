@@ -18,6 +18,10 @@ const guildSchema = mongoose.Schema({
         type: Number,
         default: 0,
     },
+    adChannels: {
+        type: [String],
+        default: null,
+    },
 })
 
 module.exports = mongoose.model('guild-configs', guildSchema)

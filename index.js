@@ -10,7 +10,7 @@ const client = new Client({
 
 client.on('ready', () => {
     console.log('Ready!')
-    new WOKCommands(client, 'commands', 'features', 'messages.json')
+    const wok = new WOKCommands(client, 'commands', 'features', 'messages.json')
         .setMongoPath(process.env.mongoPath)
         .setBotOwner(process.env.adminIds.split(','))
         .setDefaultPrefix(process.env.defaultPrefix)
@@ -21,6 +21,10 @@ client.on('ready', () => {
         .setCategoryEmoji('Misc', '📚')
         .setCategoryEmoji('Tools', '🔧')
         .setCategoryEmoji('Testing', '🧪')
+
+    wok.on('databaseConnected', (conection, state) => {
+        console.log('Connected to database!, state: ' + state)
+    })
 
     setInterval(() => {
         updateMutes(client)
