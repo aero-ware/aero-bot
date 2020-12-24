@@ -16,7 +16,8 @@ module.exports = client => {
 
     client.on('message', async message => {
         if (!message.guild) return // no dms
-        const { member, content, channel, guild } = message
+        const { member, content, channel, guild, webhookID } = message
+        if (webhookID) return
         if (member.hasPermission('ADMINISTRATOR')) return
         const { adChannels } = await guildSchema.findOne({ _id: guild.id })
         if (adChannels.includes(channel.id)) return
