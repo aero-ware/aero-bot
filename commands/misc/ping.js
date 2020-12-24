@@ -5,7 +5,7 @@ module.exports = {
     run: (message, args, text, client) => {
         message.channel.send('Calculating ping...').then(sentMessage => {
             const ping = sentMessage.createdTimestamp - message.createdTimestamp
-            sentMessage.edit(`**Bot latency:** ${ping}ms, **Discord API latency:** ${client.ws.ping}ms`)
+            sentMessage.edit(`**Bot latency:** ${ping}ms, **Discord API latency:** ${client.ws.ping}ms`) // webhook test
         })
     }
 }
