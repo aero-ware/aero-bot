@@ -32,9 +32,10 @@ module.exports = {
                     }
                 )
             }
-        }).catch(() => {
+        }).catch((err) => {
             muteSuccess = false
             message.reply('I cannot mute that member, they probably have higher permissions than me')
+            if (err) console.log(err)
         })
         
         const formatDate = new Date(ms(timeString))

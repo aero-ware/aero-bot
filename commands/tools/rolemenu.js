@@ -11,7 +11,7 @@ module.exports = {
     permissions: 'ADMINISTRATOR',
     run: async (message, args, text, client, prefix) => {
         const [arg, messageID, emoji, roleID] = args
-        let { roleMenus } = await guildSchema.findOne({ _id: message.guild.id })
+        let { roleMenus } = await guildSchema.findOne({ _id: message.guild.id }) || {roleMenus: null}
         switch (arg) {
             case 'add':
                 if (!roleMenus) roleMenus = new Map()

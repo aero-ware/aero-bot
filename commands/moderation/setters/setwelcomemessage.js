@@ -8,9 +8,9 @@ module.exports = {
     category: 'Moderation',
     run: async (message, args, text, client, prefix, instance) => {
         if (!text) {
-            const guildWelcome = await guildSchema.findOne({ _id: message.guild.id })
-            if (guildWelcome === null) return message.reply('The welcome message for this server has not been set. Run this command again and provide the message.')
-            return message.reply(`The welcome message for this server is set to "${guildWelcome.welcomeText.replace(/<@>/g, '<user ping>')}" in channel <#${guildWelcome.welcomeChannelId}>.`)
+            const { welcomeText, welcomeChannelId } = await guildSchema.findOne({ _id: message.guild.id }) || { welcomeText: null }
+            if (!welcomeText) return message.reply('The welcome message for this server has not been set. Run this command again and provide the message.')
+            return message.reply(`The welcome message for this server is set to "${welcomeText.replace(/<@>/g, '<user ping>')}" in channel <#${welcomeChannelId}>.`)
         }
         if (text === 'none') {
             await guildSchema.findOneAndDelete({ _id: message.guild.id })

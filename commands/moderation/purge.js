@@ -11,7 +11,7 @@ module.exports = {
         else if (args[0] > 100) return message.reply('more than 100 messages cannot be deleted at once.')
 
         if (!target) {
-            return message.channel.bulkDelete(args[0] + 1).then(deletedMessages => {
+            return message.channel.bulkDelete(parseInt(args[0]) + 1).then(deletedMessages => {
                 if (deletedMessages.array().length < args[0]) return message.reply(`only ${deletedMessages.array().length} messages were deleted, probably due to the fact that some messages were more than 2 weeks old.`)
             })
         } else {
