@@ -5,16 +5,15 @@ module.exports = {
     commands: ['rolemenu', 'reactionroles', 'reaction-roles'],
     category: 'Tools',
     descriprion: 'create, update, and remove reaction role menus. Run `rolemenu help` to see the instructions',
-    expectedArgs: '<add|remove|update|help> [message ID] [emoji] [role ID]',
+    expectedArgs: '<add|remove|update|help> [message ID] [emoji] [role ID|\'none\']',
     minArgs: 1,
     maxArgs: 4,
     permissions: 'ADMINISTRATOR',
-    run: async (message, args) => {
+    run: async (message, args, text, client, prefix) => {
         const [arg, messageID, emoji, roleID] = args
         let { roleMenus } = await guildSchema.findOne({ _id: message.guild.id })
         switch (arg) {
             case 'add':
-                
                 if (!roleMenus) roleMenus = new Map()
                 roleMenus.set(messageID, new Map())
                 await guildSchema.findOneAndUpdate(
@@ -28,23 +27,37 @@ module.exports = {
                 return message.reply(`new rolemenu created in message ${messageID}. Use \`rolemenu update ${messageID} <emoji> <role ID>\` to add roles to it.`)
 
             case 'remove':
-                // not done yet
-                return
+                roleMenus.delete(messageID)
+                await await guildSchema.findOneAndUpdate(
+                    { _id: message.guild.id },
+                    { roleMenus }
+                )
+                return message.reply(`message ${messageID} has been removed from this servers rolemenus.`)
 
             case 'update':
                 if (!roleMenus || !roleMenus.has(messageID)) return message.reply(`message ${messageID} does not have a rolemenu attached to it. Use \`rolemenu add <message ID>\` to create one.`)
-                let emote = getEmote(emoji, message.client)
-                emote = emote.emoteName || emote.emoteID
+                const emote = getEmote(emoji, message.client)
+                let e = emote.emoteName || emote.emoteID
+                console.log(emote)
                 if (!emote) return message.reply('you did not give me an emote to add.')
-                if (!await message.guild.roles.cache.get(roleID)) return message.reply('invalid role ID.')
-                roleMenus.get(messageID)[emote] = roleID
+
+                if (roleID === 'none') { // removing a reactionrole if 'none' is provided
+                    delete roleMenus.get(messageID)[e]
+                    await guildSchema.findOneAndUpdate(
+                        { _id: message.guild.id },
+                        { roleMenus }
+                    )
+                    return message.reply(`emoji ${emoji}'s role in rolemenu of message ${messageID} has been removed.`)
+                } else if (!await message.guild.roles.cache.get(roleID)) return message.reply('invalid role ID.')
+
+                roleMenus.get(messageID)[e] = roleID
                 const roleMenuMessage = await message.channel.messages.fetch(messageID)
-                roleMenuMessage.react(emote)
+                roleMenuMessage.react(e)
                 await guildSchema.findOneAndUpdate(
                     { _id: message.guild.id },
                     { roleMenus }
                 )
-                return message.reply(`role <@&${roleID}> added to message ${messageID} in emoji ${emote}`)
+                return message.reply(`role ${roleID} added to message ${messageID} in emoji ${emote.emoteID ? `<:${message.guild.emojis.cache.get(emote.emoteID).name}:${emote.emoteID}>` : emote.emoteName}`)
 
             case 'help':
                 const helpEmbed = new MessageEmbed()
@@ -53,9 +66,25 @@ module.exports = {
                     .addFields(
                         {
                             name: 'Creating a rolemenu',
-                            value: '1. Send a message to have the rolemenu attached to.'
+                            value: '**1.** Send a message to have the rolemenu attached to.\n' + 
+                                `**2.** Run \`${prefix}rolemenu add <message ID>\` to initialize the rolemenu for that message **in the same channel as the message**`,
+                        },
+                        {
+                            name: 'Adding roles to a rolemenu',
+                            value: `Run \`${prefix}rolemenu update <message ID> <emoji> <role ID>\` **in the same channel as the message**.\n` +
+                                '*The emoji will be automatically added as a reaction to the message.*',
+                        },
+                        {
+                            name: 'Removing a role from a rolemenu',
+                            value: `Run \`${prefix}rolemenu update <message ID> <emoji> none\` **in the same channel as the message**.\n` + 
+                                '*The emoji will be deregistered for adding roles.*'
+                        },
+                        {
+                            name: 'Deleting a rolemenu',
+                            value: `Run \`${prefix}rolemenu remove <message ID>\` **in the same channel as the message**`,
                         }
                     )
+                    .setColor('#32a852')
 
                 return message.channel.send(helpEmbed)
 
@@ -65,6 +94,7 @@ module.exports = {
     }
 }
 
+// magic emoji finding code from canta (wok server)
 const getEmote = (str, client) => {
     let emoteName, emoteID, e, n
 
