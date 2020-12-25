@@ -1,4 +1,4 @@
-const guildSchema = require("../../schemas/guild-schema")
+const guildSchema = require("../../../schemas/guild-schema")
 
 module.exports = {
     commands: ['setwelcome', 'welcome', 'joinmessage', 'welcomemessage'],
