@@ -22,6 +22,9 @@ const guildSchema = mongoose.Schema({
         type: [String],
         default: null,
     },
+    roleMenus: {
+        type: Map,
+    }
 })
 
 module.exports = mongoose.model('guild-configs', guildSchema)
