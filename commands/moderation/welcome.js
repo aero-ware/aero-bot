@@ -17,21 +17,24 @@ module.exports = {
             return message.reply('The welcome message for this server was disabled.')
         }
         let textNoChannel = ''
-        if (message.mentions.channels.first()) {
+        let welcomeChannel = message.guild.channels.cache.get(args[0].substring(2, args[0].length - 1))
+        if (welcomeChannel) {
             args.shift()
             textNoChannel = args.join(' ')
-        } else textNoChannel = text
+        } else {
+            welcomeChannel = message.channel
+            textNoChannel = text
+        }
 
         const newInfo = await guildSchema.findOneAndUpdate(
             { _id: message.guild.id },
             {
                 _id: message.guild.id,
-                welcomeChannelId: message.mentions.channels.first() ? message.mentions.channels.first() : message.channel.id,
+                welcomeChannelId: welcomeChannel.id,
                 welcomeText: textNoChannel,
             },
             { upsert: true, new: true }
         )
-        const channel = message.guild.channels.cache.find(channel => channel.id === newInfo.welcomeChannelId)
-        return message.reply(`The welcome message for this server has been set to "${newInfo.welcomeText.replace(/<@>/g, '<user ping>')}" in channel ${channel}.`)
+        return message.reply(`The welcome message for this server has been set to "${newInfo.welcomeText.replace(/<@>/g, '<user ping>')}" in channel ${welcomeChannel}.`)
     }
 }
