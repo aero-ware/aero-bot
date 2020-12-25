@@ -15,7 +15,7 @@ Running this bot is not that complicated. Here are instructions on how to do so:
     - the `adminIds` should be a comma separated list of user IDs, ex: `id1,id2,id3` who can use the `ownerOnly` commands
     - Here is an example of a valid `.env` file:
 
-```env
+```
 token=<your discord bot token goes here>
 mongoPath=<uri to your mongoDB server (local or remote)>
 defaultPrefix=<a char/string that will be the default prefix for the bot>
