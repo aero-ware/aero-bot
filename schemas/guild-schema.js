@@ -24,7 +24,11 @@ const guildSchema = mongoose.Schema({
     },
     roleMenus: {
         type: Map,
-    }
+    },
+    blacklistedWords: {
+        type: [String],
+        default: null,
+    },
 })
 
 module.exports = mongoose.model('guild-configs', guildSchema)
