@@ -4,7 +4,7 @@ const guildSchema = require("../../schemas/guild-schema")
 module.exports = {
     commands: ['rolemenu', 'reactionroles', 'reaction-roles'],
     category: 'Tools',
-    descriprion: 'create, update, and remove reaction role menus. Run `rolemenu help` to see the instructions',
+    description: 'create, update, and remove reaction role menus. Run `rolemenu help` to see the instructions',
     expectedArgs: '<add|remove|update|help> [message ID] [emoji] [role ID|\'none\']',
     minArgs: 1,
     maxArgs: 4,
