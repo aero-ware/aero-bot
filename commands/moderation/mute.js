@@ -12,8 +12,40 @@ module.exports = {
     expectedArgs: '<user ping|id> <time|\'forever\'> [reason]',
     minArgs: 2,
     run: async (message, args) => {
+        if (!message.guild) return
         const [user, timeString, ...reason] = args
-        const { mutedRoleId } = await guildSchema.findOne({ _id: message.guild.id })
+        let { mutedRoleId } = await guildSchema.findOne({ _id: message.guild.id }) || null
+        let add = false, end = false
+        if (!mutedRoleId) {
+            const sentMessage = await message.reply('this server does not have a muted role set up. Do you want me to create one? (react for yes)')
+                sentMessage.react('✔')
+                const collected = await sentMessage.awaitReactions((reaction, user) => reaction.emoji.name === '✔' && user.id === message.author.id)
+                if (collected.size > 0) add = true
+
+            if (end) return
+            if (add) {
+                const mutedRole = await message.guild.roles.create({
+                    data: {
+                        name: 'Muted',
+                        permissions: 1115136,
+                        hoist: false,
+                        mentionable: false,
+                    },
+                    reason: `adding muted role, requested by ${message.author.tag}`
+                })
+
+                await guildSchema.findOneAndUpdate(
+                    { _id: message.guild.id },
+                    {
+                        _id: message.guild.id,
+                        mutedRoleId: mutedRole.id,
+                    },
+                    { upsert: true }
+                )
+                message.reply(`${mutedRole} is now the muted role for this server.`)
+                mutedRoleId = mutedRole.id
+            }
+        }
         const target = message.mentions.members.first() || message.guild.members.fetch(args[0])
 
         const duration = timeString === 'forever' ? null : ms(timeString)
