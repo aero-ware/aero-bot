@@ -4,6 +4,10 @@ This repo is a template that contains basic functions that almost any bot should
 ## How to run the bot
 Running this bot is not that complicated. Here are instructions on how to do so:
 
+### Inviting the bot to your server
+You can invite the bot [here]() or use this code to run it yourself. To run it yourself check [Running the bot Yourself](###Running-the-Bot-Yourself)
+
+### Running the Bot Yourself
 0. Install node.js and npm if they are not already installed. [node.js installer](https://nodejs.org/en/)
 1. Clone this repo using `git clone https://github.com/dheerajpv/discord-bot.git`, then `cd` into the repo folder.
     - Alternatively, you can use this repo as a template to make your own repo and then clone it
@@ -22,16 +26,27 @@ defaultPrefix=<a char/string that will be the default prefix for the bot>
 adminIds=<a comma separated list of user IDs that should be the bot owner(s)>
 ```
 4. Run `node .` to run the bot!
+5. Generate yourself an invite link using the OAuth2 tab of the application page, check scope `bot` and be sure to give it the `Administrator` permission.
+
+---
+## Library Documentation
+This bot uses the [Discord.js](https://discord.js.org/#/docs/main/stable/general/welcome) library to take advantage of its easy access to the Discord API without having to directly and manually send HTTP requests to Discord.
+
+It also uses the [WOKCommands command handler](https://github.com/AlexzanderFlores/WOKCommands) to use its pre-made advanced command handler that has many advantages to making one manually.
+
+The [mongoose](https://npmjs.com/package/mongoose) library is used to access the mongoDB database.
+
+Finally, the [ms](https://npmjs.com/package/ms) package is used in certain commands to convert strings such as `1d6h` into milliseconds.
 
 ---
 ## Bot Documentation
-This bot uses the [Discord.js](https://npmjs.com/package/discord.js) library to take advantage of its easy access to the Discord API without having to directly and manually send HTTP requests to Discord [Discord.js docs](https://discord.js.org/#/docs/main/stable/general/welcome).
-It also uses the [WOKCommands command handler](https://github.com/AlexzanderFlores/WOKCommands) to use its pre-made advanced command handler that has many advantages to making one manually.
-The [mongoose](https://npmjs.com/package/mongoose) library is used to access the mongoDB database. Finally, the [ms](https://npmjs.com/package/ms) package is used in certain commands to convert strings such as `1d6h` into milliseconds.
+Information for all the commands of this bot can be found by running `>help` (using the correct prefix) and navingating the resulting embed. In the future, I may add a GitHub Pages website with all the command information for the bot. If anyone wants to help with that, check [Development](#Development).
 
 ---
 ## Development
+
 ### Filing Issues
 If you found a bug or want to submit an idea for a feature or something else in between, the best place for that would be in an **issue**. If you submit an issue, please be sure to apply the appropriate labels so that I can filter through them easier.
+
 ### Implementing fixes/features yourself
 Should you desire to work on what you have suggested, don't hesitate to fork this repo and work on it yourself and create and link a pull request. Please remember to apply the diy-fix label to your issue and PR.
