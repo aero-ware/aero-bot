@@ -6,6 +6,7 @@ module.exports = {
     category: 'Moderation',
     permissions: 'ADMINISTRATOR',
     expectedArgs: '<add|remove|list> [word]',
+    minArgs: 1,
     run: async (message, args) => {
         const [arg, ...words] = args
         const word = words.join(' ') || null
@@ -39,7 +40,7 @@ module.exports = {
                 return message.reply(`removed ${word} from the list of blacklisted words for this server.`)
 
             case 'list':
-                if (!blacklistedWords) return message.reply('there are no blacklisted words set up for this server.')
+                if (!blacklistedWords || !blacklistedWords.length) return message.reply('there are no blacklisted words set up for this server.')
                 return message.reply(`the blacklisted words on this server are: ${blacklistedWords.join(', ')}`)
 
             default:
