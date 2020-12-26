@@ -16,11 +16,14 @@ module.exports = {
         const [user, timeString, ...reason] = args
         let { mutedRoleId } = await guildSchema.findOne({ _id: message.guild.id }) || null
         let add = false, end = false
+        const target = message.mentions.members.first() || message.guild.members.fetch(args[0])
+
         if (!mutedRoleId) {
             const sentMessage = await message.reply('this server does not have a muted role set up. Do you want me to create one? (react for yes)')
                 sentMessage.react('✔')
-                const collected = await sentMessage.awaitReactions((reaction, user) => reaction.emoji.name === '✔' && user.id === message.author.id)
+                const collected = await sentMessage.awaitReactions((reaction, user) => reaction.emoji.name === '✔' && user.id === message.author.id, { max: 1, time: 5000 })
                 if (collected.size > 0) add = true
+                else return message.reply(`not adding a muted role or muting ${target}.`)
 
             if (end) return
             if (add) {
@@ -46,8 +49,7 @@ module.exports = {
                 mutedRoleId = mutedRole.id
             }
         }
-        const target = message.mentions.members.first() || message.guild.members.fetch(args[0])
-
+        
         const duration = timeString === 'forever' ? null : ms(timeString)
 
         if (target === message.member) return message.reply('why are you muting yourself?')
