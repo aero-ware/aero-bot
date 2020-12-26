@@ -10,7 +10,7 @@ module.exports = async client => {
         }
         if (offendingMessage && !message.member.hasPermission('ADMINISTRATOR')) {
             message.delete()
-            message.author.send('that word is not allowed here!').catch()
+            message.author.send('that word is not allowed here!').catch(() => message.reply('that word is not allowed here!'))
         }
     })
 }
