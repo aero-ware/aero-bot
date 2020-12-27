@@ -1,5 +1,12 @@
 // me doing LITERAL MAGIC to turn a ms (number) into a nice string...
 // this really did take me longer to do than the mute command smh
+
+/**
+ * convters a number of milliseconds to a string
+ * @param {number} ms the number of millseconds to convert to a nice string
+ * @returns {string} example: 1 day, 3 hours, 9 seconds
+ * @example const pretty = msToTime(657354)
+ */
 const msToTime = ms => {
     if (!ms) return null
     const iso = new Date(ms).toISOString()
