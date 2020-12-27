@@ -25,3 +25,9 @@ module.exports = async client => {
         await memberSchema.deleteMany({ guildId: guild.id })
     })
 }
+
+module.exports.config = {
+    displayName: 'guildJoin',
+    dbName: 'JOIN_AND_LEAVE', // DO NOT CHANGE
+    loadDBFirst: true,
+}
