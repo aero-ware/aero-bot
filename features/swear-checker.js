@@ -4,7 +4,7 @@ module.exports = async client => {
     client.on('message', async message => {
         if (!message.guild || message.webhookID || message.author.bot) return
         const { blacklistedWords } = await guildSchema.findOne({ _id: message.guild.id }) || null
-        if (!blacklistedWords) return
+        if (!blacklistedWords || !blacklistedWords.length > 0) return
         let offendingMessage = false
         for (const word of blacklistedWords) {
             if (message.content.toLowerCase().includes(word.toLowerCase())) offendingMessage = true

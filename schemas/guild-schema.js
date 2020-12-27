@@ -27,7 +27,7 @@ const guildSchema = mongoose.Schema({
     },
     blacklistedWords: {
         type: [String],
-        default: null,
+        default: [],
     },
 })
 
