@@ -33,28 +33,28 @@ module.exports = {
 
         message.reply(`${target} has been banned for the reason \`${reason.length > 0 ? reason.join(' ') : 'no given reason'}\` for ${niceDates(duration) === null ? 'forever' : niceDates(duration)}`)
 
-        // const dmEmbed = new MessageEmbed()
-        //     .setTitle(`Banned from ${message.guild}`)
-        //     .addFields(
-        //         {
-        //             name: 'Action by',
-        //             value: message.author,
-        //             inline: true,
-        //         },
-        //         {
-        //             name: 'Reason',
-        //             value: reason.join(' '),
-        //             inline: true,
-        //         },
-        //         {
-        //             name: 'Duration',
-        //             value: niceDates(duration) === null ? 'Forever' : niceDates(duration),
-        //             inline: true,
-        //         }
-        //     )
-        //     .setTimestamp()
+        const dmEmbed = new MessageEmbed()
+            .setTitle(`Banned from ${message.guild}`)
+            .addFields(
+                {
+                    name: 'Action by',
+                    value: message.author,
+                    inline: true,
+                },
+                {
+                    name: 'Reason',
+                    value: reason.join(' '),
+                    inline: true,
+                },
+                {
+                    name: 'Duration',
+                    value: niceDates(duration) === null ? 'Forever' : niceDates(duration),
+                    inline: true,
+                }
+            )
+            .setTimestamp()
 
-        // target.send(dmEmbed)
-        //     .catch(() => message.channel.send('DM confirmation could not be sent.'))
+        target.send(dmEmbed)
+            .catch(() => message.channel.send('DM confirmation could not be sent.'))
     }
 }
