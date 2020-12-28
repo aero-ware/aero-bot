@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { MessageEmbed, Client } = require("discord.js")
 const guildSchema = require("../../schemas/guild-schema")
 
 module.exports = {
@@ -94,7 +94,11 @@ module.exports = {
     }
 }
 
-// magic emoji finding code from canta (wok server)
+/**
+ * Searches the given string for an emoji
+ * @param {string} str the string that should be searched for an emoji
+ * @param {Client} client the client for the bot
+ */
 const getEmote = (str, client) => {
     let emoteName, emoteID, e, n
 
@@ -127,7 +131,7 @@ const getEmote = (str, client) => {
     } else return
 }
 
-const containsOnlyEmojis = (text) => {
+const containsOnlyEmojis = text => {
     const onlyEmojis = text.replace(new RegExp('[\u0000-\u1eeff]', 'g'), '')
     const visibleChars = text.replace(new RegExp('[\n\r\s]+|( )+', 'g'), '')
     return onlyEmojis.length === visibleChars.length

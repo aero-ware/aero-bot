@@ -24,6 +24,13 @@ module.exports = {
     }
 }
 
+/**
+ * 
+ * @param {boolean} add add or remove a channel
+ * @param {string} channelId the ID of the channel to add or remove
+ * @param {string} guildId the ID of the guild where these changes are stored
+ * @returns {Promise<Document<any>} the guild config document for that guild
+ */
 const changeAdChannels = async (add, channelId, guildId) => {
     if (add) {
         return await guildSchema.findOneAndUpdate(

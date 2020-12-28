@@ -1,6 +1,11 @@
-const { MessageEmbed } = require("discord.js")
+const { MessageEmbed, Guild, GuildChannel } = require("discord.js")
 const guildSchema = require('../schemas/guild-schema')
 
+/**
+ * Returns the log channel for the guild or null
+ * @param {Guild} guild the guild to check the log channel for
+ * @returns {Promise<GuildChannel>|null} the specified logging channel for the guild or null
+ */
 const getLogChannel = async guild => {
     const result = await guildSchema.findOne({ _id: guild.id })
     return result ? guild.channels.cache.get(result.logChannelId) : null

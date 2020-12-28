@@ -1,3 +1,4 @@
+const { Message } = require('discord.js')
 const memberSchema = require('../schemas/member-schema')
 
 module.exports = client => {
@@ -8,8 +9,20 @@ module.exports = client => {
     })
 }
 
+/**
+ * Finds the number of XP needed for a member of that level to level up
+ * @param {number} level the current level of a member
+ * @returns {number} the number of XP required to level up
+ */
 const getNeededXP = level => level * level * 100
 
+/**
+ * 
+ * @param {string} guildId the ID of the guild the member is in
+ * @param {string} userId the ID of the user to add XP to
+ * @param {number} xpToAdd the number of XP to add to the member
+ * @param {Message} message the message object that triggered this function
+ */
 const addXP = async (guildId, userId, xpToAdd, message) => {
     const result = await memberSchema.findOneAndUpdate(
         {

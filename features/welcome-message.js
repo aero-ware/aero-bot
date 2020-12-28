@@ -1,6 +1,11 @@
+const { GuildMember } = require('discord.js')
 const guildSchema = require('../schemas/guild-schema')
 
 module.exports = (client) => {
+    /**
+     * Manages sending the welcome message when someone joins a guild
+     * @param {GuildMember} member the member that has joined the server
+     */
     const onJoin = async member => {
         let data = []
 
