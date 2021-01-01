@@ -9,6 +9,7 @@
   "author": "Dheeraj Prakash",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^4.5.3",
     "discord.js": "^12.5.1",
     "mongoose": "^5.11.8",
     "ms": "^2.1.3",

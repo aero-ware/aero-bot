@@ -1,0 +1,44 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.top-nav {
+    padding: 10px;
+    background-color:#222222
+}
+
+#invite-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15%;
+    padding-bottom: 15%;
+}
+
+#nav-title {
+    font-weight: bold;
+    padding-top: 7px;
+    padding-right: 10px;
+}
+
+#bot-title {
+    font-size: 48px;
+    margin: 0px;
+}
+
+#invite-commands-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#invite-button, #commands-button {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
