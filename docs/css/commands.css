@@ -6,9 +6,10 @@ body {
 main {
     padding-top: 20px;
     padding-left: 10px;
+    display: flex;
 }
 
-h3 {
+h4 {
     text-align: left;
 }
 
@@ -19,4 +20,19 @@ h3 {
 
 .command-details {
     padding: 10px;
+}
+
+#outline-sidebar{
+    flex-direction: column;
+    width: max-content;
+}
+
+#command-content {
+    overflow-y: scroll;
+    padding-left: 10px;
+    flex: 1;
+}
+
+.ms-6 {
+    margin-left: 25px;
 }
