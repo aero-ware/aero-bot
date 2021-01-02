@@ -6,7 +6,8 @@ module.exports = {
     description: 'Lists your (or someone else\'s) warnings in this server.',
     category: 'Moderation',
     expectedArgs: '[user ping]',
-    callback: async (message) => {
+    guildOnly: true,
+    callback: async ({ message }) => {
         const target = message.mentions.users.first() || message.author
         const guildId = message.guild.id
         const userId = target.id

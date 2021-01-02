@@ -6,7 +6,8 @@ module.exports = {
     category: 'Moderation',
     expectedArgs: '[channel|none]',
     permissinons: 'ADMINISTRATOR',
-    run: async (message, args) => {
+    guildOnly: true,
+    run: async ({ message, args }) => {
         const logChannelId = message.mentions.channels.first() ? message.mentions.channels.first().id : null
 
         if (!logChannelId) {

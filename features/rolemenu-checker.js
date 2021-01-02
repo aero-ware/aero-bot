@@ -1,6 +1,6 @@
 const guildSchema = require("../schemas/guild-schema")
 
-module.exports = async client => {
+module.exports = async (client, instance, isEnabled) => {
     client.on('messageReactionAdd', async (reaction, user) => {
         if (user.bot) return
 
@@ -45,7 +45,7 @@ module.exports = async client => {
 }
 
 module.exports.config = {
-    displayName: 'rolemenu-helper',
-    dbName: 'rolemenu-helper', // DO NOT CHANGE
+    displayName: 'rolemenus',
+    dbName: 'ROLEMENUS', // DO NOT CHANGE
     loadDBFirst: true,
 }

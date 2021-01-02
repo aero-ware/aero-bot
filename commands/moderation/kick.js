@@ -7,7 +7,8 @@ module.exports = {
     permissions: 'KICK_MEMBERS',
     description: 'Kicks the targeted user',
     category: 'Moderation',
-    callback: (message, args) => {
+    guildOnly: true,
+    callback: ({ message, args }) => {
         args.shift()
         const reason = args.join(' ')
 

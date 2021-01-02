@@ -1,6 +1,6 @@
 const guildSchema = require("../schemas/guild-schema")
 
-module.exports = client => {
+module.exports = (client, instance, isEnabled) => {
     const isInvite = async (guild, code) => {
         return await new Promise(resolve => {
             guild.fetchInvites().then(invites => {
@@ -17,6 +17,7 @@ module.exports = client => {
     client.on('message', async message => {
         if (!message.guild) return // no dms
         const { member, content, channel, guild, webhookID } = message
+        if (!message.member) return
         if (webhookID) return
         if (member.hasPermission('ADMINISTRATOR')) return
         const { adChannels } = await guildSchema.findOne({ _id: guild.id })
@@ -35,5 +36,5 @@ module.exports = client => {
 
 module.exports.config = {
     displayName: 'antiAd',
-    dbName: 'anti-ad', // DO NOT CHANGE
+    dbName: 'ANTI-AD', // DO NOT CHANGE
 }

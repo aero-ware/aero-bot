@@ -7,7 +7,8 @@ module.exports = {
     permissions: 'ADMINISTRATOR',
     expectedArgs: '<role ping|role id|\'none\'>',
     minArgs: 1,
-    run: async (message, args, text) => {
+    guildOnly: true,
+    run: async ({ message, text }) => {
         if (text === 'none') {
             await guildSchema.findOneAndUpdate(
                 { _id: message.guild.id },

@@ -5,7 +5,8 @@ module.exports = {
     minArgs: 1,
     maxArgs: 2,
     expectedArgs: '<number> [user ping]',
-    run: async (message, args) => {
+    guildOnly: true,
+    run: async ({ message, args }) => {
         const target = message.mentions.users.first() || null
         if (isNaN(args[0])) return message.reply('please provide a valid number of messages to delete (less than 100).')
         else if (args[0] > 100) return message.reply('more than 100 messages cannot be deleted at once.')

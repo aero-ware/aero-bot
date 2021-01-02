@@ -1,6 +1,6 @@
 const guildSchema = require("../schemas/guild-schema")
 
-module.exports = async client => {
+module.exports = async (client, instance, isEnabled) => {
     client.on('message', async message => {
         if (!message.guild || message.webhookID || message.author.bot) return
         const { blacklistedWords } = await guildSchema.findOne({ _id: message.guild.id }) || null

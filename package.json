@@ -16,6 +16,6 @@
     "discord.js": "^12.5.1",
     "mongoose": "^5.11.8",
     "ms": "^2.1.3",
-    "wokcommands": "^1.1.5"
+    "wokcommands": "^1.2.0"
   }
 }

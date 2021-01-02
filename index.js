@@ -10,17 +10,56 @@ const client = new Client({
 
 client.on('ready', () => {
     console.log('Ready!')
-    const wok = new WOKCommands(client, 'commands', 'features', 'messages.json')
+    // const wok = new WOKCommands(client, 'commands', 'features', 'messages.json')
+    //     .setMongoPath(process.env.mongoPath)
+    //     .setBotOwner(process.env.adminIds.split(','))
+    //     .setDefaultPrefix(process.env.defaultPrefix)
+    //     .setDefaultLanguage('english')
+    //     .setCategoryEmoji('Economy', '💰')
+    //     .setCategoryEmoji('Moderation', '⚔')
+    //     .setCategoryEmoji('Fun', '🎉')
+    //     .setCategoryEmoji('Misc', '📚')
+    //     .setCategoryEmoji('Tools', '🔧')
+    //     .setCategoryEmoji('Testing', '🧪')
+
+    const wok = new WOKCommands(client, {
+        commandsDir: 'commands',
+        featuresDir: 'features',
+        messagesPath: 'messages.json',
+        showWarns: true,
+    })
         .setMongoPath(process.env.mongoPath)
-        .setBotOwner(process.env.adminIds.split(','))
         .setDefaultPrefix(process.env.defaultPrefix)
+        .setBotOwner(process.env.adminIds.split(','))
         .setDefaultLanguage('english')
-        .setCategoryEmoji('Economy', '💰')
-        .setCategoryEmoji('Moderation', '⚔')
-        .setCategoryEmoji('Fun', '🎉')
-        .setCategoryEmoji('Misc', '📚')
-        .setCategoryEmoji('Tools', '🔧')
-        .setCategoryEmoji('Testing', '🧪')
+        .setCategorySettings([
+            {
+                name: 'Economy',
+                emoji: '💰'
+            },
+            {
+                name: 'Moderation',
+                emoji: '⚔',
+            },
+            {
+                name: 'Fun',
+                emoji: '🎉',
+            },
+            {
+                name: 'Tools',
+                emoji: '🔧',
+            },
+            {
+                name: 'Misc',
+                emoji: '📚',
+            },
+            {
+                name: 'Testing',
+                emoji: '🧪',
+                hidden: true,
+            },
+        ])
+        .setColor('#90edaf')
 
     wok.on('databaseConnected', (conection, state) => {
         console.log('Connected to database!, state: ' + state)

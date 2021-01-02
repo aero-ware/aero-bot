@@ -9,7 +9,8 @@ module.exports = {
     minArgs: 1,
     maxArgs: 4,
     permissions: 'ADMINISTRATOR',
-    run: async (message, args, text, client, prefix) => {
+    guildOnly: true,
+    run: async ({ message, args, prefix }) => {
         const [arg, messageID, emoji, roleID] = args
         let { roleMenus } = await guildSchema.findOne({ _id: message.guild.id }) || null
         switch (arg) {
