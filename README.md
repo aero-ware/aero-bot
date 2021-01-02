@@ -49,4 +49,4 @@ Information for all the commands of the bot can be seen by running `>help` and n
 If you found a bug or want to submit an idea for a feature or something else in between, the best place for that would be in an **issue**. If you submit an issue, please be sure to apply the appropriate labels so that I can filter through them easier.
 
 ### Implementing fixes/features yourself
-Should you desire to work on what you have suggested, don't hesitate to fork this repo and work on it yourself and create and link a pull request. Please remember to apply the diy-fix label to your issue and PR.
+Should you desire to work on what you have suggested, don't hesitate to fork this repo and work on it yourself and create and link a pull request. Please remember to apply the diy-fix label to your issue and PR. ONLY SUBMIT PRs TO THE `dev` BRANCH
