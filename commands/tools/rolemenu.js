@@ -11,7 +11,7 @@ module.exports = {
     permissions: 'ADMINISTRATOR',
     run: async (message, args, text, client, prefix) => {
         const [arg, messageID, emoji, roleID] = args
-        let { roleMenus } = await guildSchema.findOne({ _id: message.guild.id }) || {roleMenus: null}
+        let { roleMenus } = await guildSchema.findOne({ _id: message.guild.id }) || null
         switch (arg) {
             case 'add':
                 if (!roleMenus) roleMenus = new Map()
@@ -27,8 +27,9 @@ module.exports = {
                 return message.reply(`new rolemenu created in message ${messageID}. Use \`rolemenu update ${messageID} <emoji> <role ID>\` to add roles to it.`)
 
             case 'remove':
+                if (!(roleMenus && roleMenus.has(messageID))) return message.reply('that message is not set up as a rolemenu.')
                 roleMenus.delete(messageID)
-                await await guildSchema.findOneAndUpdate(
+                await guildSchema.findOneAndUpdate(
                     { _id: message.guild.id },
                     { roleMenus }
                 )

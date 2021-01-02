@@ -20,10 +20,11 @@ const guildSchema = mongoose.Schema({
     },
     adChannels: {
         type: [String],
-        default: null,
+        default: [],
     },
     roleMenus: {
         type: Map,
+        default: new Map()
     },
     blacklistedWords: {
         type: [String],

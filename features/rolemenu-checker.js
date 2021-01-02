@@ -7,8 +7,8 @@ module.exports = async client => {
         const { message } = reaction
         if (!message.guild) return
 
-        const { roleMenus } = await guildSchema.findOne({ _id: message.guild.id })
-        if (!roleMenus.has(message.id)) return
+        const { roleMenus } = await guildSchema.findOne({ _id: message.guild.id }) || null
+        if (rolemenus && !roleMenus.has(message.id)) return
 
         const member = await message.guild.members.cache.get(user.id)
         if (!member) return
