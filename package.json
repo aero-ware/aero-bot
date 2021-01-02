@@ -1,8 +1,11 @@
 {
-  "name": "abot",
+  "name": "aero-bot",
   "version": "1.0.0",
   "description": "a bot",
   "main": "index.js",
+  "repository": "https://github.com/dheerajpv/aero-bot",
+  "homepage": "https://dheerajpv.github.io/aero-bot",
+  "bugs": "https://github.com/dheerajpv/aero-bot/issues",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

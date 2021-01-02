@@ -1,11 +1,11 @@
-# discord-bot
+# aero-bot
 This repo is a template that contains basic functions that almost any bot should have.
  
 ## How to run the bot
 Running this bot is not that complicated. Here are instructions on how to do so:
 
 ### Inviting the bot to your server
-You can invite the bot [here]() or use this code to run it yourself. To run it yourself check [Running the bot Yourself](###Running-the-Bot-Yourself)
+You can invite the bot [here](https://discord.com/api/oauth2/authorize?client_id=787460489427812363&permissions=8&scope=bot) or use this code to run it yourself. To run it yourself check [Running the bot Yourself](###Running-the-Bot-Yourself)
 
 ### Running the Bot Yourself
 0. Install node.js and npm if they are not already installed. [node.js installer](https://nodejs.org/en/)
@@ -40,7 +40,7 @@ Finally, the [ms](https://npmjs.com/package/ms) package is used in certain comma
 
 ---
 ## Bot Documentation
-Information for all the commands of this bot can be found by running `>help` (using the correct prefix) and navingating the resulting embed. In the future, I may add a GitHub Pages website with all the command information for the bot. If anyone wants to help with that, check [Development](#Development).
+Information for all the commands of the bot can be seen by running `>help` and navigating the resulting menus. A web version of this is currently in development [here](https://dheerajpv.github.io/aero-bot/commands.html). If anyone wants to help by adding command information, don't hesitate to check [Development](#Development) for more info (The website is in the docs folder).
 
 ---
 ## Development

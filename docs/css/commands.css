@@ -1,0 +1,22 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+main {
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+h3 {
+    text-align: left;
+}
+
+.indented {
+    padding-left: 40px;
+    padding-top: 10px;
+}
+
+.command-details {
+    padding: 10px;
+}

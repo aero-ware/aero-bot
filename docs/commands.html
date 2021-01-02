@@ -11,10 +11,83 @@
         crossorigin="anonymous"
     />
 
+    <!-- My CSS -->
+    <link
+        href="css/main.css"
+        rel="stylesheet"
+    />
+    <link
+        href="css/commands.css"
+        rel="stylesheet"
+    />
+
     <title>AeroBot's commands</title>
 </head>
 <body>
-    <p>W.I.P</p>
+    <header>
+        <nav>
+            <ul class="nav nav-pills">
+                <li class="nav-title" class="nav-item">AeroBot</li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="commands.html">Commands</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>AeroBot's Commands</h1>
+        <!-- Moderation -->
+        <section>
+            <h2>Moderation</h2>
+
+            <div class="command-details">
+                <h3>kick</h3>
+                aliases: kick<br />
+                expected args: &lt;user ping&gt; [reason]<br />
+                Example:<br />
+                <code class="indented">&gt;kick @aero_noob kick lol</code><br />
+                Note: that should be a real mention of a user.
+            </div>
+            <div class="command-details" id="ban-details">
+                <h3>ban</h3>
+                aliases: ban<br />
+                expected args: &lt;user ping/id&gt; &lt;duration/forever&gt; [reason]<br />
+                Example:<br />
+                <p class="indented">
+                    Tempban: <code>&gt;ban @aero_noob 7d 7 day tempban</code><br />
+                    Permaban: <code>&gt;ban @aero_noob forever permaent ban</code><br />
+                </p>
+                Note: that should be a real mention of a user (or their ID)
+            </div>
+            <div class="command-details">
+                <h3>unban</h3>
+                <b>Can unban both tempbans and permabans.</b>
+                aliases: unban<br />
+                expected args: &lt;user ID&gt;<br />
+                Example: <code>&gt;unban 645161965411</code>
+            </div>
+            <div class="command-details">
+                <h3>mute</h3>
+                aliases: mute <br />
+                expected args: &lt;user ping/id&gt; &lt;duration/forever&gt; [reason]<br />
+                Example: Follow usage of <a href="#ban-details">ban</a> (but use mute instead of ban)
+            </div>
+            <div class="command-details">
+                <h3>unmute</h3>
+                <b>Can unmute both temporary and permanent mutes.</b>
+                aliases: unmute<br />
+                expected args: &lt;user ping&gt;<br />
+                Example: <code>&gt;unmute @aero_noob</code>
+                Note: That should be a real mention of a user.
+            </div>
+
+        </section>
+
+    </main>
 
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
