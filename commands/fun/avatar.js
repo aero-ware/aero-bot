@@ -14,7 +14,6 @@ module.exports = {
             if (!invalidID) target = user
             else return message.reply('invalid user ID.')            
         }
-        // else if (text && await client.users.fetch(text)) target = await client.users.fetch(text)
 
         return message.channel.send(target.displayAvatarURL({ dynamic: true, size: 512 }))
     }

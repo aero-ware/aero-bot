@@ -2,8 +2,8 @@ const guildSchema = require("../schemas/guild-schema")
 
 module.exports = (client, instance, isEnabled) => {
     const isInvite = async (guild, code) => {
-        return await new Promise(resolve => {
-            guild.fetchInvites().then(invites => {
+        return await new Promise(async resolve => {
+            await guild.fetchInvites().then(invites => {
                 for (const invite of invites) {
                     // invite[0] is the code
                     // example discord.gg/{code}
