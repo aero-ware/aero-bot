@@ -5,7 +5,7 @@ module.exports = {
     permissions: 'ADMINISTRATOR',
     category: 'Testing',
     guildOnly: true,
-    run: ({ message }) => {
-        message.client.emit('guildMemberAdd', message.member)
+    run: ({ message, client }) => {
+        client.emit('guildMemberAdd', message.member)
     }
 }
