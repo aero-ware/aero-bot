@@ -85,6 +85,122 @@ module.exports = async (client, instance, isEnabled) => {
 
         if (channel) channel.send(unbanEmbed)
     })
+
+    client.on('channelCreate', async channel => {
+        const logChannel = channel.guild ? await getLogChannel(channel.guild) : null
+        if (!channel || !logChannel) return
+        const channelAuditLog = await channel.guild.fetchAuditLogs({ type: 'CHANNEL_CREATE', limit: 1 })
+        const channelCreator = channelAuditLog.entries.array()[0].executor
+
+        const channelEmbed = new MessageEmbed()
+            .setTitle('Channel Created')
+            .addFields(
+                {
+                    name: 'Channel',
+                    value: channel,
+                },
+                {
+                    name: 'Channel ID',
+                    value: channel.id
+                },
+                {
+                    name: 'Created By',
+                    value: channelCreator
+                }
+            )
+            .setColor('#4287f5')
+            .setTimestamp()
+
+        logChannel.send(channelEmbed)
+    })
+
+    client.on('channelDelete', async channel => {
+        const logChannel = channel.guild ? await getLogChannel(channel.guild) : null
+        if (!channel || !logChannel) return
+        const channelAuditLog = await channel.guild.fetchAuditLogs({ type: 'CHANNEL_DELETE', limit: 1 })
+        const channelDeleter = channelAuditLog.entries.array()[0].executor
+
+        const channelEmbed = new MessageEmbed()
+            .setTitle('Channel Deleted')
+            .addFields(
+                {
+                    name: 'Channel Name',
+                    value: channel.name,
+                },
+                {
+                    name: 'Channel ID',
+                    value: channel.id
+                },
+                {
+                    name: 'Deleted By',
+                    value: channelDeleter
+                }
+            )
+            .setColor('#4287f5')
+            .setTimestamp()
+
+        logChannel.send(channelEmbed)
+    })
+
+    client.on('inviteCreate', async invite => {
+        const channel = invite.guild ? await getLogChannel(invite.guild) : null
+        if (!invite || !channel) return
+
+        const inviteEmbed = new MessageEmbed()
+            .setTitle('Invite Created')
+            .addFields(
+                {
+                    name: 'Invite By',
+                    value: invite.inviter,
+                },
+                {
+                    name: 'Invite Code',
+                    value: invite.code,
+                },
+                {
+                    name: 'Invite Channel',
+                    value: invite.channel,
+                },
+                {
+                    name: 'Expires At',
+                    value: invite.expiresAt ? invite.expiresAt.toUTCString().replace(/GMT/, 'UTC') : 'Never',
+                },
+                {
+                    name: 'Max Uses',
+                    value: invite.maxUses ? invite.maxUses : 'No Limit',
+                }
+            )
+            .setColor('#fcba03')
+            .setTimestamp()
+
+        channel.send(inviteEmbed)
+    })
+
+    client.on('inviteDelete', async invite => {
+        const channel = invite.guild ? await getLogChannel(invite.guild) : null
+        if (!invite || !channel) return
+
+        const inviteEmbed = new MessageEmbed()
+            .setTitle('Invite Deleted')
+            .addFields(
+                {
+                    name: 'Invite By',
+                    value: invite.inviter,
+                },
+                {
+                    name: 'Invite Code',
+                    value: invite.code,
+                },
+                {
+                    name: 'Invite Channel',
+                    value: invite.channel,
+                },
+            )
+            .setColor('#eb4034')
+            .setTimestamp()
+
+        channel.send(inviteEmbed)
+    })
 }
 
 module.exports.config = {

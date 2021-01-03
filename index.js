@@ -10,18 +10,6 @@ const client = new Client({
 
 client.on('ready', () => {
     console.log('Ready!')
-    // const wok = new WOKCommands(client, 'commands', 'features', 'messages.json')
-    //     .setMongoPath(process.env.mongoPath)
-    //     .setBotOwner(process.env.adminIds.split(','))
-    //     .setDefaultPrefix(process.env.defaultPrefix)
-    //     .setDefaultLanguage('english')
-    //     .setCategoryEmoji('Economy', '💰')
-    //     .setCategoryEmoji('Moderation', '⚔')
-    //     .setCategoryEmoji('Fun', '🎉')
-    //     .setCategoryEmoji('Misc', '📚')
-    //     .setCategoryEmoji('Tools', '🔧')
-    //     .setCategoryEmoji('Testing', '🧪')
-
     const wok = new WOKCommands(client, {
         commandsDir: 'commands',
         featureDir: 'features',
