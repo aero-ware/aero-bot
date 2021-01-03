@@ -1,4 +1,4 @@
-const { MessageEmbed, Guild, GuildChannel } = require("discord.js")
+const { MessageEmbed, Guild, GuildChannel, Message } = require("discord.js")
 const guildSchema = require('../schemas/guild-schema')
 
 /**
@@ -201,6 +201,20 @@ module.exports = async (client, instance, isEnabled) => {
 
         channel.send(inviteEmbed)
     })
+}
+
+/**
+ * Sends an embed in the guild's logging channel
+ * @param {Guild} guild the guild whose logging channel to log in (if it has one)
+ * @param {MessageEmbed} embed the embed to send in the logging channel
+ * @returns {Message} the message object that was sent
+ */
+module.exports.log = async (guild, embed) => {
+    if (!guild || !guild.id) throw new TypeError('parameter \'guild\' is not a valid Guild object.')
+    if (!embed || !embed instanceof MessageEmbed) throw new TypeError('parameter \'embed\' is not a MessageEmbed.')
+    const logChannel = await getLogChannel(guild)
+    if (!logChannel) return
+    logChannel.send(embed)
 }
 
 module.exports.config = {
