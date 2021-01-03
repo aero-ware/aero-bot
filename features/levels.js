@@ -15,6 +15,7 @@ module.exports = (client, instance, isEnabled) => {
  * @returns {number} the number of XP required to level up
  */
 const getNeededXP = level => level * level * 100
+module.exports.getNeededXP = getNeededXP
 
 /**
  * 
