@@ -24,7 +24,7 @@ client.on('ready', () => {
 
     const wok = new WOKCommands(client, {
         commandsDir: 'commands',
-        featuresDir: 'features',
+        featureDir: 'features',
         messagesPath: 'messages.json',
         showWarns: true,
     })
