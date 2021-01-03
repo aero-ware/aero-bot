@@ -6,7 +6,8 @@ module.exports = {
     description: 'Beg for money... what a loser!',
     category: 'Economy',
     globalCooldown: '5m',
-    run: async message => {
+    guildOnly: true,
+    run: async ({ message }) => {
         const loseMoney = Math.random() > 0.875
         if (loseMoney) {
             const moneyToLose = Math.floor(Math.random() * (200 - 100) + 100)

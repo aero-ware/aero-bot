@@ -11,7 +11,7 @@ const getLogChannel = async guild => {
     return result ? guild.channels.cache.get(result.logChannelId) : null
 }
 
-module.exports = async client => {
+module.exports = async (client, instance, isEnabled) => {
     client.on('guildMemberAdd', async member => {
         const channel = await getLogChannel(member.guild)
         const newMemberEmbed = new MessageEmbed()
@@ -89,6 +89,6 @@ module.exports = async client => {
 
 module.exports.config = {
     displayName: 'mod-logs',
-    dbName: 'mod-logs', // DO NOT CHANGE
+    dbName: 'MOD-LOGS', // DO NOT CHANGE
     loadDBFirst: true,
 }

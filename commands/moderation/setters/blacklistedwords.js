@@ -7,7 +7,8 @@ module.exports = {
     permissions: 'ADMINISTRATOR',
     expectedArgs: '<add|remove|list> [word]',
     minArgs: 1,
-    run: async (message, args) => {
+    guildOnly: true,
+    run: async ({ message, args }) => {
         const [arg, ...words] = args
         const word = words.join(' ') || null
         const { blacklistedWords } = await guildSchema.findOne({ _id: message.guild.id }) || null

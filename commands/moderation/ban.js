@@ -11,7 +11,8 @@ module.exports = {
     permissions: ['BAN_MEMBERS'],
     description: 'Bans the targeted user',
     category: 'Moderation',
-    callback: async (message, args) => {
+    guildOnly: true,
+    callback: async ({ message, args }) => {
         const [user, timeString, ...reason] = args
         const target = await message.mentions.users.first() || await message.client.users.fetch(args[0])
         if (!message.guild.me.hasPermission('BAN_MEMBERS')) return message.reply('I don\'t have permission to ban members.')

@@ -1,7 +1,7 @@
 const { GuildMember } = require('discord.js')
 const guildSchema = require('../schemas/guild-schema')
 
-module.exports = (client) => {
+module.exports = (client, instance, isEnabled) => {
     /**
      * Manages sending the welcome message when someone joins a guild
      * @param {GuildMember} member the member that has joined the server
@@ -28,6 +28,6 @@ module.exports = (client) => {
 
 module.exports.config = {
     displayName: 'welcomeMessage',
-    dbName: 'welcome', // DO NOT CHANGE
+    dbName: 'WELCOME-MESSAGE', // DO NOT CHANGE
     loadDBfirst: true,
 }

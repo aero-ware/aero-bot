@@ -6,7 +6,8 @@ module.exports = {
     expectedArgs: '[channel] [message]',
     permissions: 'ADMINISTRATOR',
     category: 'Moderation',
-    run: async (message, args, text, client, prefix, instance) => {
+    guildOnly: true,
+    run: async ({ message, args, text }) => {
         if (!text) {
             const { welcomeText, welcomeChannelId } = await guildSchema.findOne({ _id: message.guild.id }) || { welcomeText: null }
             if (!welcomeText) return message.reply('The welcome message for this server has not been set. Run this command again and provide the message.')

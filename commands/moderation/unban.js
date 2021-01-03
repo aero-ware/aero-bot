@@ -7,7 +7,8 @@ module.exports = {
     minArgs: 1,
     permissions: 'BAN_MEMBERS',
     expectedArgs: '<user ID|*ping*>',
-    run: async (message, args) => {
+    guildOnly: true,
+    run: async ({ message, args }) => {
         const targetId = message.mentions.users.first() ? message.mentions.users.first().id : args[0]
         const guildBans = await message.guild.fetchBans()
         const userIsBanned = guildBans.has(targetId)

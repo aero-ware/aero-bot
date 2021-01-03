@@ -7,7 +7,8 @@ module.exports = {
     expectedArgs: '<user ping> [reason]',
     minArgs: 1,
     permissions: 'MANAGE_MESSAGES',
-    run: async (message, args) => {
+    guildOnly: true,
+    run: async ({ message, args }) => {
         const target = message.mentions.users.first()
         if (!target) return message.reply('please mention someone to warn.')
         if (target === message.author) return message.reply('why are you warning yourself?')

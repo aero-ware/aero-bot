@@ -3,7 +3,7 @@ const muteSchema = require('../schemas/mute-schema')
 const tempbanSchema = require('../schemas/tempban-schema')
 const memberSchema = require('../schemas/member-schema')
 
-module.exports = async client => {
+module.exports = async (client, instance, isEnabled) => {
     client.on('guildCreate', async guild => {
         // create a db entry for the guild as it joins.
         await guildSchema.findOneAndUpdate(
@@ -27,7 +27,7 @@ module.exports = async client => {
 }
 
 module.exports.config = {
-    displayName: 'guildJoin',
+    displayName: 'INTERNAL-NO-DISABLING',
     dbName: 'JOIN_AND_LEAVE', // DO NOT CHANGE
     loadDBFirst: true,
 }

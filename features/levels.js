@@ -1,7 +1,7 @@
 const { Message } = require('discord.js')
 const memberSchema = require('../schemas/member-schema')
 
-module.exports = client => {
+module.exports = (client, instance, isEnabled) => {
     client.on('message', message => {
         if (message.author.bot) return
         const { guild, member } = message
@@ -67,6 +67,6 @@ module.exports.addXP = addXP
 
 module.exports.config = {
     displayName: 'levels',
-    dbName: 'levels', // DO NOT CHANGE
+    dbName: 'LEVELS', // DO NOT CHANGE
     loadDBFirst: true,
 }

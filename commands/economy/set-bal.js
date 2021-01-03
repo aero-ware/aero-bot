@@ -8,7 +8,8 @@ module.exports = {
     maxArgs: 2,
     expectedArgs: '[user] <value>',
     category: 'Economy',
-    run: async (message, args) => {
+    guildOnly: true,
+    run: async ({ message, args }) => {
         let target = message.mentions.users.first()
         let noTarget = false
         if (!target) {

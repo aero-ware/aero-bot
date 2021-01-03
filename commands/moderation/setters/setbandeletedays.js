@@ -8,7 +8,8 @@ module.exports = {
     minArgs: 1,
     maxArgs: 1,
     expectedArgs: '<days (<= 7)>',
-    run: async (message, args) => {
+    guildOnly: true,
+    run: async ({ message, args }) => {
         if (isNaN(args[0]) || args[0] < 0 || args[0] > 7) return message.reply('please enter a valid number (less than 7)')
         const result = await guildSchema.findOneAndUpdate(
             { _id: message.guild.id },

@@ -11,7 +11,8 @@ module.exports = {
     permissions: 'MANAGE_MESSAGES',
     expectedArgs: '<user ping|id> <time|\'forever\'> [reason]',
     minArgs: 2,
-    run: async (message, args) => {
+    guildOnly: true,
+    run: async ({ message, args }) => {
         if (!message.guild) return
         const [user, timeString, ...reason] = args
         let { mutedRoleId } = await guildSchema.findOne({ _id: message.guild.id }) || null

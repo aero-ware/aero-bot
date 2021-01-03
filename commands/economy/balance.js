@@ -6,7 +6,8 @@ module.exports = {
     expectedArgs: '[user ping]',
     description: 'shows your (or the pinged user\'s) balance',
     category: 'Economy',
-    callback: async message => {
+    guildOnly: true,
+    callback: async ({ message }) => {
         const target = message.mentions.users.first() || message.author
 
         const coins = await economy.getCoins(message.guild.id, target.id)

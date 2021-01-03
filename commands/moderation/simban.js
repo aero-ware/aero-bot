@@ -3,7 +3,8 @@ module.exports = {
     description: 'admin only command that simulates a ban',
     permissions: 'ADMINISTRATOR',
     category: 'Testing',
-    run: message => {
+    guildOnly: true,
+    run: ({ message }) => {
         return message.client.emit('guildBanAdd', message.guild, message.author)
     }
 }

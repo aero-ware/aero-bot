@@ -6,7 +6,8 @@ module.exports = {
     expectedArgs: '',
     category: 'Economy',
     globalCooldown: '1d',
-    run: async message => {
+    guildOnly: true,
+    run: async ({ message }) => {
         await economy.addCoins(message.guild.id, message.author.id, 2000)
         return message.reply('2000 coins have been added to your balance!')
     }

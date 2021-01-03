@@ -5,7 +5,7 @@ module.exports = {
     minArgs: 1,
     expectedArgs: '<question>',
     syntaxError: 'the 8ball is too busy to listen to prank callers',
-    run: message => {
+    run: ({ message }) => {
         const answers = [
             'as I see it, yes',
             'ask again later.',

@@ -8,7 +8,7 @@ module.exports = {
     expectedArgs:'[targer user ping] <amount>',
     description: 'adds money to the target user\'s bank',
     category: 'Economy',
-    callback: async (message, args) => {
+    callback: async ({ message, args }) => {
         let target = message.mentions.users.first()
         let noTarget = false
         if (!target) {

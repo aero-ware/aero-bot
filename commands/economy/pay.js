@@ -10,7 +10,8 @@ module.exports = {
     minArgs: 2,
     maxArgs: 2,
     category: 'Economy',
-    run: async (message, args) => {
+    guildOnly: true,
+    run: async ({ message, args }) => {
         const userBal = await economy.getCoins(message.guild.id, message.author.id)
         const target = message.mentions.users.first()
         const amount = args[1]
