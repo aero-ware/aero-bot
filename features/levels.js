@@ -63,8 +63,35 @@ const addXP = async (guildId, userId, xpToAdd, message) => {
         )
     }
 }
-
 module.exports.addXP = addXP
+
+/**
+ * @typedef LevelData
+ * @type {object}
+ * @property {number} level the level of the member
+ * @property {xp} number the xp of the member
+ * @property {neededXP} number the XP required for the member to level up
+ * 
+ */
+
+/**
+ * Returns an object with the details of the GuildMember's level
+ * @param {string} guildId the ID of the guild the user is in
+ * @param {string} userId the ID of the user
+ * @returns {LevelData} information about that member's level
+ */
+const getXP = async (guildId, userId) => {
+    const member = await memberSchema.findOne({
+        guildId,
+        userId,
+    })
+    return {
+        level: member.level,
+        xp: member.xp,
+        neededXP: getNeededXP(member.level)
+    }
+}
+module.exports.getXP = getXP
 
 module.exports.config = {
     displayName: 'levels',
