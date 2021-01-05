@@ -1,143 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="#90EDAF" />
 
-    <!-- Bootstrap CSS -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-        rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-        crossorigin="anonymous"
-    />
+        <!-- OG meta tags for discord embeds when the link is sent -->
+        <meta property="og:title" content="AeroBot Commands" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dheerajpv.github.io/aero-bot" />
+        <meta property="og:description" content="AeroBot has many customizable commands for moderation and lots of fun commands for normal users!" />
 
-    <!-- My CSS -->
-    <link
-        href="css/main.css"
-        rel="stylesheet"
-    />
-    <link
-        href="css/commands.css"
-        rel="stylesheet"
-    />
 
-    <title>AeroBot's commands</title>
-</head>
-<body>
-    <header>
-        <nav class="top-nav">
-            <ul class="nav nav-pills">
-                <li class="nav-title" class="nav-item">AeroBot</li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="commands.html">Commands</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+            rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+            crossorigin="anonymous"
+        />
 
-    <h1>AeroBot's Commands</h1>
+        <!-- My CSS -->
+        <link
+            href="css/main.css"
+            rel="stylesheet"
+        />
+        <link
+            href="css/commands.css"
+            rel="stylesheet"
+        />
 
-    <main>
-        <!-- Moderation -->            
-            <nav id="outline-sidebar" class="navbar navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">Outline</a>
+        <title>AeroBot Commands</title>
+    </head>
+    <body>
+        <header>
+            <nav class="top-nav">
+                <ul class="nav nav-pills">
+                    <li class="nav-title" class="nav-item">AeroBot</li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="commands.html">Commands</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
 
-                <nav class="nav nav-pills flex-column">
-                    <a class="nav-link" href="#moderation">Moderation</a>
+        <h1>AeroBot's Commands</h1>
+
+        <main>
+            <!-- Moderation -->            
+                <nav id="outline-sidebar" class="navbar navbar-dark bg-dark">
+                    <a class="navbar-brand" href="#">Outline</a>
 
                     <nav class="nav nav-pills flex-column">
-                        <a class="nav-link ms-3 my-1" href="#setters">Setters</a>
+                        <a class="nav-link" href="#moderation">Moderation</a>
 
                         <nav class="nav nav-pills flex-column">
-                            <a class="nav-link ms-6 my-1" href="#setlogchannel">setlogchannel</a>
-                            <a class="nav-link ms-6 my-1" href="#setblacklist">setblacklist</a>
+                            <a class="nav-link ms-3 my-1" href="#setters">Setters</a>
+
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link ms-6 my-1" href="#setlogchannel">setlogchannel</a>
+                                <a class="nav-link ms-6 my-1" href="#setblacklist">setblacklist</a>
+                            </nav>
+
                         </nav>
 
                     </nav>
 
                 </nav>
+                
+                <div data-bs-spy="scroll" data-bs-target="#outline-sidebar" data-bs-offset="0" tabindex="0" id="command-content">
+                    <h2 id="moderation">Moderation</h2>
+                    <p>This category contains commands that relate to moderation, and thus many have elevated permission requirements.</p>
+                    <h3 id="setters">Setters</h3>
+                    <p>This collection of commands has commands that set important information into the database and ALL require ADMINISTRATOR permissions</p>
 
-            </nav>
-            
-            <div data-bs-spy="scroll" data-bs-target="#outline-sidebar" data-bs-offset="0" tabindex="0" id="command-content">
-                <h2 id="moderation">Moderation</h2>
-                <p>This category contains commands that relate to moderation, and thus many have elevated permission requirements.</p>
-                <h3 id="setters">Setters</h3>
-                <p>This collection of commands has commands that set important information into the database and ALL require ADMINISTRATOR permissions</p>
+                    <div id="setlogchannel">
+                        <h4>setlogchannel</h4>
+                        <p>
+                            This command sets the logging channel for the server where important events are logged to. It is recommended that it be a private channel reserved for staff.<br>
+                            You can optionally say 'none' as the argument to unset the log channel.
+                            Aliases: setlogchannel, setmodlog, logchannel<br>
+                            Expected Arguments: &lt;channel&gt;<br>
+                            Example Usage: &gt;setlogchannel #logs<br>
+                            <em>That should be a channel mention and not just the channel name.</em>
+                        </p>
+                    </div>
 
-                <div id="setlogchannel">
-                    <h4>setlogchannel</h4>
-                    <p>
-                        This command sets the logging channel for the server where important events are logged to. It is recommended that it be a private channel reserved for staff.<br>
-                        You can optionally say 'none' as the argument to unset the log channel.
-                        Aliases: setlogchannel, setmodlog, logchannel<br>
-                        Expected Arguments: &lt;channel&gt;<br>
-                        Example Usage: &gt;setlogchannel #logs<br>
-                        <em>That should be a channel mention and not just the channel name.</em>
-                    </p>
+                    <div id="setblacklist">
+                        <h4>setblacklist</h4>
+                        <p>
+                            This command can add or remove words considered part of this server's swear words list. By default, it has no words. Use 'add' or 'remove' as the first argument and the next argument will be a full string.<br>
+                            For example. If you used <code>&gt;setblacklist add a b c x y z</code>, the string 'a b c x y z' will be added to the database and NOT each word separately. This is to increase flexibility for the end user.
+                            Aliases: swearwords, blacklistedwords, wordblacklist, setblacklist<br>
+                            Expected Arguments: &lt;add/remove&gt; &lt;string&gt;
+                            Example Usage: <code>&gt;setblacklist add djfhjohg</code>
+                        </p>
+                    </div>
                 </div>
 
-                <div id="setblacklist">
-                    <h4>setblacklist</h4>
-                    <p>
-                        This command can add or remove words considered part of this server's swear words list. By default, it has no words. Use 'add' or 'remove' as the first argument and the next argument will be a full string.<br>
-                        For example. If you used <code>&gt;setblacklist add a b c x y z</code>, the string 'a b c x y z' will be added to the database and NOT each word separately. This is to increase flexibility for the end user.
-                        Aliases: swearwords, blacklistedwords, wordblacklist, setblacklist<br>
-                        Expected Arguments: &lt;add/remove&gt; &lt;string&gt;
-                        Example Usage: <code>&gt;setblacklist add djfhjohg</code>
-                    </p>
+                <!-- <div class="command-details">
+                    <h3>kick</h3>
+                    aliases: kick<br />
+                    expected args: &lt;user ping&gt; [reason]<br />
+                    Example:<br />
+                    <code class="indented">&gt;kick @aero_noob kick lol</code><br />
+                    Note: that should be a real mention of a user.
                 </div>
-            </div>
+                <div class="command-details" id="ban-details">
+                    <h3>ban</h3>
+                    aliases: ban<br />
+                    expected args: &lt;user ping/id&gt; &lt;duration/forever&gt; [reason]<br />
+                    Example:<br />
+                    <p class="indented">
+                        Tempban: <code>&gt;ban @aero_noob 7d 7 day tempban</code><br />
+                        Permaban: <code>&gt;ban @aero_noob forever permaent ban</code><br />
+                    </p>
+                    Note: that should be a real mention of a user (or their ID)
+                </div>
+                <div class="command-details">
+                    <h3>unban</h3>
+                    <b>Can unban both tempbans and permabans.</b>
+                    aliases: unban<br />
+                    expected args: &lt;user ID&gt;<br />
+                    Example: <code>&gt;unban 645161965411</code>
+                </div>
+                <div class="command-details">
+                    <h3>mute</h3>
+                    aliases: mute <br />
+                    expected args: &lt;user ping/id&gt; &lt;duration/forever&gt; [reason]<br />
+                    Example: Follow usage of <a href="#ban-details">ban</a> (but use mute instead of ban)
+                </div>
+                <div class="command-details">
+                    <h3>unmute</h3>
+                    <b>Can unmute both temporary and permanent mutes.</b>
+                    aliases: unmute<br />
+                    expected args: &lt;user ping&gt;<br />
+                    Example: <code>&gt;unmute @aero_noob</code>
+                    Note: That should be a real mention of a user.
+                </div> -->
+        </main>
 
-            <!-- <div class="command-details">
-                <h3>kick</h3>
-                aliases: kick<br />
-                expected args: &lt;user ping&gt; [reason]<br />
-                Example:<br />
-                <code class="indented">&gt;kick @aero_noob kick lol</code><br />
-                Note: that should be a real mention of a user.
-            </div>
-            <div class="command-details" id="ban-details">
-                <h3>ban</h3>
-                aliases: ban<br />
-                expected args: &lt;user ping/id&gt; &lt;duration/forever&gt; [reason]<br />
-                Example:<br />
-                <p class="indented">
-                    Tempban: <code>&gt;ban @aero_noob 7d 7 day tempban</code><br />
-                    Permaban: <code>&gt;ban @aero_noob forever permaent ban</code><br />
-                </p>
-                Note: that should be a real mention of a user (or their ID)
-            </div>
-            <div class="command-details">
-                <h3>unban</h3>
-                <b>Can unban both tempbans and permabans.</b>
-                aliases: unban<br />
-                expected args: &lt;user ID&gt;<br />
-                Example: <code>&gt;unban 645161965411</code>
-            </div>
-            <div class="command-details">
-                <h3>mute</h3>
-                aliases: mute <br />
-                expected args: &lt;user ping/id&gt; &lt;duration/forever&gt; [reason]<br />
-                Example: Follow usage of <a href="#ban-details">ban</a> (but use mute instead of ban)
-            </div>
-            <div class="command-details">
-                <h3>unmute</h3>
-                <b>Can unmute both temporary and permanent mutes.</b>
-                aliases: unmute<br />
-                expected args: &lt;user ping&gt;<br />
-                Example: <code>&gt;unmute @aero_noob</code>
-                Note: That should be a real mention of a user.
-            </div> -->
-    </main>
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"
-    ></script>
-</body>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"
+        ></script>
+    </body>
 </html>
