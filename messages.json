@@ -1,29 +1,94 @@
 {
     "SYNTAX_ERROR": {
-        "english": "Incorrect Usage. Please use {PREFIX}{COMMAND} {ARGUMENTS}"
+        "english": "incorrect Usage. Please use {PREFIX}{COMMAND} {ARGUMENTS}"
     },
     "BOT_OWNERS_ONLY": {
-        "english": "This command is only available for administrators of this bot."
+        "english": "this command is only available for administrators of this bot."
+    },
+    "COOLDOWN": {
+        "english": "please wait {COOLDOWN} before running this command again."
+    },
+    "LANGUAGE_NOT_SUPPORTED": {
+        "english": "AeroBot does not have support for {LANGUAGE} at this time. You can help by checking https://github.com/dheerajpv/aero-bot/blob/master/TRANSLATING.md"
+    },
+    "CURRENT_LANGUAGE": {
+        "english": "the current language is set to {LANGUAGE}"
+    },
+    "NEW_LANGUAGE": {
+        "english": "set language to {LANGUAGE}"
+    },
+    "DISABLED_COMMAND": {
+        "english": "this command is currently disabled in this server."
+    },
+    "MISSING_PERMISSION": {
+        "english": "you must have the {PERM} permission to run this command!"
+    },
+    "MISSING_ROLES": {
+        "english": "you don't have the roles required to run this command!"
+    },
+    "CANNOT_ENABLE_DISABLE_IN_DMS": {
+        "english": "commands cannot be enabled or disabled in DMs."
+    },
+    "COMMAND_ALREADY_ENABLED": {
+        "english": "this command is already enabled!"
+    },
+    "COMMAND_ALREADY_DISABLED": {
+        "english": "this command is already disabled!"
+    },
+    "COMMAND_NOW_ENABLED": {
+        "english": "this command is now enabled."
+    },
+    "COMMAND_NOW_DISABLED": {
+        "english": "this command is now disabled."
+    },
+    "CURRENT_PREFIX": {
+        "english": "the current prefix is {PREFIX}."
+    },
+    "SET_PREFIX": {
+        "english": "set this server's prefix to {PREFIX}."
+    },
+    "CANNOT_SET_PREFIX_IN_DMS": {
+        "english": "cannot set prefix in DMs."
+    },
+    "CANNOT_CHANGE_REQUIRED_ROLES_IN_DMS": {
+        "english": "cannot set required roles in DMs."
+    },
+    "REMOVED_ALL_REQUIRED_ROLES": {
+        "english": "removed all required roles from command {COMMAND}."
+    },
+    "ADDED_REQUIRD_ROLES": {
+        "english": "role {ROLE} is now required to run command {COMMAND}"
+    },
+    "NO_DATABASE_FOUND": {
+        "english": "no database connection found"
+    },
+    "GUILD_ONLY_COMMAND": {
+        "english": "this command can only be used in a server."
+    },
+    "NO_REACT_PERMS": {
+        "english": "I don't have permission to add reactions. I need this permission to function properly."
     },
     "HELP_MENU": {
         "TITLE": {
-            "english": "I am AeroBot, These are my commands organized by category."
+          "english": "Help Menu"
         },
         "SELECT_A_CATEGORY": {
-            "english": "Select a category by looking at the emoji of the category."
+          "english": "Please select a command category by clicking it's reaction."
         },
         "COMMANDS": {
-            "english": ""
+          "english": "commands"
         },
-        "DESCRIPTION_FIRST_LINE": "These are the commands in this category:",
+        "DESCRIPTION_FIRST_LINE": {
+          "english": "Use 🚪 to return to the previous menu."
+        },
+        "DESCRIPTION_SECOND_LINE": {
+          "english": "Use ⬅ and ➡ to navigate between pages."
+        },
+        "ALIASES": {
+          "english": "Aliases"
+        },
         "SYNTAX": {
-            "english": "Syntax"
+          "english": "Syntax"
         }
-    },
-    "WELCOME_MESSAGE_NOT_SET": {
-        "english": "The welcome message for this server is not yet set. Use {PREFIX}{COMMAND} {ARGUMENTS} to set it!"
-    },
-    "COOLDOWN": {
-        "english": "Please wait {COOLDOWN} before running this command again."
-    }
+      }
 }
