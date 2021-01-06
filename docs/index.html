@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#90EDAF" />
 
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+
         <!-- OG meta tags for discord embeds when the link is sent -->
         <meta property="og:title" content="AeroBot - A customizable, open-source discord bot" />
         <meta property="og:type" content="website" />
@@ -33,16 +37,31 @@
     <body>
 
         <header>
-            <nav class="top-nav">
-                <ul class="nav nav-pills">
-                    <li class="nav-title" class="nav-item">AeroBot</li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="commands.html">Commands</a>
-                    </li>
-                </ul>
+            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html"><b>AeroBot</b></a>
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="commands.html">Commands</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </nav>
         </header>
 
