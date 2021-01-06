@@ -90,5 +90,20 @@
         "SYNTAX": {
           "english": "Syntax"
         }
-      }
+    },
+    "API_ERROR": {
+        "english": "there was an API Error. Try again later."
+    },
+    "INVALID_MORSE_CODE": {
+        "english": "invalid morse code."
+    },
+    "FROM_SUB": {
+        "english": "From r/{SUB}"
+    },
+    "REDDIT_POINTS": {
+        "english": "{POINTS} points"
+    },
+    "INVALID_USER_ID": {
+        "english": "invalid user ID."
+    }
 }
