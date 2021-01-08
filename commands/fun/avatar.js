@@ -1,20 +1,17 @@
-const { MessageEmbed } = require("discord.js")
+const { MessageEmbed, GuildMember } = require("discord.js")
+const getTarget = require("../../util/get-target")
 
 module.exports = {
     commands: ['avatar', 'pfp', 'showavatar', 'showpfp'],
     category: 'Fun',
     description: 'Shows your (or someone else\'s) avatar',
     expectedArgs: '[user ping|id]',
-    run: async ({ message, text, client }) => {
-        let target = message.author
-        if (message.mentions.users.first()) target = message.mentions.users.first()
-        else if (text) {
-            let invalidID = false
-            const user = await client.users.fetch(text).catch(() => invalidID = true)
-            if (!invalidID) target = user
-            else return message.reply('invalid user ID.')            
-        }
+    run: async ({ message, args, instance }) => {
+        const target = await getTarget.firstArgOrSelf(message, args, instance)
+        if (!target) return
 
-        return message.channel.send(target.displayAvatarURL({ dynamic: true, size: 512 }))
+        const targetAvatar = target && target instanceof GuildMember ? target.user.displayAvatarURL({ dynamic: true, size: 512 }) : target.displayAvatarURL({ dynamic: true, size: 512})
+
+        return message.channel.send(targetAvatar)
     }
 }

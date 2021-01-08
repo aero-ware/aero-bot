@@ -3,10 +3,15 @@ body {
     color: white;
 }
 
-main {
-    padding-top: 20px;
-    padding-left: 10px;
+#main-nav {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    flex: 1;
 }
 
 h4 {
@@ -23,12 +28,15 @@ h4 {
 }
 
 #outline-sidebar{
+    display: flex;
     flex-direction: column;
     width: max-content;
+    margin: 0;
+    align-self: start;
+    border-radius: 8px;
 }
 
 #command-content {
-    overflow-y: scroll;
     padding-left: 10px;
     flex: 1;
 }

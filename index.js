@@ -38,6 +38,10 @@ client.on('ready', () => {
                 emoji: '🔧',
             },
             {
+                name: 'Leveling',
+                emojiL: '🎮',
+            },
+            {
                 name: 'Misc',
                 emoji: '📚',
             },

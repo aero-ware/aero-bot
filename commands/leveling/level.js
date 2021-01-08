@@ -6,7 +6,7 @@ const levels = require('../../features/levels')
 module.exports = {
     commands: ['rank', 'level'],
     description: 'shows your level in the server.',
-    category: 'Misc',
+    category: 'Leveling',
     expectedArgs: '[user ping|id]',
     run: async ({ message, text }) => {
         let target = message.author

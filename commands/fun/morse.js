@@ -7,7 +7,7 @@ module.exports = {
     description: 'converts text into morse code',
     minArgs: 1,
     expectedArgs: '<text>',
-    run: async ({ message, text }) => {
+    run: async ({ message, text, instance }) => {
         let apiFail = false
         const res = await axios.get(`https://api.snowflakedev.xyz/api/morse/encode`, {
             headers: {
@@ -18,9 +18,9 @@ module.exports = {
             },
         }).catch(() => {
             apiFail = true
-            message.reply('there was an API Error, please try again later.')
+            message.reply(instance.messageHandler.get(message.guild, 'API_ERROR'))
         })
         if (apiFail) return
-        message.reply(res.data.data ? res.data.data : 'There was an API Error, please try again later.')
+        message.reply(res.data.data ? res.data.data : instance.messageHandler.get(message.guild, 'API_ERROR'))
     }
 }

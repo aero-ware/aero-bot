@@ -12,12 +12,12 @@ module.exports = {
     commands: 'meme',
     category: 'Fun',
     description: 'shows a meme from reddit',
-    run: async ({ message }) => {
+    run: async ({ message, instance }) => {
         let apiFail = false
         let data = await fetchMeme()
             .catch(() => {
             apiFail = true
-            message.reply('API Error. Try again later.')
+            message.reply(instance.messageHandler.get(message.guild, 'API_ERROR'))
         })
         if (apiFail) return
 
@@ -27,9 +27,13 @@ module.exports = {
         const memeEmbed = new MessageEmbed()
             .setTitle(data.title)
             .setURL(data.link)
-            .setDescription(`From r/${data.subreddit}`)
+            .setDescription(instance.messageHandler.get(message.guild, 'FROM_SUB', {
+                SUB: data.subreddit
+            }))
             .setImage(data.url)
-            .setFooter(`${data.ratings.upvote - data.ratings.downvote} points`/* + ` - ${formatDistanceToNow(Date.parse(data.createdAt), { addSuffix: true })}`*/)
+            .setFooter(instance.messageHandler.get(message.guild, 'REDDIT_POINTS', {
+                POINTS: data.ratings.upvote - data.ratings.downvote
+            }) /* + ` - ${formatDistanceToNow(Date.parse(data.createdAt), { addSuffix: true })}`*/)
             // TODO: ^^ above line, uncomment the created at time when the API is fixed
 
         message.channel.send(memeEmbed)

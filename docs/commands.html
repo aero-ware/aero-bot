@@ -11,6 +11,10 @@
         <meta property="og:url" content="https://dheerajpv.github.io/aero-bot" />
         <meta property="og:description" content="AeroBot has many customizable commands for moderation and lots of fun commands for normal users!" />
 
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+
 
         <!-- Bootstrap CSS -->
         <link
@@ -33,43 +37,62 @@
     </head>
     <body>
         <header>
-            <nav class="top-nav">
-                <ul class="nav nav-pills">
-                    <li class="nav-title" class="nav-item">AeroBot</li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="commands.html">Commands</a>
-                    </li>
-                </ul>
+            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html"><b>AeroBot</b></a>
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Commands</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </nav>
         </header>
 
         <h1>AeroBot's Commands</h1>
 
-        <main>
-            <!-- Moderation -->            
-                <nav id="outline-sidebar" class="navbar navbar-dark bg-dark">
-                    <a class="navbar-brand" href="#">Outline</a>
+        <div id="main-nav">
+            <nav id="outline-sidebar" class="navbar navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">Outline</a>
+
+                <nav class="nav nav-pills flex-column">
+                    <a class="nav-link" href="#moderation">Moderation</a>
 
                     <nav class="nav nav-pills flex-column">
-                        <a class="nav-link" href="#moderation">Moderation</a>
+                        <a class="nav-link ms-3 my-1" href="#setters">Setters</a>
 
                         <nav class="nav nav-pills flex-column">
-                            <a class="nav-link ms-3 my-1" href="#setters">Setters</a>
-
-                            <nav class="nav nav-pills flex-column">
-                                <a class="nav-link ms-6 my-1" href="#setlogchannel">setlogchannel</a>
-                                <a class="nav-link ms-6 my-1" href="#setblacklist">setblacklist</a>
-                            </nav>
-
+                            <a class="nav-link ms-6 my-1" href="#setlogchannel">setlogchannel</a>
+                            <a class="nav-link ms-6 my-1" href="#setblacklist">setblacklist</a>
+                            <a class="nav-link ms-6 my-1" href="#setadchannels">setaddchannels</a>
+                            <a class="nav-link ms-6 my-1" href="#setwelcomemessage">setwelcomemessage</a>
+                            <a class="nav-link ms-6 my-1" href="#setmutedrole">setmutedrole</a>
                         </nav>
 
                     </nav>
 
                 </nav>
-                
+
+            </nav>
+
+            <main>
+                <!-- Moderation -->                
                 <div data-bs-spy="scroll" data-bs-target="#outline-sidebar" data-bs-offset="0" tabindex="0" id="command-content">
                     <h2 id="moderation">Moderation</h2>
                     <p>This category contains commands that relate to moderation, and thus many have elevated permission requirements.</p>
@@ -94,53 +117,88 @@
                             This command can add or remove words considered part of this server's swear words list. By default, it has no words. Use 'add' or 'remove' as the first argument and the next argument will be a full string.<br>
                             For example. If you used <code>&gt;setblacklist add a b c x y z</code>, the string 'a b c x y z' will be added to the database and NOT each word separately. This is to increase flexibility for the end user.
                             Aliases: swearwords, blacklistedwords, wordblacklist, setblacklist<br>
-                            Expected Arguments: &lt;add/remove&gt; &lt;string&gt;
+                            Expected Arguments: &lt;add/remove&gt; &lt;string&gt;<br>
                             Example Usage: <code>&gt;setblacklist add djfhjohg</code>
                         </p>
                     </div>
+
+                    <div id="setadchannels">
+                        <h4>setadchannels</h4>
+                        <p>
+                            This command allows you to add or remove channels where non admins are allowed to send invites to servers <b>that is not the current server</b><br>
+                            Aliases: setadchannels, adchannels, allowads<br>
+                            Expected Arguments: &lt;add/remove&gt; &lt;channel&gt;<br>
+                            Example Usage: <code>&gt;setadchannels add #advertising</code><br>
+                            Note: please mention the channel
+                        </p>
+                    </div>
+
+                    <div id="setwelcomemessage">
+                        <h4>setwelcomemessage</h4>
+                        <p>
+                            This command sets the welcome messsage for the server, it will be sent when anyone joins the server.<br>
+                            Aliases: welcome, joinmessage, welcomemessage, setwelcome, setwelcomemessage<br>
+                            Expected Arguments: [channel] &lt;message&gt;<br>
+                            Example Usage <code>&gt;setwelcome #joins Welcome &lt;@&gt; to this server!</code><br>
+                            Note, use &lt;@&gt; to specify a mention of the joining member, it can be used multiple times in the same message. If channel is not mentioned as the first argument, it is assumed that the target channel is the current channel.
+                        </p>
+                    </div>
+
+                    <div id="setmutedrole">
+                        <h4>setmutedrole</h4>
+                        <p>
+                            This command sets the muted role for the server. Used for the mute and unmute commands.<br>
+                            Aliases: setmutedrole, setmuterole, muterole<br>
+                            Expected Arguments: &lt;role ping/id&gt;<br>
+                            Example Usage: <code>&gt;setmutedrole @Muted</code><br>
+                            Note: ping the role or give its ID.
+                        </p>
+                    </div>
+
                 </div>
 
-                <!-- <div class="command-details">
-                    <h3>kick</h3>
-                    aliases: kick<br />
-                    expected args: &lt;user ping&gt; [reason]<br />
-                    Example:<br />
-                    <code class="indented">&gt;kick @aero_noob kick lol</code><br />
-                    Note: that should be a real mention of a user.
-                </div>
-                <div class="command-details" id="ban-details">
-                    <h3>ban</h3>
-                    aliases: ban<br />
-                    expected args: &lt;user ping/id&gt; &lt;duration/forever&gt; [reason]<br />
-                    Example:<br />
-                    <p class="indented">
-                        Tempban: <code>&gt;ban @aero_noob 7d 7 day tempban</code><br />
-                        Permaban: <code>&gt;ban @aero_noob forever permaent ban</code><br />
-                    </p>
-                    Note: that should be a real mention of a user (or their ID)
-                </div>
-                <div class="command-details">
-                    <h3>unban</h3>
-                    <b>Can unban both tempbans and permabans.</b>
-                    aliases: unban<br />
-                    expected args: &lt;user ID&gt;<br />
-                    Example: <code>&gt;unban 645161965411</code>
-                </div>
-                <div class="command-details">
-                    <h3>mute</h3>
-                    aliases: mute <br />
-                    expected args: &lt;user ping/id&gt; &lt;duration/forever&gt; [reason]<br />
-                    Example: Follow usage of <a href="#ban-details">ban</a> (but use mute instead of ban)
-                </div>
-                <div class="command-details">
-                    <h3>unmute</h3>
-                    <b>Can unmute both temporary and permanent mutes.</b>
-                    aliases: unmute<br />
-                    expected args: &lt;user ping&gt;<br />
-                    Example: <code>&gt;unmute @aero_noob</code>
-                    Note: That should be a real mention of a user.
-                </div> -->
-        </main>
+                    <!-- <div class="command-details">
+                        <h3>kick</h3>
+                        aliases: kick<br />
+                        expected args: &lt;user ping&gt; [reason]<br />
+                        Example:<br />
+                        <code class="indented">&gt;kick @aero_noob kick lol</code><br />
+                        Note: that should be a real mention of a user.
+                    </div>
+                    <div class="command-details" id="ban-details">
+                        <h3>ban</h3>
+                        aliases: ban<br />
+                        expected args: &lt;user ping/id&gt; &lt;duration/forever&gt; [reason]<br />
+                        Example:<br />
+                        <p class="indented">
+                            Tempban: <code>&gt;ban @aero_noob 7d 7 day tempban</code><br />
+                            Permaban: <code>&gt;ban @aero_noob forever permaent ban</code><br />
+                        </p>
+                        Note: that should be a real mention of a user (or their ID)
+                    </div>
+                    <div class="command-details">
+                        <h3>unban</h3>
+                        <b>Can unban both tempbans and permabans.</b>
+                        aliases: unban<br />
+                        expected args: &lt;user ID&gt;<br />
+                        Example: <code>&gt;unban 645161965411</code>
+                    </div>
+                    <div class="command-details">
+                        <h3>mute</h3>
+                        aliases: mute <br />
+                        expected args: &lt;user ping/id&gt; &lt;duration/forever&gt; [reason]<br />
+                        Example: Follow usage of <a href="#ban-details">ban</a> (but use mute instead of ban)
+                    </div>
+                    <div class="command-details">
+                        <h3>unmute</h3>
+                        <b>Can unmute both temporary and permanent mutes.</b>
+                        aliases: unmute<br />
+                        expected args: &lt;user ping&gt;<br />
+                        Example: <code>&gt;unmute @aero_noob</code>
+                        Note: That should be a real mention of a user.
+                    </div> -->
+            </main>
+        </div>
 
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"

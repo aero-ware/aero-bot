@@ -3,7 +3,8 @@ module.exports = {
     category: 'Misc',
     description: 'owner only command. Sets the bot\'s status.',
     ownerOnly: true,
-    expectedArgs: '<text>',
+    expectedArgs: '<type> <text>',
+    minArgs: 2,
     run: ({ message, client, args }) => {
         let [type, ...activity] = args
         activity = activity.join(' ')

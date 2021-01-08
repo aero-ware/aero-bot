@@ -1,5 +1,6 @@
-const { MessageEmbed } = require("discord.js")
+const { MessageEmbed, GuildMember } = require("discord.js")
 const economy = require("../../util/economy")
+const getTarget = require("../../util/get-target")
 
 
 module.exports = {
@@ -11,9 +12,10 @@ module.exports = {
     maxArgs: 2,
     category: 'Economy',
     guildOnly: true,
-    run: async ({ message, args }) => {
+    run: async ({ message, args, instance }) => {
         const userBal = await economy.getCoins(message.guild.id, message.author.id)
-        const target = message.mentions.users.first()
+        let target = await getTarget.firstArgPingID(message, args, instance)
+        target = target instanceof GuildMember ? target.user : target
         const amount = args[1]
         if (userBal < amount) return message.reply(`You don't have enough money for this transaction. You only have ${userBal} coins.`)
         const newUserBal = await economy.addCoins(message.guild.id, message.author.id, -amount)

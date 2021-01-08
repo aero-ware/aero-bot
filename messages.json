@@ -1,6 +1,6 @@
 {
     "SYNTAX_ERROR": {
-        "english": "incorrect Usage. Please use {PREFIX}{COMMAND} {ARGUMENTS}"
+        "english": "incorrect usage. Please use {PREFIX}{COMMAND} {ARGUMENTS}"
     },
     "BOT_OWNERS_ONLY": {
         "english": "this command is only available for administrators of this bot."
@@ -73,7 +73,7 @@
           "english": "Help Menu"
         },
         "SELECT_A_CATEGORY": {
-          "english": "Please select a command category by clicking it's reaction."
+          "english": "Please select a command category by reacting with the corresponding emoji of the category"
         },
         "COMMANDS": {
           "english": "commands"
@@ -90,5 +90,23 @@
         "SYNTAX": {
           "english": "Syntax"
         }
-      }
+    },
+    "API_ERROR": {
+        "english": "there was an API Error. Try again later."
+    },
+    "INVALID_MORSE_CODE": {
+        "english": "invalid morse code."
+    },
+    "FROM_SUB": {
+        "english": "From r/{SUB}"
+    },
+    "REDDIT_POINTS": {
+        "english": "{POINTS} points"
+    },
+    "INVALID_USER_ID": {
+        "english": "invalid user ID."
+    },
+    "SET_LEVEL_CONFIRMATION": {
+        "english": "set {TARGET}'s level to {LEVEL}."
+    }
 }
