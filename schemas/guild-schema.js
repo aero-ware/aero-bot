@@ -30,6 +30,10 @@ const guildSchema = mongoose.Schema({
         type: [String],
         default: [],
     },
+    snipes: {
+        type: Object,
+        default: {},
+    }
 })
 
 module.exports = mongoose.model('guild-configs', guildSchema)
