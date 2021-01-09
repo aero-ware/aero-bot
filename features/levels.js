@@ -1,10 +1,16 @@
+const { add, isPast } = require('date-fns')
 const { Message } = require('discord.js')
 const memberSchema = require('../schemas/member-schema')
 
-module.exports = (client, instance, isEnabled) => {
-    client.on('message', message => {
+module.exports = async (client, instance, isEnabled) => {
+    client.on('message', async message => {
         if (message.author.bot) return
         const { guild, member } = message
+        const { nextXPAdd } = await memberSchema.findOne({
+            guildId: guild.id,
+            userId: member.id,
+        }) || { nextXPAdd: null }
+        if (nextXPAdd && !isPast(nextXPAdd)) return
         addXP(guild.id, member.id, 23, message)
     })
 }
@@ -45,6 +51,7 @@ const addXP = async (guildId, userId, xpToAdd, message) => {
             $inc: {
                 xp: xpToAdd,
             },
+            nextXPAdd: add(Date.now(), { minutes: 1 })
         },
         {
             upsert: true,
@@ -86,7 +93,7 @@ module.exports.addXP = addXP
  * @param {string} userId the ID of the user
  * @returns {Promise<LevelData>} information about that member's level
  */
-const getXP = async (guildId, userId) => {
+const getLevelData = async (guildId, userId) => {
     const member = await memberSchema.findOne({
         guildId,
         userId,
@@ -97,7 +104,7 @@ const getXP = async (guildId, userId) => {
         neededXP: getNeededXP(member.level)
     }
 }
-module.exports.getXP = getXP
+module.exports.getXP = getLevelData
 
 /**
  * Sets the level of the member to the level parameter

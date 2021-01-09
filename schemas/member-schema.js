@@ -20,6 +20,10 @@ const memberSchema = mongoose.Schema({
         type: Number,
         default: 1,
     },
+    nextXPAdd: {
+        type: Date,
+        default: null,
+    },
     warnings: {
         type: [Object],
         default: null,
