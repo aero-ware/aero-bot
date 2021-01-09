@@ -221,6 +221,10 @@ module.exports = async (client, instance, isEnabled) => {
                     value: message.channel,
                 },
                 {
+                    name: 'Message Author',
+                    value: message.author,
+                },
+                {
                     name: 'Message Content',
                     value: message.content,
                 },
