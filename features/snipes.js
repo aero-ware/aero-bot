@@ -6,6 +6,10 @@ module.exports = async (client, instance, isEnabled) => {
 
         let { snipes } = guildSchema.findOne({ _id: message.guild.id })
         if (!snipes) snipes = {}
+
+        if (!message.content || !message.author.id || !message.createdTimestamp) {
+            message = message.channel.messages.fetch(message.id)
+        }
         snipes[message.channel.id] = {
             id: message.id,
             content: message.content,

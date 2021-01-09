@@ -20,7 +20,6 @@ module.exports = {
         if (!snipedMessage) {
             return message.reply('there\'s nothing to snipe!')
         }
-        console.log(snipedMessage)
 
         author = message.guild.members.cache.get(snipedMessage.author)
 
