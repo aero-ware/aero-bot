@@ -9,7 +9,7 @@ You can invite the bot [here](https://discord.com/api/oauth2/authorize?client_id
 
 ### Running the Bot Yourself
 0. Install node.js and npm if they are not already installed. [node.js installer](https://nodejs.org/en/)
-1. Clone this repo using `git clone https://github.com/dheerajpv/discord-bot.git`, then `cd` into the repo folder.
+1. Clone this repo using `git clone https://github.com/aero-ware/discord-bot.git`, then `cd` into the repo folder.
     - Alternatively, you can use this repo as a template to make your own repo and then clone it
 2. Install all the dependencies using `npm i`
 3. Create a new file in the directory called `.env` and add the following:
@@ -46,7 +46,7 @@ Finally, the [ms](https://npmjs.com/package/ms) package is used in certain comma
 
 ---
 ## Bot Documentation
-Information for all the commands of the bot can be seen by running `>help` and navigating the resulting menus. A web version of this is currently in development [here](https://dheerajpv.github.io/aero-bot/commands.html). If anyone wants to help by adding command information, don't hesitate to check [Development](#Development) for more info (The website is in the docs folder).
+Information for all the commands of the bot can be seen by running `>help` and navigating the resulting menus. A web version of this is currently in development [here](https://aero-ware.github.io/aero-bot/commands.html). If anyone wants to help by adding command information, don't hesitate to check [Development](#Development) for more info (The website is in the docs folder).
 
 ---
 ## Development

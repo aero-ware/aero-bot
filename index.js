@@ -39,7 +39,7 @@ client.on('ready', () => {
             },
             {
                 name: 'Leveling',
-                emojiL: '🎮',
+                emoji: '🎮',
             },
             {
                 name: 'Misc',

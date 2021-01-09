@@ -9,7 +9,7 @@
         "english": "please wait {COOLDOWN} before running this command again."
     },
     "LANGUAGE_NOT_SUPPORTED": {
-        "english": "AeroBot does not have support for {LANGUAGE} at this time. You can help by checking https://github.com/dheerajpv/aero-bot/blob/master/TRANSLATING.md"
+        "english": "AeroBot does not have support for {LANGUAGE} at this time. You can help by checking https://github.com/aero-ware/aero-bot/blob/master/TRANSLATING.md"
     },
     "CURRENT_LANGUAGE": {
         "english": "the current language is set to {LANGUAGE}"
