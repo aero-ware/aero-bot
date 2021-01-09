@@ -1,5 +1,5 @@
 # Translating AeroBot
-If you want to translate AeroBot to another language, please look at [`messages.json`](https://github.com/dheerajpv/aero-bot/blob/master/messages.json) and follow these instructions:
+If you want to translate AeroBot to another language, please look at [`messages.json`](https://github.com/aero-ware/aero-bot/blob/master/messages.json) and follow these instructions:
 
 - Fork this repo
 - Wherever there is a key of `"english"`, add keys of other languages with the translation of the english text

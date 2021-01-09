@@ -19,7 +19,7 @@ module.exports = async (client, instance, isEnabled) => {
         if (!guild.me.hasPermission('ADMINISTRATOR')) {
             const permsEmbed = new MessageEmbed()
                 .setTitle('Insufficient Permissions')
-                .setDescription('I need the Administrator permission to function properly.\nMany of my commands will not work without it.\nI promise there is no malicious intent, you can review my [source code](https://github.com/dheerajpv/aero-bot) if you wish.\n\n [Invite me properly](https://discord.com/api/oauth2/authorize?client_id=787460489427812363&permissions=8&scope=bot)')
+                .setDescription('I need the Administrator permission to function properly.\nMany of my commands will not work without it.\nI promise there is no malicious intent, you can review my [source code](https://github.com/aero-ware/aero-bot) if you wish.\n\n [Invite me properly](https://discord.com/api/oauth2/authorize?client_id=787460489427812363&permissions=8&scope=bot)')
                 .setColor('#ff0000')
                 .setTimestamp()
 
