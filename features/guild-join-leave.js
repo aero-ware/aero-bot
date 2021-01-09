@@ -24,7 +24,13 @@ module.exports = async (client, instance, isEnabled) => {
                 .setTimestamp()
 
             const channel = await guild.systemChannel || await guild.channels.cache.random()
-            await channel.send(permsEmbed)
+            await channel.send(permsEmbed).catch(() => {
+                try {
+                    channel.send('I don\'t have permission to send embeds. please invite me with proper permissions from top.gg')
+                } finally {
+                    guild.leave()
+                }
+            })
             guild.leave()
         }
     })
