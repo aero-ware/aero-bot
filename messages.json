@@ -1,112 +1,149 @@
 {
     "SYNTAX_ERROR": {
-        "english": "incorrect usage. Please use {PREFIX}{COMMAND} {ARGUMENTS}"
+        "english": "incorrect usage. Please use {PREFIX}{COMMAND} {ARGUMENTS}",
+        "french": "utilisation incorrecte. Veuillez utiliser {PREFIX} {COMMAND} {ARGUMENTS}"
     },
     "BOT_OWNERS_ONLY": {
-        "english": "this command is only available for administrators of this bot."
+        "english": "this command is only available for administrators of this bot.",
+        "french": "cette commande n'est disponible que pour les administrateurs de ce bot."
     },
     "COOLDOWN": {
-        "english": "please wait {COOLDOWN} before running this command again."
+        "english": "please wait {COOLDOWN} before running this command again.",
+        "french": "veuillez patienter {COOLDOWN} avant d'exécuter à nouveau cette commande."
     },
     "LANGUAGE_NOT_SUPPORTED": {
-        "english": "AeroBot does not have support for {LANGUAGE} at this time. You can help by checking https://github.com/aero-ware/aero-bot/blob/master/TRANSLATING.md"
+        "english": "AeroBot does not have support for {LANGUAGE} at this time. You can help by checking https://github.com/aero-ware/aero-bot/blob/master/TRANSLATING.md",
+        "french": "AeroBot ne supporte pas {LANGUAGE} actuellement. Vous pouvez aider en vérifiant https://github.com/dheerajpv/aero-bot/blob/master/TRANSLATING.md"
     },
     "CURRENT_LANGUAGE": {
-        "english": "the current language is set to {LANGUAGE}"
+        "english": "the current language is set to {LANGUAGE}",
+        "french": "Le language actuelle est {LANGUAGE} "
     },
     "NEW_LANGUAGE": {
-        "english": "set language to {LANGUAGE}"
+        "english": "set language to {LANGUAGE}",
+        "french": "définis la langue pour '{LANGUAGE}'"
     },
     "DISABLED_COMMAND": {
-        "english": "this command is currently disabled in this server."
+        "english": "this command is currently disabled in this server.",
+        "french": "Cette commande est actuellement désactivé!"
     },
     "MISSING_PERMISSION": {
-        "english": "you must have the {PERM} permission to run this command!"
+        "english": "you must have the {PERM} permission to run this command!",
+        "french": "vous n'avez pas la permission {PERM} pour exécuter cette commande!"
     },
     "MISSING_ROLES": {
-        "english": "you don't have the roles required to run this command!"
+        "english": "you don't have the roles required to run this command!",
+        "french": "vous n'avez pas les rôles requis pour exécuter cette commande!"
     },
     "CANNOT_ENABLE_DISABLE_IN_DMS": {
-        "english": "commands cannot be enabled or disabled in DMs."
+        "english": "commands cannot be enabled or disabled in DMs.",
+        "french": "Impossible de désactivé ou activé de commande en DM."
     },
     "COMMAND_ALREADY_ENABLED": {
-        "english": "this command is already enabled!"
+        "english": "this command is already enabled!",
+        "french": "Cette commande est déjà activé!"
     },
     "COMMAND_ALREADY_DISABLED": {
-        "english": "this command is already disabled!"
+        "english": "this command is already disabled!",
+        "french": "Cette commande est déjà désactivé!"
     },
     "COMMAND_NOW_ENABLED": {
-        "english": "this command is now enabled."
+        "english": "this command is now enabled.",
+        "french": "Cette commande est maintenant activé"
     },
     "COMMAND_NOW_DISABLED": {
-        "english": "this command is now disabled."
+        "english": "this command is now disabled.",
+        "french": "Cette commande est maintenant désactivé"
     },
     "CURRENT_PREFIX": {
-        "english": "the current prefix is {PREFIX}."
+        "english": "the current prefix is {PREFIX}.",
+        "french": "Le préfixe actuel est {PREFIX}."
     },
     "SET_PREFIX": {
-        "english": "set this server's prefix to {PREFIX}."
+        "english": "set this server's prefix to {PREFIX}.",
+        "french": "définis le préfixe de ce serveur sur {PREFIX}."
     },
     "CANNOT_SET_PREFIX_IN_DMS": {
-        "english": "cannot set prefix in DMs."
+        "english": "cannot set prefix in DMs.",
+        "french": "impossible de définir le préfixe dans les DM."
     },
     "CANNOT_CHANGE_REQUIRED_ROLES_IN_DMS": {
-        "english": "cannot set required roles in DMs."
+        "english": "cannot set required roles in DMs.",
+        "french": "impossible de définir les rôles requis dans les DM."
     },
     "REMOVED_ALL_REQUIRED_ROLES": {
-        "english": "removed all required roles from command {COMMAND}."
+        "english": "removed all required roles from command {COMMAND}.",
+        "french": "supprimé tous les rôles requis de la commande {COMMAND}."
     },
     "ADDED_REQUIRD_ROLES": {
-        "english": "role {ROLE} is now required to run command {COMMAND}"
+        "english": "role {ROLE} is now required to run command {COMMAND}",
+        "french": "le rôle {ROLE} est maintenant requis pour exécuter la commande {COMMAND}"
     },
     "NO_DATABASE_FOUND": {
-        "english": "no database connection found"
+        "english": "no database connection found",
+        "french": "aucune connexion à la base de données trouvée"
     },
     "GUILD_ONLY_COMMAND": {
-        "english": "this command can only be used in a server."
+        "english": "this command can only be used in a server.",
+        "french": "cette commande ne peut être utilisée que sur un serveur."
     },
     "NO_REACT_PERMS": {
-        "english": "I don't have permission to add reactions. I need this permission to function properly."
+        "english": "I don't have permission to add reactions. I need this permission to function properly.",
+        "french": "Je n'ai pas la permission d'ajouter des réactions. J'ai besoin de cette autorisation pour fonctionner correctement."
     },
     "HELP_MENU": {
         "TITLE": {
-          "english": "Help Menu"
+          "english": "Help Menu",
+          "french": "Menu d'aide"
         },
         "SELECT_A_CATEGORY": {
-          "english": "Please select a command category by reacting with the corresponding emoji of the category"
+          "english": "Please select a command category by reacting with the corresponding emoji of the category",
+          "french": "Veuillez sélectionner une catégorie de commande en réagissant avec l'emoji correspondant de la catégorie"
         },
         "COMMANDS": {
-          "english": "commands"
+          "english": "commands",
+          "french": "commandes."
         },
         "DESCRIPTION_FIRST_LINE": {
-          "english": "Use 🚪 to return to the previous menu."
+          "english": "Use 🚪 to return to the previous menu.",
+          "french": "Utulisez 🚪 pour retourner dans le menu précédent. "
         },
         "DESCRIPTION_SECOND_LINE": {
-          "english": "Use ⬅ and ➡ to navigate between pages."
+          "english": "Use ⬅ and ➡ to navigate between pages.",
+          "french": "Utulisez ⬅ et ➡ pour naviguez entre les pages."
         },
         "ALIASES": {
-          "english": "Aliases"
+          "english": "Aliases",
+          "french": "Alias"
         },
         "SYNTAX": {
-          "english": "Syntax"
+          "english": "Syntax",
+          "french": "Syntaxe"
         }
     },
     "API_ERROR": {
-        "english": "there was an API Error. Try again later."
+        "english": "there was an API Error. Try again later.",
+        "french": "Une erreur d'API s'est produite. Réessayez plus tard."
     },
     "INVALID_MORSE_CODE": {
-        "english": "invalid morse code."
+        "english": "invalid morse code.",
+        "french": "Invalide code morse."
+
     },
     "FROM_SUB": {
-        "english": "From r/{SUB}"
+        "english": "From r/{SUB}",
+        "french": "De r/{SUB}"
     },
     "REDDIT_POINTS": {
-        "english": "{POINTS} points"
+        "english": "{POINTS} points.",
+        "french": "{POINTS} points."
     },
     "INVALID_USER_ID": {
-        "english": "invalid user ID."
+        "english": "invalid user ID.",
+        "french": "Identifiant introuvable."
     },
     "SET_LEVEL_CONFIRMATION": {
-        "english": "set {TARGET}'s level to {LEVEL}."
+        "english": "set {TARGET}'s level to level {LEVEL}.",
+        "french": "réglez le niveau de {TARGET} pour level {LEVEL}."
     }
 }
