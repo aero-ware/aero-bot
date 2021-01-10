@@ -1,8 +1,9 @@
 const { MessageEmbed } = require("discord.js")
+require('dotenv').config({ path: '../.env' })
 
 module.exports = async (client, instance, isEnabled) => {
     client.on('message', async message => {
-        if (message.channel.id !== '794985231782379584') return
+        if (message.channel.id !== process.env.suggestionChannel) return
         if (message.author.bot) return
         if (message.member.hasPermission('ADMINISTRATOR')) return
         message.delete()
@@ -15,7 +16,10 @@ module.exports = async (client, instance, isEnabled) => {
             .setColor('#ffff00')
             .setTimestamp()
 
-        message.channel.send(suggestionEmbed)
+        message.channel.send(suggestionEmbed).then(async sentMessage => {
+            await sentMessage.react('👍')
+            await sentMessage.react('👎')
+        })
     })
 }
 
