@@ -11,7 +11,7 @@ module.exports = {
     run: async ({ message, args }) => {
         const target = message.mentions.users.first()
         if (!target) return message.reply('please mention someone to warn.')
-   //     if (target === message.author) return message.reply('why are you warning yourself?')
+        if (target === message.author) return message.reply('why are you warning yourself?')
         if (target.bot) return message.reply('why are you warning a bot?')
 
         args.shift()
