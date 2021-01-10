@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "a bot",
   "main": "index.js",
-  "repository": "https://github.com/dheerajpv/aero-bot",
-  "homepage": "https://dheerajpv.github.io/aero-bot",
-  "bugs": "https://github.com/dheerajpv/aero-bot/issues",
+  "repository": "https://github.com/aero-ware/aero-bot",
+  "homepage": "https://aero-ware.github.io/aero-bot",
+  "bugs": "https://github.com/aero-ware/aero-bot/issues",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

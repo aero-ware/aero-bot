@@ -19,6 +19,7 @@ module.exports = async (client, instance, isEnabled) => {
                 role = await reaction.emoji.guild.roles.fetch(roleMenus.get(message.id)[reaction.emoji.id])
             }
             await member.roles.add(role)
+            user.send(`**${message.guild.name}**: gave you the role **${role.name}**!`).catch(() => {})
         }
     })
 
@@ -40,6 +41,7 @@ module.exports = async (client, instance, isEnabled) => {
                 role = await reaction.emoji.guild.roles.fetch(roleMenus.get(message.id)[reaction.emoji.id])
             }
             await member.roles.remove(role)
+            user.send(`**${message.guild.name}**: removed the role **${role.name}**.`).catch(() => {})
         }
     })
 }

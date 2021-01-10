@@ -5,7 +5,7 @@ module.exports = {
     expectedArgs: '<type (yn|ymn)> <messageID>',
     category: 'Tools',
     run: async ({ message, args }) => {
-        const messageToReact = await message.channel.messages.fetch(args[1])
+        const messageToReact = await message.channel.messages.fetch(args[1]).catch(() => {})
         if (!messageToReact) return message.reply(`the message with id ${args[1]} does not exist`)
         switch (args[0]) {
             case 'yn':
