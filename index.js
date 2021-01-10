@@ -1,11 +1,23 @@
 const { Client } = require('discord.js')
 const WOKCommands = require('wokcommands')
+const TopGG = require('@top-gg/sdk')
+const AutoPoster = require('topgg-autoposter')
 const updateMutes = require('./util/mute-checker')
 const updatetempBans = require('./util/tempban-checker')
 require('dotenv').config()
 
 const client = new Client({
     partials: ['MESSAGE', 'REACTION']
+})
+
+const TopAPI = new TopGG.Api(process.env.topGGToken)
+
+client.topGG = TopAPI
+
+const ap = AutoPoster(process.env.topGGToken, client)
+
+ap.on('posted', () => {
+    console.log('posted stats to top.gg')
 })
 
 client.on('ready', () => {
