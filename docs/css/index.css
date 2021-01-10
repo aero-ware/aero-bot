@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'aero';
+    src: url('../fonts/sofachrome.regular.ttf');
+}
 
 #invite-main {
     display: flex;
@@ -11,6 +15,11 @@
 #bot-title {
     font-size: 48px;
     margin: 0px;
+    font-family: 'aero';
+}
+
+#title-aero {
+    color: #DC054A;
 }
 
 #invite-commands-buttons {
