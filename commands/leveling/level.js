@@ -1,4 +1,4 @@
-const canvacord = require('canvacord')
+/*const canvacord = require('canvacord')
 const { MessageAttachment } = require('discord.js')
 const fs = require('fs')
 const levels = require('../../features/levels')
@@ -35,4 +35,4 @@ module.exports = {
             message.channel.send(attachment)
         })
     }    
-}
+}*/

@@ -12,12 +12,7 @@ const updatetempBans = async (client) => {
     }
 }
 
-/**
- * 
- * @param {string} guildId the ID of the guild
- * @param {string} userId the ID of the banned user
- * @param {Client} client the client
- */
+
 const unbanMember = async (guildId, userId, client) => {
     const guild = await client.guilds.fetch(guildId)
     const user = await client.users.fetch(userId)
