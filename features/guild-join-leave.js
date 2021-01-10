@@ -6,6 +6,7 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports = async (client, instance, isEnabled) => {
     client.on('guildCreate', async guild => {
+        console.log(`Joined guild ${guild.name}. ID: ${guild.id}.`)
         // create a db entry for the guild as it joins.
         await guildSchema.findOneAndUpdate(
             { _id: guild.id },
@@ -26,7 +27,7 @@ module.exports = async (client, instance, isEnabled) => {
             const channel = await guild.systemChannel || await guild.channels.cache.random()
             await channel.send(permsEmbed).catch(() => {
                 try {
-                    channel.send('I don\'t have permission to send embeds. please invite me with proper permissions from top.gg')
+                    channel.send('I don\'t have permission to send embeds. please invite me with proper permissions from top.gg or from my website.')
                 } finally {
                     guild.leave()
                 }
@@ -36,6 +37,7 @@ module.exports = async (client, instance, isEnabled) => {
     })
 
     client.on('guildDelete', async guild => {
+        console.log(`Left guild ${guild.name}. ID: ${guild.id}`)
         // delete the db entry if it got kicked from a guild.
         await guildSchema.findOneAndDelete({ _id: guild.id })
         // also delete all the economy, mutes, tempbans etc from the db
