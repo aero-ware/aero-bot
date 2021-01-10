@@ -44,6 +44,10 @@ module.exports = {
             .setColor('#00ffe5'))
     
         game_collector.on('collect', u_msg => {
+            if (isNaN(u_msg.content)) {
+                return game_collector.stop('gameover') 
+                    
+            }
             if (parseInt(u_msg.content) > gameconfig.maximum)
                 return message.channel.send(new Discord.MessageEmbed()
                     .setTitle('Number greater than the maximum')
