@@ -14,11 +14,13 @@ const TopAPI = new TopGG.Api(process.env.topGGToken)
 
 client.topGG = TopAPI
 
-const ap = AutoPoster(process.env.topGGToken, client)
+if (process.env.clientID === client.user.id) {
+    const ap = AutoPoster(process.env.topGGToken, client)
 
-ap.on('posted', () => {
-    console.log('posted stats to top.gg')
-})
+    ap.on('posted', () => {
+        console.log('posted stats to top.gg')
+    })
+}
 
 client.on('ready', () => {
     console.log('Ready!')
