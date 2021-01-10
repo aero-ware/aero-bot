@@ -10,18 +10,6 @@ const client = new Client({
     partials: ['MESSAGE', 'REACTION']
 })
 
-const TopAPI = new TopGG.Api(process.env.topGGToken)
-
-client.topGG = TopAPI
-
-if (process.env.clientID === client.user.id) {
-    const ap = AutoPoster(process.env.topGGToken, client)
-
-    ap.on('posted', () => {
-        console.log('posted stats to top.gg')
-    })
-}
-
 client.on('ready', () => {
     console.log('Ready!')
     const wok = new WOKCommands(client, {
@@ -77,4 +65,16 @@ client.on('ready', () => {
     }, 5000)
 })
 
-client.login(process.env.token)
+client.login(process.env.token).then(() => {
+    const TopAPI = new TopGG.Api(process.env.topGGToken)
+
+    client.topGG = TopAPI
+
+    if (process.env.clientID === client.user.id) {
+        const ap = AutoPoster(process.env.topGGToken, client)
+
+        ap.on('posted', () => {
+            console.log('posted stats to top.gg')
+        })
+    }
+})
