@@ -1,11 +1,11 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose";
 
 const optionalString = {
     type: String,
     default: null,
-}
+};
 
-const guildSchema = mongoose.Schema({
+const guildSchema = new mongoose.Schema({
     _id: {
         type: String,
         required: true,
@@ -24,7 +24,7 @@ const guildSchema = mongoose.Schema({
     },
     roleMenus: {
         type: Map,
-        default: new Map()
+        default: new Map(),
     },
     blacklistedWords: {
         type: [String],
@@ -38,6 +38,8 @@ const guildSchema = mongoose.Schema({
         type: String,
         default: null,
     },
-})
+});
 
-module.exports = mongoose.model('guild-configs', guildSchema)
+const model = mongoose.model("guild-configs", guildSchema);
+
+export default model;
