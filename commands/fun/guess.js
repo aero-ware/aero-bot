@@ -3,6 +3,7 @@ let serversmap = new Map();
 
 module.exports = {
     commands: ['guess'],
+    category: 'Fun',
     description: 'Guess the number to win the game !',
     minArgs: 0,
     maxArgs: 0,
