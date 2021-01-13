@@ -33,7 +33,11 @@ const guildSchema = mongoose.Schema({
     snipes: {
         type: Object,
         default: {},
-    }
+    },
+    autoRole: {
+        type: String,
+        default: null,
+    },
 })
 
 module.exports = mongoose.model('guild-configs', guildSchema)
