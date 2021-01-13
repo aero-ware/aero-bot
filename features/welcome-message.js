@@ -17,12 +17,13 @@ module.exports = (client, instance, isEnabled) => {
         if (!data) return
         const [channelId, text] = data
         const channel = await member.guild.channels.cache.find(channel => channel.id === channelId)
+    
         if (!channel) return
         channel.send(text.replace(/<@>/g, `${member}`))
     }
 
-    client.on('guildMemberAdd', member => {
-        onJoin(member)
+    client.on('guildMemberAdd', async member => {
+        await onJoin(member)    
     })
 }
 
