@@ -15,8 +15,6 @@ module.exports = {
         })
         if (invalidId) return
 
-        console.log(await guild.roles.fetch())
-
         const infoEmbed = new MessageEmbed()
             .setTitle(guild.name)
             .addFields(
