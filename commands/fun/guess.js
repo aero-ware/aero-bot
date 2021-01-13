@@ -45,7 +45,7 @@ module.exports = {
     
         game_collector.on('collect', u_msg => {
             if (isNaN(u_msg.content)) {
-                return game_collector.stop('gameover') 
+                return game_collector.stop('forced') 
                     
             }
             if (parseInt(u_msg.content) > gameconfig.maximum)

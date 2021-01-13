@@ -1,5 +1,5 @@
 const memberSchema = require('../../../schemas/member-schema')
-
+const {MessageEmbed} = require('discord.js')
 module.exports = {
     commands: 'warn',
     description: 'Adds to the number of warnings stored in the database and DMs the user.',
@@ -42,7 +42,26 @@ module.exports = {
                 upsert: true,
             }
         )
-
-        return message.reply(`${target} has been warned for the reason \`${reason}\``)
+        const { guild } = message
+        message.mentions.users.first()
+            .send(`You have been warned in ${guild.name} for: ${reason}`)
+        return message.channel.send(new MessageEmbed()
+            .setTitle(':white_check_mark: Successfully Warned')
+            .addFields({
+                name: 'Member Targeted:',
+                value: target.tag,
+                inline: true
+            }, {
+                name: 'Moderator:',
+                value: message.author.tag,
+                inline: true,
+            }, {
+                name: 'Reason:',
+                value: reason ? reason : 'no reason provided'
+            })
+            .setColor('d50df0')
+            .setTimestamp(new Date()))
+            
+        
     }
 }
