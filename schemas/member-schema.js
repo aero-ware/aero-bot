@@ -1,11 +1,11 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
 
 const reqString = {
     type: String,
-    required: true,
-};
+    required: true
+}
 
-const memberSchema = new mongoose.Schema({
+const memberSchema = mongoose.Schema({
     guildId: reqString,
     userId: reqString,
     coins: {
@@ -27,9 +27,7 @@ const memberSchema = new mongoose.Schema({
     warnings: {
         type: [Object],
         default: null,
-    },
-});
+    }
+})
 
-const model = mongoose.model("members", memberSchema);
-
-export default model;
+module.exports = mongoose.model('members', memberSchema)

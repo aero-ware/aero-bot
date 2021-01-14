@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
 
-const muteSchema = new mongoose.Schema({
+const muteSchema = mongoose.Schema({
     guildId: {
         type: String,
         required: true,
@@ -13,8 +13,6 @@ const muteSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-});
+})
 
-const model = mongoose.model("mutes", muteSchema);
-
-export default model;
+module.exports = mongoose.model('mutes', muteSchema)

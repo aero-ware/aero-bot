@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
 
-const tempbanSchema = new mongoose.Schema({
+const tempbanSchema = mongoose.Schema({
     guildId: {
         type: String,
         required: true,
@@ -13,8 +13,6 @@ const tempbanSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-});
+})
 
-const model = mongoose.model("tempbans", tempbanSchema);
-
-export default model;
+module.exports = mongoose.model('tempbans', tempbanSchema)
