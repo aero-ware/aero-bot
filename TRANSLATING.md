@@ -8,8 +8,8 @@ If you want to translate AeroBot to another language, please look at [`messages.
 **Note:** Not all messages are coded into messages.json as of now, but I will work towards adding more messages there.
 
 # [FR] Traduction de AeroBot
-Si vous veulez traduire AeroBot de les autres langues, voir [`messages.json`](https://github.com/aero-ware/aero-bot/blob/master/messages.json) et suivez les instructiones:
+Si vous souhaitez traduire AeroBot dans d'autres langues, regardez [`messages.json`](https://github.com/aero-ware/aero-bot/blob/master/messages.json) et suivez les instructions:
 
 - Fork cette repo
 <!-- - @FaceFox please translate this line I don't know enough French for this lol (and any other broken french here) -->
-- envoyer à moi un PR (Pull Request) !
+- envoyez moi un PR avec les traductions faites ! (PS: PR veux dire Pull Request)
