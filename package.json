@@ -7,7 +7,7 @@
   "homepage": "https://aero-ware.github.io/aero-bot",
   "bugs": "https://github.com/aero-ware/aero-bot/issues",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js"
   },
   "author": "Dheeraj Prakash",
   "license": "MIT",
