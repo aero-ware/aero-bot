@@ -2,8 +2,7 @@ const { Client } = require('discord.js')
 const WOKCommands = require('wokcommands')
 const TopGG = require('@top-gg/sdk')
 const AutoPoster = require('topgg-autoposter')
-const updateMutes = require('./util/mute-checker')
-const updatetempBans = require('./util/tempban-checker')
+const periodic = require('./util/periodic')
 require('dotenv').config()
 
 const client = new Client({
@@ -59,10 +58,7 @@ client.on('ready', () => {
         console.log('Connected to database!, state: ' + state)
     })
 
-    setInterval(() => {
-        updateMutes(client)
-        updatetempBans(client)
-    }, 5000)
+    setInterval(periodic, 5000, client)
 })
 
 client.login(process.env.token).then(() => {
