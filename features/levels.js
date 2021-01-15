@@ -5,6 +5,7 @@ const memberSchema = require('../schemas/member-schema')
 module.exports = async (client, instance, isEnabled) => {
     client.on('message', async message => {
         if (message.author.bot) return
+        if (!message.guild) return
         const { guild, member } = message
         const { nextXPAdd } = await memberSchema.findOne({
             guildId: guild.id,
