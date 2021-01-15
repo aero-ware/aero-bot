@@ -22,7 +22,7 @@ module.exports = {
 
         message.author.send('Your userdata', new MessageAttachment(Buffer.from(JSON.stringify(userData, (k, v) => (k === "__v" || k === "_id" || k === "userId") ? undefined : v, 4), 'utf-8'), `userdata-${message.author.tag}.json`))
             .catch(() => {
-                message.channel.send('due to the possibly sensitive nature of userdata, please enable DMs so that I can send it to you privately.')
+                message.channel.send('due to the possibly sensitive nature of userdata, please enable DMs so that I can send it to you privately, then run this command again.')
             })
     }
 }
