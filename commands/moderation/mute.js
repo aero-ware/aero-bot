@@ -8,7 +8,7 @@ module.exports = {
     commands: 'mute',
     description: 'mutes a user (gives them muted role)',
     category: 'Moderation',
-    permissions: 'MANAGE_MESSAGES',
+    requiredPermissions: 'MANAGE_MESSAGES',
     expectedArgs: '<user ping|id> <time|\'forever\'> [reason]',
     minArgs: 2,
     guildOnly: true,

@@ -2,7 +2,7 @@ module.exports = {
     commands: 'simjoin',
     description: 'admin only command that simulates someone joining',
     expectedArgs: '',
-    permissions: 'ADMINISTRATOR',
+    requiredPermissions: 'ADMINISTRATOR',
     category: 'Testing',
     guildOnly: true,
     run: ({ message, client }) => {
