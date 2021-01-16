@@ -5,7 +5,7 @@ module.exports = {
     description: 'sets or gets the channel for logging important actions.',
     category: 'Moderation',
     expectedArgs: '[channel|none]',
-    requiredPermissions: 'ADMINISTRATOR',
+    requiredPermissions: ['ADMINISTRATOR'],
     guildOnly: true,
     run: async ({ message, args }) => {
         const logChannelId = message.mentions.channels.first() ? message.mentions.channels.first().id : null

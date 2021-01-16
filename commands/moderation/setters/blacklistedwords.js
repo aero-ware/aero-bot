@@ -4,7 +4,7 @@ module.exports = {
     commands: ['swearwords', 'blacklistedwords', 'wordblacklist', 'setblacklist'],
     description: 'adds, removes, or **shows** the current blacklisted words in this server.',
     category: 'Moderation',
-    requiredPermissions: 'ADMINISTRATOR',
+    requiredPermissions: ['ADMINISTRATOR'],
     expectedArgs: '<add|remove|list> [word]',
     minArgs: 1,
     guildOnly: true,

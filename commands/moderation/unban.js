@@ -5,7 +5,7 @@ module.exports = {
     description: 'unbans a user (kina obvious from the name)',
     category: 'Moderation',
     minArgs: 1,
-    requiredPermissions: 'BAN_MEMBERS',
+    requiredPermissions: ['BAN_MEMBERS'],
     expectedArgs: '<user ID|*ping*>',
     guildOnly: true,
     run: async ({ message, args }) => {

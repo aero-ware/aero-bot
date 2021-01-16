@@ -1,7 +1,7 @@
 module.exports = {
     commands: 'simban',
     description: 'admin only command that simulates a ban',
-    requiredPermissions: 'ADMINISTRATOR',
+    requiredPermissions: ['ADMINISTRATOR'],
     category: 'Testing',
     guildOnly: true,
     run: ({ message, client }) => {

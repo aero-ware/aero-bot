@@ -4,7 +4,7 @@ module.exports = {
     commands: ['setmutedrole', 'setmuterole', 'muterole'],
     description: 'sets the role to use when muting someone',
     category: 'Moderation',
-    requiredPermissions: 'ADMINISTRATOR',
+    requiredPermissions: ['ADMINISTRATOR'],
     expectedArgs: '<role ping|role id|\'none\'>',
     minArgs: 1,
     guildOnly: true,

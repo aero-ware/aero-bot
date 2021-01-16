@@ -4,7 +4,7 @@ module.exports = {
     commands: 'kick',
     expectedArgs: '<user ping> [reason]',
     minArgs: 1,
-    requiredPermissions: 'KICK_MEMBERS',
+    requiredPermissions: ['KICK_MEMBERS'],
     description: 'Kicks the targeted user',
     category: 'Moderation',
     guildOnly: true,
