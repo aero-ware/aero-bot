@@ -8,7 +8,7 @@ module.exports = {
     commands: 'ban',
     expectedArgs: '<user ping|id> <duration|\'forever\'> [reason]',
     minArgs: 2,
-    permissions: ['BAN_MEMBERS'],
+    requiredPermissions: ['BAN_MEMBERS'],
     description: 'Bans the targeted user',
     category: 'Moderation',
     guildOnly: true,

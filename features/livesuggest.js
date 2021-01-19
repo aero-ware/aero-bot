@@ -9,7 +9,7 @@ module.exports = async (client, instance, isEnabled) => {
         message.delete()
         const suggestionEmbed = new MessageEmbed()
             .setTitle(message.content.split('\n')[0] || '')
-            .setDescription(message.content.split('\n')[1] || message.content + '\n\n' + 
+            .setDescription(message.content.split('\n').slice(1) || message.content + '\n\n' + 
             '📊 Waiting for support. Use 👍 and 👎 to vote!')
             .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setFooter(`suggested in ${message.guild.name}`, message.guild.iconURL({ dynamic: true }))

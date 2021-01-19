@@ -5,7 +5,7 @@ module.exports = {
     category: "Moderation",
     description: "role to set when someone joins",
     expectedArgs: "[role ping|id]",
-    permissions: "ADMINISTRATOR",
+    requiredPermissions: ['ADMINISTRATOR'],
     guildOnly: true,
     run: async ({ message, args }) => {
         if (!args[0]) {

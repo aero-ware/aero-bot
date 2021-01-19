@@ -8,7 +8,7 @@ module.exports = {
     expectedArgs: '<add|remove|update|help> [message ID] [emoji] [role ID|\'none\']',
     minArgs: 1,
     maxArgs: 4,
-    permissions: 'ADMINISTRATOR',
+    requiredPermissions: ['ADMINISTRATOR'],
     guildOnly: true,
     run: async ({ message, args, prefix }) => {
         const [arg, messageID, emoji, roleID] = args
