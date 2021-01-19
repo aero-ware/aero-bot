@@ -7,12 +7,13 @@ const muteBans = (client) => {
 }
 
 const statusUpdate = (client) => {
-    client.user.setPresence({
-        activity: {
-            type: 'WATCHING',
-            name: `${client.guilds.cache.size} Servers! >help`
-        }
-    })
+    if (client.user.presence.activities.length === 0 || /\d+ \w+/g.test(client.user.presence.activities[0].name))
+        client.user.setPresence({
+            activity: {
+                type: 'WATCHING',
+                name: `${client.guilds.cache.size} Servers! >help`
+            }
+        })
 }
 
 module.exports = (client) => {

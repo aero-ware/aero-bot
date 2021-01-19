@@ -51,6 +51,10 @@ client.on('ready', () => {
                 emoji: '🧪',
                 hidden: true,
             },
+            {
+                name: 'Data',
+                emoji: '📈'
+            }
         ])
         .setColor('#90edaf')
 
