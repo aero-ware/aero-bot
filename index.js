@@ -58,7 +58,7 @@ client.on('ready', () => {
         console.log('Connected to database!, state: ' + state)
     })
 
-    setInterval(periodic, 5000, client)
+    periodic(client)
 })
 
 client.login(process.env.token).then(() => {
