@@ -5,7 +5,7 @@ const { MessageAttachment } = require('discord.js')
 
 module.exports = {
     commands: 'userdata',
-    category: 'Tools',
+    category: 'Data',
     description: 'sends you all userdata stored about you',
     run: async ({ message }) => {
         let userData = {}

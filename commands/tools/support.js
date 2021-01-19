@@ -1,7 +1,7 @@
 module.exports = {
     commands: ['support'],
     aliases: ['link', 'invite', 'docs'],
-    category: 'tools',
+    category: 'Tools',
     description: 'Gives you all the link to help you with the bot!',
     callback: ({message, instance}) => {
         const { MessageEmbed} = require('discord.js')

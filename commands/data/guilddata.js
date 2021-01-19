@@ -5,7 +5,7 @@ const { MessageAttachment } = require('discord.js')
 
 module.exports = {
     commands: ['guilddata', 'serverdata'],
-    category: 'Tools',
+    category: 'Data',
     description: 'server owner only command that sends the data stored about this server',
     guildOnly: true,
     run: async ({ message }) => {
