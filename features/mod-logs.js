@@ -203,7 +203,6 @@ module.exports = async (client, instance, isEnabled) => {
     })
 
     client.on('messageDelete', async message => {
-        if (message.partial) message = await message.fetch()
         if (!message.guild) return
         const channel = await getLogChannel(message.guild)
         if (!channel) return
