@@ -83,6 +83,15 @@
                             <a class="nav-link ms-6 my-1" href="#setadchannels">setaddchannels</a>
                             <a class="nav-link ms-6 my-1" href="#setwelcomemessage">setwelcomemessage</a>
                             <a class="nav-link ms-6 my-1" href="#setmutedrole">setmutedrole</a>
+                            <a class="nav-link ms-6 my-1" href="#banpurgedays">banpurgedays</a>
+                            <a class="nav-link ms-6 my-1" href="#mute">mute</a>
+                            <a class="nav-link ms-6 my-1" href="#ban">ban</a>
+                            <a class="nav-link ms-6 my-1" href="#kick">kick</a>
+                            <a class="nav-link ms-6 my-1" href="#purge">purge</a>
+                            <a class="nav-link ms-6 my-1" href="#simjoin/simban">simjoin / simban</a>
+                            <a class="nav-link ms-6 my-1" href="#unmute/unban">unmute / unban</a>
+                            <a class="nav-link ms-6 my-1" href="#warn">warn</a>
+                            <a class="nav-link ms-6 my-1" href="#listwarnings">warnings</a>
                         </nav>
 
                     </nav>
@@ -95,7 +104,7 @@
                 <!-- Moderation -->                
                 <div data-bs-spy="scroll" data-bs-target="#outline-sidebar" data-bs-offset="0" tabindex="0" id="command-content">
                     <h2 id="moderation">Moderation</h2>
-                    <p>This category contains commands that relate to moderation, and thus many have elevated permission requirements.</p>
+                    <p>This category contains commands that relate to moderation, and this many have elevated permission requirements.</p>
                     <h3 id="setters">Setters</h3>
                     <p>This collection of commands has commands that set important information into the database and ALL require ADMINISTRATOR permissions</p>
 
@@ -110,6 +119,16 @@
                             <em>That should be a channel mention and not just the channel name.</em>
                         </p>
                     </div>
+                    <div id="banpurgedays">
+                        <h4>banpurgedays</h4>
+                        <p>
+                            This command set the days of messages will be delete when a member is banned.
+                            The maximum days of messages you can delete is 7.
+                            Aliases: banmessagedeletedays, banpurgedays, messagedeleteonban<br>
+                            Excpected Arguments: &lt;days( maximum 7)&gt;<br>
+                            Example Usage: <code>&gt;banpurgedays 5<br></code>
+                        </p>
+                    </div>
 
                     <div id="setblacklist">
                         <h4>setblacklist</h4>
@@ -118,7 +137,7 @@
                             For example. If you used <code>&gt;setblacklist add a b c x y z</code>, the string 'a b c x y z' will be added to the database and NOT each word separately. This is to increase flexibility for the end user.
                             Aliases: swearwords, blacklistedwords, wordblacklist, setblacklist<br>
                             Expected Arguments: &lt;add/remove&gt; &lt;string&gt;<br>
-                            Example Usage: <code>&gt;setblacklist add djfhjohg</code>
+                            Example Usage: <code>&gt;setblacklist add apple</code>
                         </p>
                     </div>
 
@@ -154,49 +173,87 @@
                             Note: ping the role or give its ID.
                         </p>
                     </div>
+                    <h3 id="moderation commands">Moderation Commands</h3>
+                    <p>This collection of commands has commands related with moderation. We consider someone a moderator if they have Manage messages permissions.</p>
 
-                </div>
-
-                    <!-- <div class="command-details">
-                        <h3>kick</h3>
-                        aliases: kick<br />
-                        expected args: &lt;user ping&gt; [reason]<br />
-                        Example:<br />
-                        <code class="indented">&gt;kick @aero_noob kick lol</code><br />
-                        Note: that should be a real mention of a user.
-                    </div>
-                    <div class="command-details" id="ban-details">
-                        <h3>ban</h3>
-                        aliases: ban<br />
-                        expected args: &lt;user ping/id&gt; &lt;duration/forever&gt; [reason]<br />
-                        Example:<br />
-                        <p class="indented">
-                            Tempban: <code>&gt;ban @aero_noob 7d 7 day tempban</code><br />
-                            Permaban: <code>&gt;ban @aero_noob forever permaent ban</code><br />
+                    <div id="mute">
+                        <h4>mute</h4>
+                        <p>
+                            This command allows you to mute someone for a certain time with a reason (or not).<br>
+                            Excpected Arguments: &lt;member ping/id&gt; &lt;time/'forever'&gt; &lt;reason&gt;<br>
+                            Exemple Usage: <code>&gt;mute @FaceFox 1h advertising</code><br>
+                            Note: You HAVE to set a mute role before running this command.
+                            Note 2: Mute the member by pinging or giving his id.
                         </p>
-                        Note: that should be a real mention of a user (or their ID)
                     </div>
-                    <div class="command-details">
-                        <h3>unban</h3>
-                        <b>Can unban both tempbans and permabans.</b>
-                        aliases: unban<br />
-                        expected args: &lt;user ID&gt;<br />
-                        Example: <code>&gt;unban 645161965411</code>
+
+                    <div id="ban">
+                        <h4>ban</h4>
+                        <p>
+                            This command allows you to ban someone for a certain time or forever from the server.<br>
+                            Excpected Arguments: &lt;member ping/id&gt; &lt;time/'forever'&gt; &lt;reason&gt;<br>
+                            Example Usage: <code>&gt;ban @FaceFox 7d DM advertising</code>
+                            Note: Ban a member by pinging or giving his id.
+                        </p>
                     </div>
-                    <div class="command-details">
-                        <h3>mute</h3>
-                        aliases: mute <br />
-                        expected args: &lt;user ping/id&gt; &lt;duration/forever&gt; [reason]<br />
-                        Example: Follow usage of <a href="#ban-details">ban</a> (but use mute instead of ban)
+
+                    <div id="kick">
+                        <h4>kick</h4>
+                        <p>
+                            This command allows you to kick someone from the server.<br>
+                            Excpected Arguments: &lt;member ping/id&gt; &lt;reason&gt;<br>
+                            Example Usage: <code>&gt;kick @FaceFox DM advertising</code><br>
+                            Note: Kick a member by pinging or giving his id.
+                        </p>
                     </div>
-                    <div class="command-details">
-                        <h3>unmute</h3>
-                        <b>Can unmute both temporary and permanent mutes.</b>
-                        aliases: unmute<br />
-                        expected args: &lt;user ping&gt;<br />
-                        Example: <code>&gt;unmute @aero_noob</code>
-                        Note: That should be a real mention of a user.
-                    </div> -->
+
+                    <div id="purge">
+                        <h4>purge</h4>
+                        <p>
+                            You can delete up to 100 message from a channel (also from a user) with this command.<br>
+                            Excpected Arguments: &lt;number of message&gt; &lt; user ping (optional)&gt;<br>
+                            Example Usage: <code>&gt;purge 69</code><br>
+                            Note: You also can delete message from a member only.
+                        </p>
+
+                    </div>
+                    <div id="simjoin and simban">
+                        <h4>simjoin / simban</h4>
+                        <p>
+                            You can simulate a join or a ban with these commands to test your configuration of the bot.<br>
+                            Example Usage: <code>&gt;simjoin</code><br>
+                            Note: These commands will not work if you don't setup the bot.
+                        </p>
+                    </div>
+
+                    <div id="unmute / unban">
+                        <h4>unmute / unban</h4>
+                        <p>
+                            This command allows you to unmute OR unban a member from your server.<br>
+                            Excpected Arguments: &lt;user id&gt;<br>
+                            Example Usage: <code>&gt;unmute @FaceFox</code><br>
+                            Note: You can't unban or unmute a user that has not been muted or banned from the server.
+                        </p>
+                    </div>
+                    <div id="warn">
+                        <h4>warn</h4>
+                        <p>
+                            Warn a member from your server for a specific reason, you can still check there warns afterwards.<br>
+                            Excpected Arguments: &lt;member ping/id&gt; &lt;reason&gt;<br>
+                            Example Usage: <code>&gt;warn @FaceFox spamming in general</code><br>
+                            Note: We consider someone a moderator if they have manage messages permissions. You can still require a role with another command.
+                        </p>
+                    </div>
+                    <div id="list warnings">
+                        <h4>list warnings</h4>
+                        <p>
+                            Display all warns for you or a specific member.<br>
+                            Aliases: warns, warnings, listwarns<br>
+                            Excpected Arguments: &lt;member ping/id&gt;<br>
+                            Example Usage: <code>&gt;warns @aero_noob</code>
+                        </p>
+                    </div>
+                </div>
             </main>
         </div>
 
