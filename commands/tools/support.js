@@ -1,6 +1,5 @@
 module.exports = {
-    commands: ['support'],
-    aliases: ['link', 'invite', 'docs'],
+    commands: ['support','link', 'invite', 'docs'],
     category: 'tools',
     description: 'Gives you all the link to help you with the bot!',
     callback: ({message, instance}) => {
