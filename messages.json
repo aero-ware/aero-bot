@@ -12,7 +12,7 @@
         "french": "veuillez patienter {COOLDOWN} avant d'exécuter à nouveau cette commande."
     },
     "LANGUAGE_NOT_SUPPORTED": {
-        "english": "AeroBot does not have support for {LANGUAGE} at this time. You can help by checking https://github.com/dheerajpv/aero-bot/blob/master/TRANSLATING.md",
+        "english": "AeroBot does not have support for {LANGUAGE} at this time. You can help by checking https://github.com/aero-ware/aero-bot/blob/master/TRANSLATING.md",
         "french": "AeroBot ne supporte pas {LANGUAGE} actuellement. Vous pouvez aider en vérifiant https://github.com/dheerajpv/aero-bot/blob/master/TRANSLATING.md"
     },
     "CURRENT_LANGUAGE": {

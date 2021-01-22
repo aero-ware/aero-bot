@@ -6,6 +6,7 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports = async (client, instance, isEnabled) => {
     client.on('guildCreate', async guild => {
+        console.log(`Joined guild ${guild.name}. ID: ${guild.id}.`)
         // create a db entry for the guild as it joins.
         await guildSchema.findOneAndUpdate(
             { _id: guild.id },
@@ -19,17 +20,24 @@ module.exports = async (client, instance, isEnabled) => {
         if (!guild.me.hasPermission('ADMINISTRATOR')) {
             const permsEmbed = new MessageEmbed()
                 .setTitle('Insufficient Permissions')
-                .setDescription('I need the Administrator permission to function properly.\nMany of my commands will not work without it.\nI promise there is no malicious intent, you can review my [source code](https://github.com/dheerajpv/aero-bot) if you wish.\n\n [Invite me properly](https://discord.com/api/oauth2/authorize?client_id=787460489427812363&permissions=8&scope=bot)')
+                .setDescription('I need the Administrator permission to function properly.\nMany of my commands will not work without it.\nI promise there is no malicious intent, you can review my [source code](https://github.com/aero-ware/aero-bot) if you wish.\n\n [Invite me properly](https://discord.com/api/oauth2/authorize?client_id=787460489427812363&permissions=8&scope=bot)')
                 .setColor('#ff0000')
                 .setTimestamp()
 
             const channel = await guild.systemChannel || await guild.channels.cache.random()
-            await channel.send(permsEmbed)
+            await channel.send(permsEmbed).catch(() => {
+                try {
+                    channel.send('I don\'t have permission to send embeds. please invite me with proper permissions from top.gg or from my website.')
+                } finally {
+                    guild.leave()
+                }
+            })
             guild.leave()
         }
     })
 
     client.on('guildDelete', async guild => {
+        console.log(`Left guild ${guild.name}. ID: ${guild.id}`)
         // delete the db entry if it got kicked from a guild.
         await guildSchema.findOneAndDelete({ _id: guild.id })
         // also delete all the economy, mutes, tempbans etc from the db

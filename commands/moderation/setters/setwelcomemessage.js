@@ -4,7 +4,7 @@ module.exports = {
     commands: ['setwelcome', 'welcome', 'joinmessage', 'welcomemessage'],
     description: 'sets or shows the welcome message for this server, use <@> to ping the new member, set it to \'none\' to remove',
     expectedArgs: '[channel] [message]',
-    permissions: 'ADMINISTRATOR',
+    requiredPermissions: ['ADMINISTRATOR'],
     category: 'Moderation',
     guildOnly: true,
     run: async ({ message, args, text }) => {

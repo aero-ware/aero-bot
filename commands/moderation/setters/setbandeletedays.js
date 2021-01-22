@@ -4,7 +4,7 @@ module.exports = {
     commands: ['banmessagedeletedays', 'banpurgedays', 'messagedeleteonban'],
     category: 'Moderation',
     description: 'sets the number of days of messages from that user to delete when they are banned (max 7)',
-    permissions: 'ADMINISTRATOR',
+    requiredPermissions: ['ADMINISTRATOR'],
     minArgs: 1,
     maxArgs: 1,
     expectedArgs: '<days (<= 7)>',

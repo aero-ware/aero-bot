@@ -1,7 +1,8 @@
 const { Client } = require('discord.js')
 const WOKCommands = require('wokcommands')
-const updateMutes = require('./util/mute-checker')
-const updatetempBans = require('./util/tempban-checker')
+const TopGG = require('@top-gg/sdk')
+const AutoPoster = require('topgg-autoposter')
+const periodic = require('./util/periodic')
 require('dotenv').config()
 
 const client = new Client({
@@ -39,7 +40,7 @@ client.on('ready', () => {
             },
             {
                 name: 'Leveling',
-                emojiL: '🎮',
+                emoji: '🎮',
             },
             {
                 name: 'Misc',
@@ -50,6 +51,10 @@ client.on('ready', () => {
                 emoji: '🧪',
                 hidden: true,
             },
+            {
+                name: 'Data',
+                emoji: '📈'
+            }
         ])
         .setColor('#90edaf')
 
@@ -57,10 +62,19 @@ client.on('ready', () => {
         console.log('Connected to database!, state: ' + state)
     })
 
-    setInterval(() => {
-        updateMutes(client)
-        updatetempBans(client)
-    }, 5000)
+    periodic(client)
 })
 
-client.login(process.env.token)
+client.login(process.env.token).then(() => {
+    const TopAPI = new TopGG.Api(process.env.topGGToken)
+
+    client.topGG = TopAPI
+
+    if (process.env.clientID === client.user.id) {
+        const ap = AutoPoster(process.env.topGGToken, client)
+
+        ap.on('posted', () => {
+            console.log('posted stats to top.gg')
+        })
+    }
+})

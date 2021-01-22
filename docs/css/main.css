@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'aero';
+    src: url(../fonts/sofachrome.regular.ttf);
+}
+
 body {
     background-color: black;
     color: white;
@@ -20,4 +25,12 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     padding-top: 7px;
     padding-right: 10px;
+}
+
+.aero-bot {
+    font-family: 'aero';
+}
+
+.aero {
+    color: #DC054A;
 }

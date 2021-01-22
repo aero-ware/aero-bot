@@ -16,15 +16,21 @@ const updateMutes = async (client) => {
  * @param {Client} client the client
  */
 const unmuteMember = async (guildId, userId, client) => {
-    const guild = await client.guilds.fetch(guildId)
-    const member = await guild.members.fetch(userId)
-    const { mutedRoleId } = await guildSchema.findOne({ _id: guildId })
-    await member.roles.remove(mutedRoleId).then(async () => {
-        await muteSchema.findOneAndDelete({
-            guildId,
-            userId,
-        })
+    const guild = await client.guilds.fetch(guildId).catch()
+    if (!guild) return
+
+    const { mutedRoleId } = await guildSchema.findOne({ _id: guildId }).catch()
+    if (!mutedRoleId) return
+
+    const member = await guild.members.cache.get(userId)
+    if (member) {
+        member.roles.remove(mutedRoleId)
+    }
+    await muteSchema.findOneAndDelete({
+        guildId,
+        userId,
     })
+
 }
 
 module.exports = updateMutes

@@ -30,6 +30,13 @@ module.exports = {
                 type = 'COMPETING'
                 break
 
+            case 'clear':
+                return client.user.setPresence({
+                    activity: {
+                        name: `${client.guilds.cache.size} Servers! >help`
+                    }
+                })
+
             default:
                 return message.reply('invalid prescence type.')
         }

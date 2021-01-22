@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'aero';
+    src: url('../fonts/sofachrome.regular.ttf');
+}
 
 #invite-main {
     display: flex;
