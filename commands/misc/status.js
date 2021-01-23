@@ -4,10 +4,12 @@ module.exports = {
     description: 'owner only command. Sets the bot\'s status.',
     ownerOnly: true,
     expectedArgs: '<type> <text>',
-    minArgs: 2,
+    minArgs: 1,
     run: ({ message, client, args }) => {
         let [type, ...activity] = args
         activity = activity.join(' ')
+
+        if (type.toLowerCase() !== 'clear' && !activity.length > 0) return message.reply('provide an activity value')
 
         switch (type.toLowerCase()) {
             case 'playing':
@@ -33,7 +35,8 @@ module.exports = {
             case 'clear':
                 return client.user.setPresence({
                     activity: {
-                        name: `${client.guilds.cache.size} Servers! >help`
+                        name: `${client.guilds.cache.size} Servers! >help`,
+                        type: 'WATCHING'
                     }
                 })
 
