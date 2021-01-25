@@ -1,6 +1,6 @@
 const { MessageEmbed, Guild, GuildChannel, Message } = require("discord.js")
 const guildSchema = require('../schemas/guild-schema')
-
+const moment = require('moment')
 /**
  * Returns the log channel for the guild or null
  * @param {Guild} guild the guild to check the log channel for
@@ -20,7 +20,12 @@ module.exports = async (client, instance, isEnabled) => {
                 {
                     name: 'User',
                     value: member
+                },
+                {
+                    name: 'Account created:',
+                    value: client.format(cretaedF)
                 }
+
             )
             .setThumbnail(member.user.displayAvatarURL())
             .setColor('#FFFF00')
