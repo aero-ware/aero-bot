@@ -34,10 +34,11 @@ const guildSchema = mongoose.Schema({
         type: Object,
         default: {},
     },
-    autoRole: {
-        type: String,
-        default: null,
-    },
+    autoRole: optionalString,
+    levelsEnabled: {
+        type: Boolean,
+        default: true,
+    }
 })
 
 module.exports = mongoose.model('guild-configs', guildSchema)

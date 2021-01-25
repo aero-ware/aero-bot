@@ -1,11 +1,16 @@
 const { add, isPast } = require('date-fns')
 const { Message } = require('discord.js')
 const memberSchema = require('../schemas/member-schema')
+const guildSchema = require('../schemas/guild-schema')
 
 module.exports = async (client, instance, isEnabled) => {
     client.on('message', async message => {
         if (message.author.bot) return
         if (!message.guild) return
+
+        const { levelsEnabled } = await guildSchema.findById(message.guild.id) || { levelsEnabled: true }
+        if (!levelsEnabled) return
+
         const { guild, member } = message
         const { nextXPAdd } = await memberSchema.findOne({
             guildId: guild.id,
