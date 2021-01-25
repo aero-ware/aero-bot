@@ -2,6 +2,7 @@ const canvacord = require('canvacord')
 const { MessageAttachment } = require('discord.js')
 const levels = require('../../features/levels')
 const memberSchema = require('../../schemas/member-schema')
+const guildSchema = require('../../schemas/guild-schema')
 
 module.exports = {
     commands: ['rank', 'level'],
@@ -10,6 +11,9 @@ module.exports = {
     expectedArgs: '[user ping|id]',
     guildOnly: true,
     run: async ({ message, text }) => {
+        const { levelsEnabled } = await guildSchema.findById(message.guild.id) || { levelsEnabled: true }
+        if (!levelsEnabled) return message.reply('leveling is disabled on this server.')
+
         let target = message.author
         if (message.mentions.users.first()) target = message.mentions.users.first()
         else if (text) {
