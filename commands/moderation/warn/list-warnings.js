@@ -28,7 +28,7 @@ module.exports = {
             const { author, timeStamp, reason } = warning
             embedDescription += `Warn by ${await message.guild.members.fetch(author)} at ${new Date(timeStamp).toLocaleString()} for \`${reason}\`\n`
         }
-        warnsEmbed.setDescription(embedDescription)
+        if (embedDescription) warnsEmbed.setDescription(embedDescription)
         warnsEmbed.setTimestamp()
 
         message.channel.send(warnsEmbed)

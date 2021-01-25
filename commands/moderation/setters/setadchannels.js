@@ -7,6 +7,7 @@ module.exports = {
     minArgs: 2,
     expectedArgs: '<add|remove> <channel>',
     guildOnly: true,
+    requiredPermissions: ['ADMINISTRATOR'],
     run: async ({ message, args, prefix }) => {
         const channel = message.mentions.channels.first() || null
         if (!channel || channel.guild !== message.guild ) return message.reply('please provide a valid channel.')

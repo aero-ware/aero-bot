@@ -206,6 +206,43 @@ module.exports = async (client, instance, isEnabled) => {
 
         channel.send(inviteEmbed)
     })
+
+    client.on('messageDelete', async message => {
+        if (!message.guild) return
+        const channel = await getLogChannel(message.guild)
+        if (!channel) return
+
+        const deleteAuditLog = await message.guild.fetchAuditLogs({
+            type: 'MESSAGE_DELETE',
+            limit: 1,
+        })
+        const deleter = deleteAuditLog.entries.array()[0].executor
+
+        const deleteEmbed = new MessageEmbed()
+            .setTitle('Message Deleted')
+            .addFields(
+                {
+                    name: 'Channel',
+                    value: message.channel,
+                },
+                {
+                    name: 'Message Author',
+                    value: message.author,
+                },
+                {
+                    name: 'Message Content',
+                    value: message.content,
+                },
+                {
+                    name: 'Deleted By',
+                    value: deleter,
+                }
+            )
+            .setColor('#32a852')
+            .setTimestamp()
+
+            channel.send(deleteEmbed)
+    })
 }
 
 /**

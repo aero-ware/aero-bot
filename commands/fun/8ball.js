@@ -4,7 +4,6 @@ module.exports = {
     description: 'Ask the magic 8 ball about all your problems!',
     minArgs: 1,
     expectedArgs: '<question>',
-    syntaxError: 'the 8ball is too busy to listen to prank callers',
     run: ({ message }) => {
         const answers = [
             'as I see it, yes',

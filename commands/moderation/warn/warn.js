@@ -6,7 +6,7 @@ module.exports = {
     category: 'Moderation',
     expectedArgs: '<user ping> [reason]',
     minArgs: 1,
-    permissions: 'MANAGE_MESSAGES',
+    requiredPermissions: ['MANAGE_MESSAGES'],
     guildOnly: true,
     run: async ({ message, args }) => {
         const target = message.mentions.users.first()

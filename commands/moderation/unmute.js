@@ -9,6 +9,7 @@ module.exports = {
     expectedArgs: '<user ping>',
     minArgs: 1,
     guildOnly: true,
+    requiredPermissions: ['MANAGE_MESSAGES'],
     run: async ({ message, prefix } ) => {
         if (!message.mentions.users.first()) return message.reply('please mention a user to unmute')
         const target = message.mentions.members.first()
