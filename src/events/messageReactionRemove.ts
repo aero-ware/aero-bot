@@ -6,5 +6,5 @@ export default {
     name: "messageReactionRemove",
     async callback(reaction: MessageReaction, user: User) {
         await handleRoleMenu(reaction, user, false);
-    }
+    },
 } as EventHandler;

@@ -24,7 +24,7 @@ const guild = new mongoose.Schema({
     },
     roleMenus: {
         type: Map,
-        default: new Map()
+        default: new Map(),
     },
     blacklistedWords: {
         type: [String],
@@ -52,7 +52,7 @@ export interface IGuildConfig extends mongoose.Document<any> {
     logChannelId: string | null;
     mutedRoleId: string | null;
     banPurgeDays: number;
-    adChannels: string[],
+    adChannels: string[];
     roleMenus: Map<string, Map<string, any>>;
     blacklistedWords: string[];
     snipes: {
@@ -65,7 +65,7 @@ export interface IGuildConfig extends mongoose.Document<any> {
     };
     autoRole: string | null;
     levelsEnabled: boolean;
-    suggestionChannels: string[],
-};
+    suggestionChannels: string[];
+}
 
-export default mongoose.model('guild-configs', guild);
+export default mongoose.model("guild-configs", guild);

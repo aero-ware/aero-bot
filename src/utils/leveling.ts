@@ -10,17 +10,17 @@ export type LevelData = {
     /**
      * The level of the member.
      */
-    level: number,
+    level: number;
     /**
      * The XP of the member.
      */
-    xp: number,
+    xp: number;
     /**
      * The number of XP needed to advance to the next level.
      * Calculated using `getNeededXP(level)`.
      */
-    neededXP: number,
-}
+    neededXP: number;
+};
 
 /**
  * Handles the leveling component of the message event.
@@ -34,12 +34,17 @@ export async function handler(message: Message, info: IGuildConfig) {
     const { levelsEnabled } = info;
     if (!levelsEnabled) return;
 
-    const { nextXPAdd } = await members.findOne({
+    const { nextXPAdd } = (await members.findOne({
         guildId: message.guild.id,
         userId: message.member!.id,
-    }) as IMemberInfo;
+    })) as IMemberInfo;
     if (nextXPAdd && !isPast(nextXPAdd)) return;
-    addXP(message.guild.id, message.author.id, Math.floor(Math.random() * (25 - 15)) + 15, message);
+    addXP(
+        message.guild.id,
+        message.author.id,
+        Math.floor(Math.random() * (25 - 15)) + 15,
+        message
+    );
 }
 
 /**
@@ -57,8 +62,13 @@ export function getNeededXP(level: number) {
  * @param xpToAdd the number of XP to add
  * @param message the message that triggered this
  */
-export async function addXP(guildId: string, userId: string, xpToAdd: number, message: Message) {
-    const result = await members.findOneAndUpdate(
+export async function addXP(
+    guildId: string,
+    userId: string,
+    xpToAdd: number,
+    message: Message
+) {
+    const result = (await members.findOneAndUpdate(
         {
             guildId,
             userId,
@@ -76,24 +86,26 @@ export async function addXP(guildId: string, userId: string, xpToAdd: number, me
             new: true,
             setDefaultsOnInsert: true,
         }
-    ) as IMemberInfo;
+    )) as IMemberInfo;
 
     let needed = getNeededXP(result.level);
     while (result.xp >= needed) {
         result.level++;
-        result.xp -=  needed;
+        result.xp -= needed;
 
         await result.save();
 
-        message.channel.send(`${message.member} has just advanced to level ${result.level}`);
+        message.channel.send(
+            `${message.member} has just advanced to level ${result.level}`
+        );
 
         needed = getNeededXP(result.level);
     }
 
     return {
-            level: result.level,
-            xp: result.xp,
-            neededXP: getNeededXP(result.level),
+        level: result.level,
+        xp: result.xp,
+        neededXP: getNeededXP(result.level),
     } as LevelData;
 }
 
@@ -102,11 +114,14 @@ export async function addXP(guildId: string, userId: string, xpToAdd: number, me
  * @param guildId the ID of the guild the member is in
  * @param userId the ID of the member to get info for
  */
-export async function getLevelData(guildId: string, userId: string): Promise<LevelData> {
-    const member = await members.findOne({
+export async function getLevelData(
+    guildId: string,
+    userId: string
+): Promise<LevelData> {
+    const member = (await members.findOne({
         guildId,
         userId,
-    }) as IMemberInfo;
+    })) as IMemberInfo;
 
     return {
         level: member.level,
@@ -117,15 +132,20 @@ export async function getLevelData(guildId: string, userId: string): Promise<Lev
 
 /**
  * Sets the level and xp for a member.
- * 
+ *
  * **Note:** This method does not convert extra XP to levels. This is done on the next `message` event emitted by this member.
  * @param guildId the ID of the guild the member is in
  * @param userId the ID of the member to set info for
  * @param level the level that should be set.
  * @param xp the xp that should be set
  */
-export async function setLevelData(guildId: string, userId: string, level: number, xp: number) {
-    const member = await members.findOneAndUpdate(
+export async function setLevelData(
+    guildId: string,
+    userId: string,
+    level: number,
+    xp: number
+) {
+    const member = (await members.findOneAndUpdate(
         {
             guildId,
             userId,
@@ -141,8 +161,11 @@ export async function setLevelData(guildId: string, userId: string, level: numbe
             new: true,
             setDefaultsOnInsert: true,
         },
-        (err, doc) => console.log(`Error: ${err ? err.stack || err.message : "none"}\ndoc: ${doc}`),
-    ) as IMemberInfo;
+        (err, doc) =>
+            console.log(
+                `Error: ${err ? err.stack || err.message : "none"}\ndoc: ${doc}`
+            )
+    )) as IMemberInfo;
 
     return {
         level: member.level,
@@ -160,7 +183,12 @@ export async function setLevelData(guildId: string, userId: string, level: numbe
  * @param level the level to set
  */
 export async function setLevel(guildId: string, userId: string, level: number) {
-    return await setLevelData(guildId, userId, level, (await getLevelData(guildId, userId)).xp);
+    return await setLevelData(
+        guildId,
+        userId,
+        level,
+        (await getLevelData(guildId, userId)).xp
+    );
 }
 
 /**
@@ -172,5 +200,10 @@ export async function setLevel(guildId: string, userId: string, level: number) {
  * @param xp the number of XP to set
  */
 export async function setXP(guildId: string, userId: string, xp: number) {
-    return await setLevelData(guildId, userId, (await getLevelData(guildId, userId)).level, xp);
+    return await setLevelData(
+        guildId,
+        userId,
+        (await getLevelData(guildId, userId)).level,
+        xp
+    );
 }

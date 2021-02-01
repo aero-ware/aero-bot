@@ -10,25 +10,33 @@ export default {
     name: "mute",
     category: "Moderation",
     description: "Mutes a user (gives them muted role)",
-    details: "Remember to give new channels permission overrides to disallow sending/connecting.",
+    details:
+        "Remember to give new channels permission overrides to disallow sending/connecting.",
     minArgs: 1,
     usage: "<user ping|id> [time] [reason]",
     guildOnly: true,
     permissions: ["MANAGE_MESSAGES"],
     async callback({ message, args }): Promise<any> {
         const [member, str, ...reason] = args;
-        const target = message.mentions.members?.first() || await message.guild!.members.fetch(member);
-        let guild = await guilds.findById(message.guild!.id) as IGuildConfig;
-        
+        const target =
+            message.mentions.members?.first() ||
+            (await message.guild!.members.fetch(member));
+        let guild = (await guilds.findById(message.guild!.id)) as IGuildConfig;
+
         // handle creating a muted role if it doesn't exist
         if (!guild.mutedRoleId) {
-            const createPrompt = await message.channel.send("There is no muted role set up. Should I create one?");
+            const createPrompt = await message.channel.send(
+                "There is no muted role set up. Should I create one?"
+            );
             await createPrompt.react("✅");
-            
-            const collected = await createPrompt.awaitReactions((r, u) => r.emoji.name === "✅" && u.id === message.author.id, {
-                time: 15000,
-                max: 1,
-            });
+
+            const collected = await createPrompt.awaitReactions(
+                (r, u) => r.emoji.name === "✅" && u.id === message.author.id,
+                {
+                    time: 15000,
+                    max: 1,
+                }
+            );
 
             if (collected.size > 0) {
                 const mutedRole = await message.guild!.roles.create({
@@ -46,21 +54,19 @@ export default {
                 message.channel.send(`${mutedRole} is now the muted role.`, {
                     allowedMentions: {
                         roles: [],
-                    }
+                    },
                 });
 
                 // set channel overwrites to disallow muted people to send mesages
-                message.guild!.channels.cache.each(c => {
+                message.guild!.channels.cache.each((c) => {
                     muteOverrides(c, mutedRole);
                 });
             } else return message.channel.send("Not creating a muted role.");
         }
 
-        
-        
         const duration = ms(str);
         if (!duration) reason.splice(0, 0, str);
-        
+
         const confirmation = new MessageEmbed()
             .setTitle(":white_check_mark: Muted User")
             .addFields(
@@ -76,38 +82,50 @@ export default {
             .setTimestamp()
             .setColor("RANDOM");
 
-        await target.roles.add(guild.mutedRoleId, `muted by ${message.author.tag} for ${reason.join(" ")}`);
+        await target.roles.add(
+            guild.mutedRoleId,
+            `muted by ${message.author.tag} for ${reason.join(" ")}`
+        );
         if (duration) {
-            await mutes.create({
+            (await mutes.create({
                 guildId: message.guild!.id,
                 userId: target.id,
                 endTime: addMilliseconds(Date.now(), duration),
-            }) as IMuteInfo;
+            })) as IMuteInfo;
 
             message.channel.send(
                 confirmation.addField("Duration", ms(duration, { long: true }))
             );
         } else message.channel.send(confirmation);
 
-        target.user.send(
-            new MessageEmbed()
-                .setTitle(`Muted in ${message.guild!.name}`)
-                .addFields(
-                    {
-                        name: "Muted By",
-                        value: message.author,
-                    },
-                    {
-                        name: "Reason",
-                        value: reason.length > 0 ? reason.join(" ") : "no reason given",
-                    },
-                    {
-                        name: "Duration",
-                        value: duration ? ms(duration, { long: true }) : "forever",
-                    }
-                )
-                .setColor("RANDOM")
-                .setTimestamp()
-        ).catch(() => message.channel.send("DM confirmation cannot be sent."));
-    }
+        target.user
+            .send(
+                new MessageEmbed()
+                    .setTitle(`Muted in ${message.guild!.name}`)
+                    .addFields(
+                        {
+                            name: "Muted By",
+                            value: message.author,
+                        },
+                        {
+                            name: "Reason",
+                            value:
+                                reason.length > 0
+                                    ? reason.join(" ")
+                                    : "no reason given",
+                        },
+                        {
+                            name: "Duration",
+                            value: duration
+                                ? ms(duration, { long: true })
+                                : "forever",
+                        }
+                    )
+                    .setColor("RANDOM")
+                    .setTimestamp()
+            )
+            .catch(() =>
+                message.channel.send("DM confirmation cannot be sent.")
+            );
+    },
 } as Command;

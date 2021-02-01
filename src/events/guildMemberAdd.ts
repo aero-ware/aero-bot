@@ -21,21 +21,28 @@ export default {
             guildId: member.guild.id,
             userId: member.id,
         });
-
-    }
+    },
 } as EventHandler;
 
 async function autoRoleGiver(member: GuildMember) {
-    const { autoRole } = await guilds.findById(member.guild.id) as IGuildConfig;
+    const { autoRole } = (await guilds.findById(
+        member.guild.id
+    )) as IGuildConfig;
     if (!autoRole) return;
     if (member.user.bot) return;
     member.roles.add(autoRole);
 }
 
 async function sendWelcomeMessage(member: GuildMember) {
-    const { welcomeChannelId, welcomeText } = await guilds.findById(member.guild.id) as IGuildConfig;
+    const { welcomeChannelId, welcomeText } = (await guilds.findById(
+        member.guild.id
+    )) as IGuildConfig;
     if (!welcomeChannelId || !welcomeText) return;
     const channel = member.guild.channels.cache.get(welcomeChannelId);
-    if (channel instanceof TextChannel) channel.send(welcomeText.replace(/<@>/g, member.toString()));
-    else throw new TypeError(`Welcome message channel of guild ${member.guild.id} is not a TextChanel.`);
+    if (channel instanceof TextChannel)
+        channel.send(welcomeText.replace(/<@>/g, member.toString()));
+    else
+        throw new TypeError(
+            `Welcome message channel of guild ${member.guild.id} is not a TextChanel.`
+        );
 }

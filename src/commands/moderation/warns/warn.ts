@@ -13,12 +13,24 @@ export default {
     guildOnly: true,
     permissions: ["MANAGE_MESSAGES"],
     async callback({ message, args }): Promise<any> {
-        const target = message.guild!.members.cache.get(args[0]) || message.mentions.members?.first();
-        if (!target) return message.channel.send("Please mention (or give the ID of) someone to warn");
-        if (target === message.member) return message.channel.send("Why are you warning yourself?");
+        const target =
+            message.guild!.members.cache.get(args[0]) ||
+            message.mentions.members?.first();
+        if (!target)
+            return message.channel.send(
+                "Please mention (or give the ID of) someone to warn"
+            );
+        if (target === message.member)
+            return message.channel.send("Why are you warning yourself?");
         if (target.user.bot) return message.reply("Why are you warning a bot?");
-        if (message.member!.roles.highest.comparePositionTo(target.roles.highest) <= 0) {
-            return message.reply("You cannot warn someone that has a higher or equal role to you");
+        if (
+            message.member!.roles.highest.comparePositionTo(
+                target.roles.highest
+            ) <= 0
+        ) {
+            return message.reply(
+                "You cannot warn someone that has a higher or equal role to you"
+            );
         }
 
         args.shift();
@@ -52,7 +64,9 @@ export default {
             }
         );
 
-        target.user.send(`You have been warned in ${message.guild!.name} for: ${reason}`);
+        target.user.send(
+            `You have been warned in ${message.guild!.name} for: ${reason}`
+        );
 
         return message.channel.send(
             new MessageEmbed()
@@ -76,5 +90,5 @@ export default {
                 .setColor("RANDOM")
                 .setTimestamp()
         );
-    }
+    },
 } as Command;

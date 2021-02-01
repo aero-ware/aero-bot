@@ -10,5 +10,5 @@ export default {
         members.deleteMany({
             guildId: guild.id,
         });
-    }
+    },
 } as EventHandler;

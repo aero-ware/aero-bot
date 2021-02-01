@@ -11,7 +11,10 @@ export default {
     usage: "[user/id]",
     guildOnly: true,
     async callback({ message, args }): Promise<any> {
-        const target = args[0] ? await message.guild!.members.fetch(args[0]) || message.mentions.members?.first() : message.member;
+        const target = args[0]
+            ? (await message.guild!.members.fetch(args[0])) ||
+              message.mentions.members?.first()
+            : message.member;
         if (!target) return message.channel.send("Invalid member provided.");
 
         const memberInfo: any = await members.findOne({
@@ -22,10 +25,13 @@ export default {
         const warnFields = memberInfo.warnings.map((w: any, i: number) => {
             return {
                 name: `Warn #${i + 1}`,
-                value: `Warn by <@${w.author}>` +
-                `\n For reason \`${w.reason}\`` +
-                `\nAt: ${new Date(w.timeStamp).toUTCString().replace("GMT", "UTC")}`,
-            }
+                value:
+                    `Warn by <@${w.author}>` +
+                    `\n For reason \`${w.reason}\`` +
+                    `\nAt: ${new Date(w.timeStamp)
+                        .toUTCString()
+                        .replace("GMT", "UTC")}`,
+            };
         });
 
         const warnsEmbed = new MessageEmbed()
@@ -38,5 +44,5 @@ export default {
         else warnsEmbed.addField("No Warns", "This user has not been warned.");
 
         message.channel.send(warnsEmbed);
-    }
+    },
 } as Command;

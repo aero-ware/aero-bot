@@ -10,8 +10,10 @@ export default {
     usage: "<member/id>",
     staffOnly: true,
     callback({ client, message, args }) {
-        const mem = message.mentions.members?.first() || message.guild!.members.cache.get(args[0]);
+        const mem =
+            message.mentions.members?.first() ||
+            message.guild!.members.cache.get(args[0]);
         if (mem) client.emit("guildMemberAdd", mem);
         else message.channel.send("Invalid GuildMember");
-    }
+    },
 } as Command;

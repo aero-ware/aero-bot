@@ -20,6 +20,6 @@ export interface IBanInfo extends mongoose.Document<any> {
     guildId: string;
     userId: string;
     endTime: Date;
-};
+}
 
 export default mongoose.model("tempbans", tempban);

@@ -1,4 +1,5 @@
 import { Client } from "discord.js";
+import AutoPoster from "topgg-autoposter";
 import { checkMutes, checkBans } from "./mute-bans";
 
 export default function periodic(client: Client) {
@@ -14,11 +15,14 @@ function muteBans(client: Client) {
 }
 
 function statusUpdate(client: Client) {
-    if (client.user!.presence.activities.length === 0 || /\d+ \w+/g.test(client.user!.presence.activities[0].name))
+    if (
+        client.user!.presence.activities.length === 0 ||
+        /\d+ \w+/g.test(client.user!.presence.activities[0].name)
+    )
         client.user!.setPresence({
             activity: {
                 type: "WATCHING",
-                name: `${client.guilds.cache.size} Servers | >help`
-            }
+                name: `${client.guilds.cache.size} Servers | >help`,
+            },
         });
 }

@@ -6,7 +6,8 @@ export default {
     name: "unwarn",
     aliases: ["removewarn", "rw"],
     category: "Moderation",
-    description: "Removes a warn from a user with the ID. get the ID by running `warns <user/id>",
+    description:
+        "Removes a warn from a user with the ID. get the ID by running `warns <user/id>",
     details: "Use the `warns` command to get the warnings.",
     permissions: ["MANAGE_MESSAGES"],
     guildOnly: true,
@@ -14,7 +15,9 @@ export default {
     minArgs: 2,
     usage: "<user/id> <warn number>",
     async callback({ message, args }): Promise<any> {
-        const target = message.mentions.members?.first() || await message.guild!.members.fetch(args[0]);
+        const target =
+            message.mentions.members?.first() ||
+            (await message.guild!.members.fetch(args[0]));
         if (!target) return message.channel.send("Invalid user provided.");
 
         const member: any = await members.findOne({
@@ -39,5 +42,5 @@ export default {
                 .setColor("RANDOM")
                 .setTimestamp()
         );
-    }
+    },
 } as Command;

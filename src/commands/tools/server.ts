@@ -20,14 +20,14 @@ export default {
                     },
                     {
                         name: "People",
-                        value: guild.members.cache
-                            .filter(m => !m.user.bot).size,
+                        value: guild.members.cache.filter((m) => !m.user.bot)
+                            .size,
                         inline: true,
                     },
                     {
                         name: "Bots",
-                        value: guild.members.cache
-                            .filter(m => m.user.bot).size,
+                        value: guild.members.cache.filter((m) => m.user.bot)
+                            .size,
                         inline: true,
                     },
                     {
@@ -36,9 +36,12 @@ export default {
                     },
                     {
                         name: "Channels",
-                        value: Object.keys(channelInfo(guild)).map(k => {
+                        value: Object.keys(channelInfo(guild)).map((k) => {
                             // @ts-ignore
-                            return channelInfo(guild)[k] > 0 ? `**${k}:** ${channelInfo(guild)[k]}` : "";
+                            return channelInfo(guild)[k] > 0
+                                ? // @ts-ignore
+                                  `**${k}:** ${channelInfo(guild)[k]}`
+                                : "";
                         }),
                         inline: true,
                     },
@@ -49,7 +52,9 @@ export default {
                     },
                     {
                         name: "Admins",
-                        value: guild.members.cache.filter(m => m.hasPermission("ADMINISTRATOR")).size,
+                        value: guild.members.cache.filter((m) =>
+                            m.hasPermission("ADMINISTRATOR")
+                        ).size,
                         inline: true,
                     },
                     {
@@ -72,7 +77,7 @@ export default {
                 .setColor("RANDOM")
                 .setTimestamp()
         );
-    }
+    },
 } as Command;
 
 function channelInfo(guild: Guild) {
@@ -82,8 +87,8 @@ function channelInfo(guild: Guild) {
         category: 0,
         news: 0,
         store: 0,
-        unknown: 0
+        unknown: 0,
     };
-    guild.channels.cache.each(c => channels[c.type]++);
+    guild.channels.cache.each((c) => channels[c.type]++);
     return channels;
 }

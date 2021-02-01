@@ -27,8 +27,9 @@ export default {
             "yes.",
             "yes - definetly.",
             "you may rely on it.",
-        ]
-        const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+        ];
+        const randomAnswer =
+            answers[Math.floor(Math.random() * answers.length)];
         return message.reply(randomAnswer);
-    }
+    },
 } as Command;

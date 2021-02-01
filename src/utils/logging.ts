@@ -9,13 +9,15 @@ import guilds from "../models/Guild";
  * @throws TypeError if the logging channel was set to something other than a TextChannel.
  */
 export default async function logEmbed(guild: Guild, embed: MessageEmbed) {
-    const { logChannelId } = await guilds.findById(guild.id) as any;
+    const { logChannelId } = (await guilds.findById(guild.id)) as any;
     if (!logChannelId) return null;
 
     const logChannel = guild.channels.cache.get(logChannelId);
     if (logChannel instanceof TextChannel) {
         return await logChannel.send(embed);
     } else {
-        throw new TypeError(`Log channel for ${guild.id} is not of type TextChannel`);
+        throw new TypeError(
+            `Log channel for ${guild.id} is not of type TextChannel`
+        );
     }
 }

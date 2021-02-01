@@ -24,7 +24,7 @@ const client = new AeroClient(
             staff: "This command can only be run by staff",
             guarded: "This command cannot be disabled.",
             disabled: "This command is disabled in this server.",
-            perms: "You need to have $PERMS permissions to run this command."
+            perms: "You need to have $PERMS permissions to run this command.",
         },
         staff: process.env.adminIds!.split(/,\s*/g),
         disableStaffCooldowns: true,
@@ -36,7 +36,7 @@ const client = new AeroClient(
     }
 );
 
-client.use(async ({ message, args }, next) => {    
+client.use(async ({ message, args }, next) => {
     // shows the current prefix if the bot is mentioned
     const pingRegex = new RegExp(`^<@!?${client.user?.id}>$`);
 
@@ -52,6 +52,6 @@ client.use(async ({ message, args }, next) => {
     }
 
     return next();
-})
+});
 
 export default client; // should only be used for generating webpage

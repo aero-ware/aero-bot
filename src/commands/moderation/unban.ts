@@ -20,7 +20,10 @@ export default {
         message.channel.send(
             new MessageEmbed()
                 .setTitle("✅ User unbanned")
-                .addField("User", (await (await message.client.users.fetch(args[0])).tag))
+                .addField(
+                    "User",
+                    await (await message.client.users.fetch(args[0])).tag
+                )
                 .setColor("RANDOM")
                 .setTimestamp()
         );
@@ -34,9 +37,11 @@ export default {
         (await message.client.users.fetch(args[0])).send(
             new MessageEmbed()
                 .setTitle(`Unbanned from ${message.guild!.name}`)
-                .setDescription("You have been unbanned. Remember to follow the rules")
+                .setDescription(
+                    "You have been unbanned. Remember to follow the rules"
+                )
                 .setColor("RANDOM")
                 .setTimestamp()
         );
-    }
+    },
 } as Command;

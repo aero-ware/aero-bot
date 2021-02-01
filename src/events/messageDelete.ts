@@ -6,7 +6,9 @@ import log from "../utils/logging";
 export default {
     name: "messageDelete",
     async callback(message: Message) {
-        const guildInfo = message.guild ? await guilds.findById(message.guild.id) as IGuildConfig : null;
+        const guildInfo = message.guild
+            ? ((await guilds.findById(message.guild.id)) as IGuildConfig)
+            : null;
         if (guildInfo) {
             handleSnipe(message, guildInfo);
             log(
@@ -21,13 +23,17 @@ export default {
                         },
                         {
                             name: "Content",
-                            value: message.content || (message.embeds.length > 0 ? "<embed>" : "<attachment>"),
+                            value:
+                                message.content ||
+                                (message.embeds.length > 0
+                                    ? "<embed>"
+                                    : "<attachment>"),
                         }
                     )
                     .setTimestamp()
             );
         }
-    }
+    },
 } as EventHandler;
 
 async function handleSnipe(message: Message, info: IGuildConfig) {

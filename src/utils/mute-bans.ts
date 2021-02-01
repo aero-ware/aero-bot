@@ -6,7 +6,8 @@ import bans from "../models/Tempban";
 export async function checkMutes(client: Client) {
     const mutes: any = await tempMutes.find({});
     for (const mute of mutes) {
-        if (mute.endTime < Date.now()) unmuteMember(mute.guildId, mute.userId, client);
+        if (mute.endTime < Date.now())
+            unmuteMember(mute.guildId, mute.userId, client);
     }
 }
 
@@ -14,7 +15,9 @@ async function unmuteMember(guildId: string, userId: string, client: Client) {
     const guild = await client.guilds.fetch(guildId).catch();
     if (!guild) return;
 
-    const { mutedRoleId } = await guilds.findOne({ _id: guildId }).catch() as any;
+    const { mutedRoleId } = (await guilds
+        .findOne({ _id: guildId })
+        .catch()) as any;
     if (!mutedRoleId) return;
 
     const member = await guild.members.cache.get(userId);
@@ -28,7 +31,7 @@ async function unmuteMember(guildId: string, userId: string, client: Client) {
 }
 
 export async function checkBans(client: Client) {
-    const tempbans = await bans.find() as any[];
+    const tempbans = (await bans.find()) as any[];
     for (const tempban of tempbans) {
         if (tempban.endTime < Date.now()) {
             unbanMember(tempban.guildId, tempban.userId, client);
@@ -42,6 +45,6 @@ async function unbanMember(guildId: string, userId: string, client: Client) {
     const guildBans = await guild.fetchBans();
     if (guildBans.has(userId)) {
         await guild.members.unban(user);
-    } 
+    }
     await bans.findOneAndDelete({ guildId, userId });
 }

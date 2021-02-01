@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const reqString = {
     type: String,
-    required: true
+    required: true,
 };
 
 const member = new mongoose.Schema({
@@ -27,14 +27,14 @@ const member = new mongoose.Schema({
     warnings: {
         type: [Object],
         default: null,
-    }
+    },
 });
 
 export type Warning = {
-    author: string,
-    timeStamp: number,
-    reason: string,
-    kind?: string,
+    author: string;
+    timeStamp: number;
+    reason: string;
+    kind?: string;
 };
 export interface IMemberInfo extends mongoose.Document<any> {
     guildId: string;
@@ -44,6 +44,6 @@ export interface IMemberInfo extends mongoose.Document<any> {
     level: number;
     nextXPAdd: Date | null;
     warnings: Warning[] | null;
-};
+}
 
 export default mongoose.model("members", member);

@@ -8,43 +8,43 @@ export default {
     hidden: true,
     minArgs: 1,
     callback({ message, client, args }): any {
-        let [type, ...activity]: any = args
-        activity = activity.join(' ')
+        let [type, ...activity]: any = args;
+        activity = activity.join(" ");
 
-        if (type.toLowerCase() !== 'clear' && !(activity.length > 0))
-            return message.channel.send('provide an activity value');
+        if (type.toLowerCase() !== "clear" && !(activity.length > 0))
+            return message.channel.send("provide an activity value");
 
         switch (type.toLowerCase()) {
-            case 'playing':
-                type = 'PLAYING';
-                break;
-            
-            case 'streaming':
-                type = 'STREAMING';
+            case "playing":
+                type = "PLAYING";
                 break;
 
-            case 'listening':
-                type = 'LISTENING';
+            case "streaming":
+                type = "STREAMING";
                 break;
 
-            case 'watching':
-                type = 'WATCHING';
+            case "listening":
+                type = "LISTENING";
                 break;
 
-            case 'competing':
-                type = 'COMPETING';
+            case "watching":
+                type = "WATCHING";
                 break;
 
-            case 'clear':
+            case "competing":
+                type = "COMPETING";
+                break;
+
+            case "clear":
                 return client.user!.setPresence({
                     activity: {
                         name: `${client.guilds.cache.size} Servers! >help`,
-                        type: 'WATCHING',
+                        type: "WATCHING",
                     },
                 });
 
             default:
-                return message.channel.send('invalid prescence type.');
+                return message.channel.send("invalid prescence type.");
         }
 
         client.user!.setPresence({
@@ -52,7 +52,7 @@ export default {
                 name: activity.join(" "),
                 // @ts-ignore
                 type,
-            }
+            },
         });
-    }
+    },
 } as Command;

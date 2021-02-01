@@ -14,15 +14,24 @@ export default {
     description: "Shows you the level card of you or the specified member",
     guildOnly: true,
     async callback({ message }): Promise<any> {
-        const { levelsEnabled } = await guilds.findById(message.guild!.id) as IGuildConfig;
-        if (!levelsEnabled) return message.channel.send("Leveling has been disabled here.");
+        const { levelsEnabled } = (await guilds.findById(
+            message.guild!.id
+        )) as IGuildConfig;
+        if (!levelsEnabled)
+            return message.channel.send("Leveling has been disabled here.");
 
         const target = message.mentions.users?.first() || message.author;
-        if (target.bot) return message.channel.send("Cannot get level of a bot");
+        if (target.bot)
+            return message.channel.send("Cannot get level of a bot");
 
-        const { xp, level, neededXP } = await getLevelData(message.guild!.id, target.id);
-        
-        const membersInGuild = await members.find({ guildId: message.guild!.id }) as IMemberInfo[];
+        const { xp, level, neededXP } = await getLevelData(
+            message.guild!.id,
+            target.id
+        );
+
+        const membersInGuild = (await members.find({
+            guildId: message.guild!.id,
+        })) as IMemberInfo[];
 
         const sortedMembers = membersInGuild.sort((a, b) => {
             if (a.level > b.level) return -1;
@@ -35,7 +44,7 @@ export default {
         });
 
         const rank = new Rank()
-            .setAvatar(target.displayAvatarURL({ format: "png"}))
+            .setAvatar(target.displayAvatarURL({ format: "png" }))
             .setCurrentXP(xp)
             .setLevel(level)
             .setRank(
@@ -56,5 +65,5 @@ export default {
             const att = new MessageAttachment(buffer, "level.png");
             message.channel.send(att);
         });
-    }
+    },
 } as Command;

@@ -6,22 +6,25 @@ import { handler as levelHandler } from "../utils/leveling";
 export default {
     name: "message",
     async callback(message: Message) {
-        const guildInfo = message.guild ? await guilds.findById(message.guild?.id) as IGuildConfig : null;
+        const guildInfo = message.guild
+            ? ((await guilds.findById(message.guild?.id)) as IGuildConfig)
+            : null;
         if (guildInfo) {
             blacklistChecker(message, guildInfo);
             antiAd(message, guildInfo);
             suggestions(message, guildInfo);
             levelHandler(message, guildInfo);
         }
-    }
+    },
 } as EventHandler;
 
 async function isInvite(guild: Guild, code: string): Promise<boolean> {
-    return await new Promise(async resolve => {
-        await guild.fetchInvites().then(invites => {
+    return await new Promise(async (resolve) => {
+        await guild.fetchInvites().then((invites) => {
             for (const invite of invites) {
                 if (code === invite[0]) return resolve(true);
-            } return resolve(false);
+            }
+            return resolve(false);
         });
     });
 }
@@ -34,7 +37,9 @@ async function antiAd(message: Message, info: IGuildConfig) {
     if (member.hasPermission("ADMINISTRATOR")) return;
     const { adChannels } = info;
     if (adChannels.includes(channel.id)) return;
-    const code = content.split("discord.gg/")[1] ? content.split("discord.gg/")[1].split(" ")[0] : null;
+    const code = content.split("discord.gg/")[1]
+        ? content.split("discord.gg/")[1].split(" ")[0]
+        : null;
     if (!code) return;
     if (!isInvite(guild, code)) {
         message.delete();
@@ -45,7 +50,8 @@ async function antiAd(message: Message, info: IGuildConfig) {
 async function suggestions(message: Message, info: IGuildConfig) {
     const { suggestionChannels } = info;
     if (message.author.bot) return;
-    if (!message.guild || message.member?.hasPermission("ADMINISTRATOR")) return;
+    if (!message.guild || message.member?.hasPermission("ADMINISTRATOR"))
+        return;
     if (suggestionChannels.includes(message.channel.id)) {
         if (message.deletable) message.delete();
         const suggestion = await message.channel.send(
@@ -56,9 +62,12 @@ async function suggestions(message: Message, info: IGuildConfig) {
                 )
                 .setColor("YELLOW")
                 .setTimestamp()
-                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+                .setAuthor(
+                    message.author.tag,
+                    message.author.displayAvatarURL({ dynamic: true })
+                )
         );
-        
+
         ["👍", "👎"].forEach(async (e) => {
             await suggestion.react(e);
         });
@@ -66,12 +75,14 @@ async function suggestions(message: Message, info: IGuildConfig) {
 }
 
 async function blacklistChecker(message: Message, info: IGuildConfig) {
-    if (!message.guild
-        || message.webhookID
-        || message.author.bot
-        || message.member?.hasPermission("ADMINISTRATOR"))
+    if (
+        !message.guild ||
+        message.webhookID ||
+        message.author.bot ||
+        message.member?.hasPermission("ADMINISTRATOR")
+    )
         return;
-    
+
     const { blacklistedWords } = info;
     let offending = false;
     for (const word of blacklistedWords) {

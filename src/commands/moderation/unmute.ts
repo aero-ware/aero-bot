@@ -14,11 +14,19 @@ export default {
     usage: "<user/id>",
     permissions: ["MANAGE_MESSAGES"],
     async callback({ message, args }): Promise<any> {
-        const target = await message.mentions.members?.first() || await message.guild!.members.fetch(args[0]);
-        
-        const { mutedRoleId } = await guilds.findById(message.guild!.id) as IGuildConfig;
-        if (!mutedRoleId) return message.channel.send("There is no muted role set up. Run `config mutedrole <role id>` to set it up");
-        if (!target.roles.cache.has(mutedRoleId)) return message.channel.send("That member is not currently muted.");
+        const target =
+            (await message.mentions.members?.first()) ||
+            (await message.guild!.members.fetch(args[0]));
+
+        const { mutedRoleId } = (await guilds.findById(
+            message.guild!.id
+        )) as IGuildConfig;
+        if (!mutedRoleId)
+            return message.channel.send(
+                "There is no muted role set up. Run `config mutedrole <role id>` to set it up"
+            );
+        if (!target.roles.cache.has(mutedRoleId))
+            return message.channel.send("That member is not currently muted.");
 
         await target.roles.remove(mutedRoleId);
 
@@ -36,12 +44,16 @@ export default {
                 .setTimestamp()
         );
 
-        target.user.send(
-            new MessageEmbed()
-                .setTitle(`Unmuted in ${message.guild!.name}`)
-                .setDescription("You have been unmuted. Remember to follow the rules next time.")
-                .setColor("RANDOM")
-                .setTimestamp()
-        ).catch();
-    }
+        target.user
+            .send(
+                new MessageEmbed()
+                    .setTitle(`Unmuted in ${message.guild!.name}`)
+                    .setDescription(
+                        "You have been unmuted. Remember to follow the rules next time."
+                    )
+                    .setColor("RANDOM")
+                    .setTimestamp()
+            )
+            .catch();
+    },
 } as Command;

@@ -4,7 +4,8 @@ export default {
     name: "poll",
     category: "Tools",
     description: "Adds a poll to the specified message.",
-    details: "provide a message using its ID. **ONLY WORKS IN THE SAME CHANNEL AS THE MESSAGE**",
+    details:
+        "provide a message using its ID. **ONLY WORKS IN THE SAME CHANNEL AS THE MESSAGE**",
     minArgs: 1,
     usage: "<message ID>",
     async callback({ message, args }) {
@@ -16,6 +17,6 @@ export default {
 
         if (message.deletable) message.delete();
 
-        ["👍", "👎"].forEach(async e => await pollMessage.react(e));
-    }
+        ["👍", "👎"].forEach(async (e) => await pollMessage.react(e));
+    },
 } as Command;

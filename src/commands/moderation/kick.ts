@@ -15,13 +15,29 @@ export default {
     async callback({ message, args }): Promise<any> {
         const reason = args.slice(1).join(" ");
 
-        const target = await message.guild!.members.fetch(args[0]) || message.mentions.members?.first();
+        const target =
+            (await message.guild!.members.fetch(args[0])) ||
+            message.mentions.members?.first();
         if (!target) return message.reply("Invalid User ID.");
 
-        if (!message.guild!.me?.hasPermission("KICK_MEMBERS")) return message.channel.send("I don't have permissions to kick members. Please re-invite me by runninng `support`.");
-        if (target === message.member) return message.channel.send("Why are you kicking yourself?");
-        if (message.member!.roles.highest.comparePositionTo(target.roles.highest) <= 0) return message.channel.send("The member you are trying to kick has a higher or equal role to you.");
-        if (!target.kickable) return message.channel.send("This member is not kickable by me (probably due to higher roles).");
+        if (!message.guild!.me?.hasPermission("KICK_MEMBERS"))
+            return message.channel.send(
+                "I don't have permissions to kick members. Please re-invite me by runninng `support`."
+            );
+        if (target === message.member)
+            return message.channel.send("Why are you kicking yourself?");
+        if (
+            message.member!.roles.highest.comparePositionTo(
+                target.roles.highest
+            ) <= 0
+        )
+            return message.channel.send(
+                "The member you are trying to kick has a higher or equal role to you."
+            );
+        if (!target.kickable)
+            return message.channel.send(
+                "This member is not kickable by me (probably due to higher roles)."
+            );
 
         target.kick(`by ${message.author.tag} - ${reason}`);
 
@@ -30,7 +46,7 @@ export default {
             .addField("Member", target.user.tag)
             .addField("Kicked By", message.author.tag)
             .setColor("RANDOM")
-            .setThumbnail(target.user.displayAvatarURL({ dynamic: true}))
+            .setThumbnail(target.user.displayAvatarURL({ dynamic: true }))
             .setTimestamp();
 
         message.channel.send(confirmation);
@@ -51,8 +67,11 @@ export default {
             .setTimestamp()
             .setColor("RANDOM");
 
-        target.user.send(dmConfirm)
-            .catch(() => message.channel.send("DM confirmation could not be sent."));
+        target.user
+            .send(dmConfirm)
+            .catch(() =>
+                message.channel.send("DM confirmation could not be sent.")
+            );
 
         log(
             message.guild!,
@@ -63,5 +82,5 @@ export default {
                 .addField("Kicked By", message.author)
                 .addField("Reason", reason)
         );
-    }
+    },
 } as Command;

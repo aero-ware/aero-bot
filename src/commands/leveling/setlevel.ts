@@ -11,12 +11,16 @@ export default {
     guildOnly: true,
     permissions: ["ADMINISTRATOR"],
     async callback({ message, args }) {
-        const { levelsEnabled } = await guilds.findById(message.guild!.id) as IGuildConfig;
+        const { levelsEnabled } = (await guilds.findById(
+            message.guild!.id
+        )) as IGuildConfig;
         if (!levelsEnabled) {
             message.channel.send("Leveling is disabled here.");
             return;
         }
-        const target = message.mentions.users.first() || message.client.users.cache.get(args[0]);
+        const target =
+            message.mentions.users.first() ||
+            message.client.users.cache.get(args[0]);
         if (!target) {
             message.channel.send("Cannot find the target user.");
             return;
@@ -32,10 +36,11 @@ export default {
 
         await setLevelData(
             message.guild!.id,
-            target.id, levelToSet,
+            target.id,
+            levelToSet,
             (await getLevelData(message.guild!.id, target.id)).xp
         );
 
         message.channel.send(`Set ${target}'s level to ${levelToSet}`);
-    }
+    },
 } as Command;

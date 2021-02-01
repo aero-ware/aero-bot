@@ -7,17 +7,17 @@ import periodic from "../utils/periodic";
 export default {
     name: "ready",
     once: true,
-    async callback(this: AeroClient) {         
+    async callback(this: AeroClient) {
         if (process.env.clientID! === this.user!.id) {
             const ap = AutoPoster(process.env.topGGToken!, this);
 
             ap.on("posted", () => {
                 this.logger.info("Posted Info to Top.gg.");
-            })
+            });
         }
-        
+
         await mongo(this, process.env.mongoPath!);
 
         await periodic(this);
-    }
+    },
 } as EventHandler;

@@ -12,18 +12,25 @@ export default {
         const text = args.join(" ");
 
         try {
-            const { data: morse } = (await axios.get("https://api.snowflakedev.xyz/api/morse/decode", {
-                headers: {
-                    Authorization: process.env.snowflakeToken,
-                },
-                params: {
-                    text,
-                },
-            })).data;
+            const { data: morse } = (
+                await axios.get(
+                    "https://api.snowflakedev.xyz/api/morse/decode",
+                    {
+                        headers: {
+                            Authorization: process.env.snowflakeToken,
+                        },
+                        params: {
+                            text,
+                        },
+                    }
+                )
+            ).data;
 
             message.channel.send(morse);
         } catch (e) {
-            message.channel.send("There was an API error or your entered text was not valid morse code.");
+            message.channel.send(
+                "There was an API error or your entered text was not valid morse code."
+            );
         }
-    }
+    },
 } as Command;

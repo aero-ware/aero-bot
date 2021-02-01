@@ -1,6 +1,15 @@
-import { GuildChannel, TextChannel, VoiceChannel, CategoryChannel, RoleResolvable } from "discord.js";
+import {
+    GuildChannel,
+    TextChannel,
+    VoiceChannel,
+    CategoryChannel,
+    RoleResolvable,
+} from "discord.js";
 
-export default function muteOverrides(channel: GuildChannel, role: RoleResolvable) {
+export default function muteOverrides(
+    channel: GuildChannel,
+    role: RoleResolvable
+) {
     if (channel instanceof VoiceChannel) {
         channel.updateOverwrite(role, {
             CONNECT: false,

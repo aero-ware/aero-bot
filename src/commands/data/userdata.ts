@@ -13,31 +13,39 @@ export default {
     async callback({ message }) {
         const userdata = {
             userID: message.author.id,
-            memberInfo: await members.find({ userId: message.author.id }) as IMemberInfo[],
-            tempBans: await bans.find({ userId: message.author.id }) as IBanInfo[],
-            tempMutes: await mutes.find({ userId: message.author.id }) as IMuteInfo[],
+            memberInfo: (await members.find({
+                userId: message.author.id,
+            })) as IMemberInfo[],
+            tempBans: (await bans.find({
+                userId: message.author.id,
+            })) as IBanInfo[],
+            tempMutes: (await mutes.find({
+                userId: message.author.id,
+            })) as IMuteInfo[],
         };
 
-        message.author.send(
-            "Your userdata",
-            new MessageAttachment(
-                Buffer.from(
+        message.author
+            .send(
+                "Your userdata",
+                new MessageAttachment(
+                    Buffer.from(
                         JSON.stringify(
                             userdata,
-                            (k, v) => 
-                                (k === "__v" || k === "_id" || k === "userId")
-                                ? undefined
-                                : v,
-                            4,
+                            (k, v) =>
+                                k === "__v" || k === "_id" || k === "userId"
+                                    ? undefined
+                                    : v,
+                            4
+                        ),
+                        "utf-8"
                     ),
-                    "utf-8"
-                ),
-                `userdata-${message.author.username}${message.author.discriminator}.json`
+                    `userdata-${message.author.username}${message.author.discriminator}.json`
+                )
             )
-        )
-        .catch(
-            () =>
-                message.channel.send("Due to the possibly sensitive nature of userdata, I can only send it in DMs. Please enable DMs from me and try again")
-        );
-    }
+            .catch(() =>
+                message.channel.send(
+                    "Due to the possibly sensitive nature of userdata, I can only send it in DMs. Please enable DMs from me and try again"
+                )
+            );
+    },
 } as Command;
