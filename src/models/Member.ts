@@ -30,4 +30,20 @@ const member = new mongoose.Schema({
     }
 });
 
+export type Warning = {
+    author: string,
+    timeStamp: number,
+    reason: string,
+    kind?: string,
+};
+export interface IMemberInfo extends mongoose.Document<any> {
+    guildId: string;
+    userId: string;
+    coins: number;
+    xp: number;
+    level: number;
+    nextXPAdd: Date | null;
+    warnings: Warning[] | null;
+};
+
 export default mongoose.model("members", member);

@@ -6,6 +6,7 @@ import periodic from "../utils/periodic";
 
 export default {
     name: "ready",
+    once: true,
     async callback(this: AeroClient) {         
         if (process.env.clientID! === this.user!.id) {
             const ap = AutoPoster(process.env.topGGToken!, this);

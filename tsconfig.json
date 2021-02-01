@@ -2,6 +2,7 @@
     "compilerOptions": {
         "target": "es6",
         "module": "commonjs",
+        "outDir": "dist",
         "downlevelIteration": true,
         "strict": true,
         "noImplicitAny": true,

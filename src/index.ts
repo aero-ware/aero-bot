@@ -26,7 +26,7 @@ const client = new AeroClient(
             disabled: "This command is disabled in this server.",
             perms: "You need to have $PERMS permissions to run this command."
         },
-        staff: process.env.adminIds!.replace(/\s+/g, "").split(","),
+        staff: process.env.adminIds!.split(/,\s*/g),
         disableStaffCooldowns: true,
     },
     {
@@ -53,3 +53,5 @@ client.use(async ({ message, args }, next) => {
 
     return next();
 })
+
+export default client; // should only be used for generating webpage

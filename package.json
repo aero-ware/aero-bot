@@ -2,12 +2,13 @@
   "name": "aero-bot",
   "version": "1.0.0",
   "description": "a bot",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "repository": "https://github.com/aero-ware/aero-bot",
   "homepage": "https://aero-ware.github.io/aero-bot",
   "bugs": "https://github.com/aero-ware/aero-bot/issues",
   "scripts": {
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "deploy": "tsc && node dist/index.js"
   },
   "author": "Dheeraj Prakash",
   "license": "MIT",
@@ -17,7 +18,6 @@
     "@top-gg/sdk": "^3.0.6",
     "@types/mongoose-sequence": "^3.0.4",
     "axios": "^0.21.1",
-    "bootstrap": "^4.5.3",
     "bufferutil": "^4.0.3",
     "canvacord": "^5.0.8",
     "date-fns": "^2.16.1",
@@ -27,8 +27,13 @@
     "mongoose-sequence": "^5.3.1",
     "ms": "^2.1.3",
     "topgg-autoposter": "^1.1.3",
+    "tsc": "^1.20150623.0",
+    "typescript": "^4.1.2",
     "utf-8-validate": "^5.0.3",
     "wokcommands": "^1.2.0",
     "zlib-sync": "^0.1.7"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
   }
 }

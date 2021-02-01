@@ -1,6 +1,6 @@
 import { Command } from "@aeroware/aeroclient/dist/types";
 import { Message, MessageEmbed } from "discord.js";
-import guilds from "../../models/Guild";
+import guilds, { IGuildConfig } from "../../models/Guild";
 import muteOverrides from "../../utils/mute-overrides";
 
 export default {
@@ -8,13 +8,13 @@ export default {
     aliases: ["settings"],
     category: "Moderation",
     description: "Shows or sets the configuration options for this server.",
-    details: "Running this command without args shows all the configuration properties for this server. Running it with args such as `welcome`, `logchannel`, `mutedrole`, `addchannels` `blacklistedwords`, `autorole`, and `level` and providing values can set the items for the server.",
+    details: "Run `config help` to see all the things you can do in this command.",
     guarded: true,
     guildOnly: true,
     permissions: ["ADMINISTRATOR"],
     async callback({ message, args }): Promise<any> {
         const configItem = args[0];
-        const guildInfo: any = await guilds.findById(message.guild!.id);
+        const guildInfo = await guilds.findById(message.guild!.id) as IGuildConfig;
         if (!configItem) {
             const configEmbed = new MessageEmbed()
                 .setTitle(`Config for ${message.guild!.name}`)
@@ -54,6 +54,10 @@ export default {
                     {
                         name: "Levels Enabled",
                         value: guildInfo.levelsEnabled ? "yes" : "no",
+                    },
+                    {
+                        name: "Suggestions Channels",
+                        value: guildInfo.suggestionChannels.length > 0 ? guildInfo.suggestionChannels.map(v => `<#${v}>`).join(", ") : "none",
                     }
                 )
                 .setColor("RANDOM")
@@ -204,6 +208,18 @@ export default {
                     return message.channel.send("Leveling is now disabled.");
                 } else return message.channel.send("Please provide `on` or `off` as an argument.");
 
+            case "suggestions":
+                if (!args[1]) return message.channel.send(`The suggestions channels are: ${guildInfo.suggestionChannels.map(v => `<#${v}>`).join(", ")}`);
+                const [_, add, ...channels] = args;
+                if (add === "add") {
+                    guildInfo.suggestionChannels.push(...channels);
+                } else if (add === "remove") {
+                    guildInfo.suggestionChannels = guildInfo.suggestionChannels.filter((v) => !channels.includes(v));
+                }
+                await guildInfo.save();
+
+                return message.channel.send(`${channels.map(v => `<#${v}>`).join(", ")} were ${add === "add" ? "added to" : "removed from"} the list of suggestions channels.`);
+
             case "help":
                 return message.channel.send(
                     new MessageEmbed()
@@ -244,6 +260,10 @@ export default {
                             {
                                 name: "Enable/Disable Leveling",
                                 value: "Run `config leveling <on/off>`",
+                            },
+                            {
+                                name: "Add suggestion channels",
+                                value: "Run `config suggestions <add/remove> <channelID(s)>",
                             }
                         )
                         .setTimestamp()

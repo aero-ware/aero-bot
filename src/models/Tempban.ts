@@ -15,4 +15,11 @@ const tempban = new mongoose.Schema({
     },
 });
 
+export interface IBanInfo extends mongoose.Document<any> {
+    _id: any;
+    guildId: string;
+    userId: string;
+    endTime: Date;
+};
+
 export default mongoose.model("tempbans", tempban);
