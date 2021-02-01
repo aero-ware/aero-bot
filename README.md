@@ -1,13 +1,17 @@
 # aero-bot
+
 This repo is a template that contains basic functions that almost any bot should have.
- 
+
 ## How to run the bot
+
 Running this bot is not that complicated. Here are instructions on how to do so:
 
 ### Inviting the bot to your server
+
 You can invite the bot [here](https://discord.com/api/oauth2/authorize?client_id=787460489427812363&permissions=8&scope=bot) or use this code to run it yourself. To run it yourself check [Running the bot Yourself](###Running-the-Bot-Yourself)
 
 ### Running the Bot Yourself
+
 0. Install node.js and npm if they are not already installed. [node.js installer](https://nodejs.org/en/)
 1. Clone this repo using `git clone https://github.com/aero-ware/discord-bot.git`, then `cd` into the repo folder.
     - Alternatively, you can use this repo as a template to make your own repo and then clone it
@@ -31,11 +35,14 @@ defaultPrefix=<a char/string that will be the default prefix for the bot>
 adminIds=<a comma separated list of user IDs that should be the bot owner(s)>
 suggestionChannel=<channel ID>
 ```
+
 4. Run `node .` to run the bot!
 5. Generate yourself an invite link using the OAuth2 tab of the application page, check scope `bot` and be sure to give it the `Administrator` permission.
 
 ---
+
 ## Library Documentation
+
 This bot uses the [Discord.js](https://discord.js.org/#/docs/main/stable/general/welcome) and its optional libraries to take advantage of its easy access to the Discord API without having to directly and manually send HTTP requests to Discord.
 
 It also uses the [WOKCommands command handler](https://github.com/AlexzanderFlores/WOKCommands) to use its pre-made advanced command handler that has many advantages to making one manually.
@@ -49,16 +56,21 @@ The [date-fns](https://npmjs.com/package/date-fns) package is used to format dat
 Finally, the [ms](https://npmjs.com/package/ms) package is used in certain commands to convert strings such as `1d6h` into milliseconds.
 
 ---
+
 ## Bot Documentation
+
 Information for all the commands of the bot can be seen by running `>help` and navigating the resulting menus. A web version of this is currently in development [here](https://aero-ware.github.io/aero-bot/commands.html). If anyone wants to help by adding command information, don't hesitate to check [Development](#Development) for more info (The website is in the docs folder).
 
 ---
+
 ## Development
 
 ### Filing Issues
+
 If you found a bug or want to submit an idea for a feature or something else in between, the best place for that would be in an **issue**. If you submit an issue, please be sure to apply the appropriate labels so that I can filter through them easier.
 
 Please submit each individual file/collection of files needed for a feature individually, as some may be approved while others may not.
 
 ### Implementing fixes/features yourself
+
 Should you desire to work on what you have suggested, don't hesitate to fork this repo and work on it yourself and create and link a pull request. Please remember to apply the diy-fix label to your issue and PR. ONLY SUBMIT PRs TO THE `dev` BRANCH
