@@ -2,6 +2,8 @@ import { Client } from "discord.js";
 import tempMutes from "../models/Mute";
 import guilds from "../models/Guild";
 import bans from "../models/Tempban";
+import botbans, { IBotBanInfo } from "../models/Botban";
+import { isPast } from "date-fns";
 
 export async function checkMutes(client: Client) {
     const mutes: any = await tempMutes.find({});
@@ -47,4 +49,18 @@ async function unbanMember(guildId: string, userId: string, client: Client) {
         await guild.members.unban(user);
     }
     await bans.findOneAndDelete({ guildId, userId });
+}
+
+export async function checkBotBans() {
+    const bbans = (await botbans.find()) as IBotBanInfo[];
+    for (const ban of bbans) {
+        if (!ban.endTime) continue;
+        if (isPast(ban.endTime)) unBotBanUser(ban.userId);
+    }
+}
+
+async function unBotBanUser(userId: string) {
+    await botbans.findOneAndDelete({
+        userId,
+    });
 }

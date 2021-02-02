@@ -1,6 +1,5 @@
 import { Client } from "discord.js";
-import AutoPoster from "topgg-autoposter";
-import { checkMutes, checkBans } from "./mute-bans";
+import { checkMutes, checkBans, checkBotBans } from "./mute-bans";
 
 export default function periodic(client: Client) {
     muteBans(client);
@@ -12,6 +11,7 @@ export default function periodic(client: Client) {
 function muteBans(client: Client) {
     checkMutes(client);
     checkBans(client);
+    checkBotBans();
 }
 
 function statusUpdate(client: Client) {

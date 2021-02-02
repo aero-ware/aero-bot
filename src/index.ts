@@ -1,6 +1,7 @@
 import AeroClient from "@aeroware/aeroclient";
 import { config as dotenv } from "dotenv";
 import { Intents } from "discord.js";
+import botbans, { IBotBanInfo } from "./models/Botban";
 
 dotenv();
 
@@ -36,7 +37,7 @@ const client = new AeroClient(
     }
 );
 
-client.use(async ({ message, args }, next) => {
+client.use(async ({ message, args, command }, next) => {
     // shows the current prefix if the bot is mentioned
     const pingRegex = new RegExp(`^<@!?${client.user?.id}>$`);
 
@@ -50,6 +51,12 @@ client.use(async ({ message, args }, next) => {
         });
         return next(true);
     }
+
+    // bot ban checking
+    const userban = (await botbans.findOne({
+        userId: message.author.id,
+    })) as IBotBanInfo;
+    if (userban && command?.category !== "Fun") return next(true);
 
     return next();
 });
