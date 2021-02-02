@@ -6,7 +6,7 @@ const botban = new mongoose.Schema({
         required: true,
     },
     endTime: {
-        type: Date(),
+        type: Date,
         default: null,
     },
 });

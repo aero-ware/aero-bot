@@ -22,7 +22,9 @@ function statusUpdate(client: AeroClient) {
         client.user!.setPresence({
             activity: {
                 type: "WATCHING",
-                name: `${client.guilds.cache.size} Servers | ${client.clientOptions.prefix}help`,
+                name: `${client.guilds.cache.size} Servers | ${
+                    client.clientOptions.prefix || ">"
+                }help`,
             },
         });
 }
