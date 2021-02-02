@@ -64,8 +64,19 @@ async function play(message: Message, num: number): Promise<any> {
 
     games.set(message.channel.id, games.get(message.channel.id)! + 1);
 
-    if (games.get(message.channel.id)! > CONFIG.TRIES)
-        return play(message, num);
+    if (games.get(message.channel.id)! > CONFIG.TRIES) {
+        message.channel.send(
+            new MessageEmbed()
+                .setTitle("You Failed")
+                .setDescription(
+                    `You tried ${CONFIG.TRIES} times and did not guess the number.\n
+                    The number was **${num}**`
+                )
+                .setColor("RANDOM")
+                .setTimestamp()
+        );
+        return;
+    }
 
     if (argNum === num)
         return message.channel.send(

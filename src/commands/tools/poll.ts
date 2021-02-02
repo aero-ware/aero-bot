@@ -1,4 +1,5 @@
 import { Command } from "@aeroware/aeroclient/dist/types";
+import { Message } from "discord.js";
 
 export default {
     name: "poll",
@@ -9,7 +10,14 @@ export default {
     minArgs: 1,
     usage: "<message ID>",
     async callback({ message, args }) {
-        const pollMessage = await message.channel.messages.fetch(args[0]);
+        let pollMessage: Message;
+        try {
+            pollMessage = await message.channel.messages.fetch(args[0]);
+        } catch (e) {
+            message.channel.send("Invalid Message ID provided.");
+            return;
+        }
+
         if (!pollMessage) {
             message.channel.send(`Message with ID ${args[0]} not found.`);
             return;
