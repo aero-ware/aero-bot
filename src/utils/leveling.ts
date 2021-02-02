@@ -4,6 +4,10 @@ import { IGuildConfig } from "../models/Guild";
 import members, { IMemberInfo } from "../models/Member";
 
 /**
+ * This file contains several utilities that relate to the leveling and XP feature of the bot.
+ */
+
+/**
  * Information about the level and XP of a member
  */
 export type LevelData = {

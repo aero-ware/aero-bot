@@ -12,6 +12,7 @@ export default {
     details: "Sends it in a JSON file in DMs",
     guildOnly: true,
     guarded: true,
+    category: "Data",
     async callback({ message }) {
         if (message.author.id !== message.guild!.ownerID) {
             message.channel.send("You are not the owner of this server.");
