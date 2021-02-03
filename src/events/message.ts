@@ -1,5 +1,11 @@
 import { EventHandler } from "@aeroware/aeroclient/dist/types";
-import { Guild, Message, MessageEmbed } from "discord.js";
+import {
+    DMChannel,
+    Guild,
+    Message,
+    MessageEmbed,
+    TextChannel,
+} from "discord.js";
 import guilds, { IGuildConfig } from "../models/Guild";
 import { handler as levelHandler } from "../utils/leveling";
 
@@ -9,6 +15,9 @@ export default {
         const guildInfo = message.guild
             ? ((await guilds.findById(message.guild?.id)) as IGuildConfig)
             : null;
+
+        if (message.guild) messageLinkEmbed(message);
+
         if (guildInfo) {
             blacklistChecker(message, guildInfo);
             antiAd(message, guildInfo);
@@ -92,5 +101,55 @@ async function blacklistChecker(message: Message, info: IGuildConfig) {
     if (offending) {
         if (message.deletable) message.delete().catch();
         message.channel.send("That word is not allowed here!").catch();
+    }
+}
+
+async function messageLinkEmbed(message: Message) {
+    if (!message.guild) return;
+    const arr = message.content.match(
+        /https:\/\/discord.com\/channels(\/\d{18}){3}/im
+    );
+    if (!arr) return;
+    const link = arr[0] || "";
+
+    const [guildId, channelId, messageId] = link.split("/").slice(4);
+    if (message.guild?.id === guildId) {
+        const channel = message.guild!.channels.cache.get(channelId);
+        if (!channel || !(channel instanceof TextChannel)) return;
+        const linkedMessage = await channel.messages.fetch(messageId).catch();
+        if (linkedMessage.channel instanceof DMChannel) return;
+
+        const webhook = await (message.channel as TextChannel).createWebhook(
+            message.member?.nickname || message.author.username,
+            {
+                avatar: message.author.displayAvatarURL({
+                    dynamic: true,
+                    format: "png",
+                }),
+                reason: "Message Link embed",
+            }
+        );
+
+        if (message.deletable) message.delete().catch();
+
+        webhook.send(
+            message.content
+                .replace(/https:\/\/discord.com\/channels(\/\d{18}){3}/im, "")
+                .replace(/ +/, " "),
+            new MessageEmbed()
+                .setDescription(linkedMessage.content)
+                .setAuthor(
+                    linkedMessage.member?.nickname ||
+                        linkedMessage.author.username,
+                    linkedMessage.author.displayAvatarURL({ dynamic: true })
+                )
+                .addField(
+                    "Jump",
+                    `[Go to message](${linkedMessage.url} "Go to message")`
+                )
+                .setColor("RANDOM")
+                .setFooter(`#${linkedMessage.channel.name}`)
+                .setTimestamp(linkedMessage.createdTimestamp)
+        );
     }
 }
