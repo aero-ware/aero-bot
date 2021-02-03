@@ -1,6 +1,6 @@
 import AeroClient from "@aeroware/aeroclient";
 import { config as dotenv } from "dotenv";
-import { Intents } from "discord.js";
+import { Intents, TextChannel } from "discord.js";
 import botbans, { IBotBanInfo } from "./models/Botban";
 
 dotenv();
@@ -59,6 +59,13 @@ client.use(async ({ message, args, command }, next) => {
     if (userban && command?.category !== "Fun") return next(true);
 
     return next();
+});
+
+process.on("unhandledRejection", (err) => {
+    if (!process.env.errorLog) return;
+    const channel = client.channels.cache.get(process.env.errorLog);
+    if (channel instanceof TextChannel) channel.send(err, { code: true });
+    else throw new TypeError("errorLog in .env is not a TextChannel");
 });
 
 export default client; // should only be used for generating webpage
