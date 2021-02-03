@@ -21,6 +21,7 @@ You can invite the bot [here](https://top.gg/bot/787460489427812363) or use this
     - The `defaultPrefix` is the ~~default prefix in any server before it is reassigned~~ [what else would it be](https://youtu.be/dQw4w9WgXcQ)?
     - the `adminIds` should be a comma separated list of user IDs, ex: `id1,id2,id3` who can use the `ownerOnly` commands
     - The `suggestionChannel` is the ID of the channel where new feature requests/suggestions from users go to.
+    - the `errorLog` is the ID of the channel where any unhandled promise rejections (any uncaught errors) can be logged. It is optional.
     - Here is an example of a valid `.env` file:
 
 ```
@@ -31,10 +32,12 @@ mongoPath=<uri to your mongoDB server (local or remote)>
 defaultPrefix=<a char/string that will be the default prefix for the bot>
 adminIds=<a comma separated list of user IDs that should be the bot owner(s)>
 suggestionChannel=<channel ID>
+errorLog=<optional channel ID where errors can be logged>
 ```
 
 4. Run `yarn dev` or `npm run dev` to run the bot in development mode!
-    - In case you are running this bot on the cloud where TypeScript cannot run, Use `yarn deploy` or `npm run deploy` to run the TypeScript transpiler to run the bot in JavaScript. No functionality should be lost.
+    - In case you are running this bot on the cloud where TypeScript cannot run, Use `yarn deploy` or `npm run deploy` to run the TypeScript transpiler to run the bot in JavaScript.
+      No functionality should be lost.
 5. Generate yourself an invite link using the OAuth2 tab of the application page, check scope `bot` and be sure to give it the `Administrator` permission.
 
 ---
