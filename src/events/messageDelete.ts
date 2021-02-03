@@ -10,7 +10,6 @@ export default {
             ? ((await guilds.findById(message.guild.id)) as IGuildConfig)
             : null;
         if (guildInfo) {
-            handleSnipe(message, guildInfo);
             log(
                 message.guild!,
                 new MessageEmbed()
@@ -35,16 +34,3 @@ export default {
         }
     },
 } as EventHandler;
-
-async function handleSnipe(message: Message, info: IGuildConfig) {
-    if (!message.guild) return;
-    if (message.content === "") return;
-    info.snipes[message.channel.id] = {
-        id: message.id,
-        content: message.content,
-        author: message.author.id,
-        timestamp: message.createdTimestamp,
-    };
-
-    await info.save();
-}

@@ -30,10 +30,6 @@ const guild = new mongoose.Schema({
         type: [String],
         default: [],
     },
-    snipes: {
-        type: Object,
-        default: {},
-    },
     autoRole: optionalString,
     levelsEnabled: {
         type: Boolean,
@@ -55,14 +51,6 @@ export interface IGuildConfig extends mongoose.Document<any> {
     adChannels: string[];
     roleMenus: Map<string, Map<string, any>>;
     blacklistedWords: string[];
-    snipes: {
-        [channel: string]: {
-            id: string;
-            content: string;
-            author: string;
-            timestamp: number;
-        };
-    };
     autoRole: string | null;
     levelsEnabled: boolean;
     suggestionChannels: string[];
