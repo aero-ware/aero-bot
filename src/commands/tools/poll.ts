@@ -23,7 +23,7 @@ export default {
             return;
         }
 
-        if (message.deletable) message.delete();
+        if (message.deletable) message.delete().catch();
 
         ["👍", "👎"].forEach(async (e) => await pollMessage.react(e));
     },

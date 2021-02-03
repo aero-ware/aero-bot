@@ -426,7 +426,7 @@ export default {
                             {
                                 name: "Add suggestion channels",
                                 value:
-                                    "Run `config suggestions <add/remove> <channelID(s)>",
+                                    "Run `config suggestions <add/remove> <channelID(s)>`",
                             }
                         )
                         .setTimestamp()

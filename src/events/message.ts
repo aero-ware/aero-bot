@@ -42,7 +42,7 @@ async function antiAd(message: Message, info: IGuildConfig) {
         : null;
     if (!code) return;
     if (!isInvite(guild, code)) {
-        message.delete();
+        message.delete().catch();
         message.channel.send("No external invites.");
     }
 }
@@ -53,7 +53,7 @@ async function suggestions(message: Message, info: IGuildConfig) {
     if (!message.guild || message.member?.hasPermission("ADMINISTRATOR"))
         return;
     if (suggestionChannels.includes(message.channel.id)) {
-        if (message.deletable) message.delete();
+        if (message.deletable) message.delete().catch();
         const suggestion = await message.channel.send(
             new MessageEmbed()
                 .setDescription(
@@ -90,7 +90,7 @@ async function blacklistChecker(message: Message, info: IGuildConfig) {
             offending = true;
     }
     if (offending) {
-        if (message.deletable) message.delete();
+        if (message.deletable) message.delete().catch();
         message.channel.send("That word is not allowed here!").catch();
     }
 }
