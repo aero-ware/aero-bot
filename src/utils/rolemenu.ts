@@ -34,5 +34,11 @@ export default async function handleRoleMenu(
         if (!role) throw new Error("Role in rolemenu not a valid role ID");
         if (add) member.roles.add(role);
         else member.roles.remove(role);
+
+        user.send(
+            `**${message.guild.name}**: ${
+                add ? "Gave you the" : "Removed"
+            } role **${role.name}**`
+        ).catch();
     }
 }
