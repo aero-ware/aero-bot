@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@aeroware/aeroclient@^1.10.1":
-  version "1.10.1"
-  resolved "https://registry.yarnpkg.com/@aeroware/aeroclient/-/aeroclient-1.10.1.tgz#9cf7882ce136114fce46e9102bddde521b14e10b"
-  integrity sha512-tpbPos7y76bFWU+bNGV+zS2LWKPXhDxepfQnb77bASKTl+ufNocodWvLQiU4VeFChfIfl/KM+m95GWf/u6xIqw==
+"@aeroware/aeroclient@^1.11.1":
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/@aeroware/aeroclient/-/aeroclient-1.11.1.tgz#bea1f0a91e522c6016074991488e2c9c112b407f"
+  integrity sha512-ijWmH/fnghnsQhFgCWLtagbAB4/vFSkNNE7tuBiHsNW5CZgxwYSgXCrQd3k1bgr8xlsWKp18/BBzw3BsBo41gw==
   dependencies:
     "@aeroware/discord-utils" "^1.0.1"
     "@aeroware/logger" "^2.6.0"
