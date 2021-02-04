@@ -6,7 +6,6 @@ export default async function handleRoleMenu(
     user: User,
     add: boolean
 ) {
-    console.log(`handleRolemenu called to ${add ? "add" : "remove"} role.`);
     if (reaction.partial) reaction = await reaction.fetch().catch();
     if (user.bot) return;
 
