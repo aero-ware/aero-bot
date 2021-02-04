@@ -2,8 +2,6 @@ import { Command } from "@aeroware/aeroclient/dist/types";
 import axios from "axios";
 import { MessageEmbed } from "discord.js";
 
-const SUBS = ["memes", "dankmemes"];
-
 export default {
     name: "meme",
     description: "Sends a meme from reddit",
@@ -13,20 +11,17 @@ export default {
         try {
             let data;
 
-            // api spammy but no nsfw is important also videos cant be in embeds
+            // api spammy but no nsfw is important
             do data = await fetchMeme();
-            while (data.nsfw || data.isVideo);
+            while (data.nsfw);
 
             message.channel.send(
                 new MessageEmbed()
                     .setTitle(data.title)
-                    .setURL(data.link)
+                    .setURL(data.postLink)
                     .setDescription(`From r/${data.subreddit}`)
                     .setImage(data.url)
-                    .setFooter(
-                        `${data.ratings.upvote - data.ratings.downvote} points`
-                    )
-                    .setTimestamp()
+                    .setFooter(`${data.ups} upvotes - by u/${data.author}`)
             );
         } catch (e) {
             message.channel.send("There was a problem with the API.");
@@ -35,14 +30,5 @@ export default {
 } as Command;
 
 async function fetchMeme() {
-    return (
-        await axios.get("https://api.snowflakedev.xyz/api/meme", {
-            headers: {
-                Authorization: process.env.snowflakeToken,
-            },
-            params: {
-                sbr: SUBS[Math.floor(Math.random() * SUBS.length)],
-            },
-        })
-    ).data;
+    return (await axios.get("https://meme-api.herokuapp.com/gimme")).data;
 }
