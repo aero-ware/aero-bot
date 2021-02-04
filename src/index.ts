@@ -61,13 +61,4 @@ client.use(async ({ message, args, command }, next) => {
     return next();
 });
 
-process.on("unhandledRejection", (err: any) => {
-    if (err) client.logger.error(err.stack || err.message);
-    if (!process.env.errorLog) return;
-    const channel = client.channels.cache.get(process.env.errorLog);
-    if (channel instanceof TextChannel)
-        channel.send(err.stack || err.message, { code: true });
-    else throw new TypeError("errorLog in .env is not a TextChannel");
-});
-
 export default client; // should only be used for generating webpage
