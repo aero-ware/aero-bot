@@ -93,32 +93,32 @@
     },
     "HELP_MENU": {
         "TITLE": {
-          "english": "Help Menu",
-          "french": "Menu d'aide"
+            "english": "Help Menu",
+            "french": "Menu d'aide"
         },
         "SELECT_A_CATEGORY": {
-          "english": "Please select a command category by reacting with the corresponding emoji of the category",
-          "french": "Veuillez sélectionner une catégorie de commande en réagissant avec l'emoji correspondant de la catégorie"
+            "english": "Please select a command category by reacting with the corresponding emoji of the category",
+            "french": "Veuillez sélectionner une catégorie de commande en réagissant avec l'emoji correspondant de la catégorie"
         },
         "COMMANDS": {
-          "english": "commands",
-          "french": "commandes."
+            "english": "commands",
+            "french": "commandes."
         },
         "DESCRIPTION_FIRST_LINE": {
-          "english": "Use 🚪 to return to the previous menu.",
-          "french": "Utulisez 🚪 pour retourner dans le menu précédent. "
+            "english": "Use 🚪 to return to the previous menu.",
+            "french": "Utulisez 🚪 pour retourner dans le menu précédent. "
         },
         "DESCRIPTION_SECOND_LINE": {
-          "english": "Use ⬅ and ➡ to navigate between pages.",
-          "french": "Utulisez ⬅ et ➡ pour naviguez entre les pages."
+            "english": "Use ⬅ and ➡ to navigate between pages.",
+            "french": "Utulisez ⬅ et ➡ pour naviguez entre les pages."
         },
         "ALIASES": {
-          "english": "Aliases",
-          "french": "Alias"
+            "english": "Aliases",
+            "french": "Alias"
         },
         "SYNTAX": {
-          "english": "Syntax",
-          "french": "Syntaxe"
+            "english": "Syntax",
+            "french": "Syntaxe"
         }
     },
     "API_ERROR": {
@@ -128,7 +128,6 @@
     "INVALID_MORSE_CODE": {
         "english": "invalid morse code.",
         "french": "Invalide code morse."
-
     },
     "FROM_SUB": {
         "english": "From r/{SUB}",
