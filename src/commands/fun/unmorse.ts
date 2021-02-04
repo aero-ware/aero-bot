@@ -1,5 +1,6 @@
 import { Command } from "@aeroware/aeroclient/dist/types";
 import axios from "axios";
+import { fromMorse } from "../../utils/morse";
 
 export default {
     name: "unmorse",
@@ -11,26 +12,8 @@ export default {
     async callback({ message, args }) {
         const text = args.join(" ");
 
-        try {
-            const { data: morse } = (
-                await axios.get(
-                    "https://api.snowflakedev.xyz/api/morse/decode",
-                    {
-                        headers: {
-                            Authorization: process.env.snowflakeToken,
-                        },
-                        params: {
-                            text,
-                        },
-                    }
-                )
-            ).data;
-
-            message.channel.send(morse);
-        } catch (e) {
-            message.channel.send(
-                "There was an API error or your entered text was not valid morse code."
-            );
-        }
+        message.channel.send(
+            fromMorse(text) || "that text is not valid morse code"
+        );
     },
 } as Command;
