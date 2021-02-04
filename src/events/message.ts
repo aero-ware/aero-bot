@@ -132,24 +132,34 @@ async function messageLinkEmbed(message: Message) {
 
         if (message.deletable) message.delete().catch();
 
-        webhook.send(
+        let embed = new MessageEmbed()
+            .setDescription(linkedMessage.content)
+            .setAuthor(
+                linkedMessage.member?.nickname || linkedMessage.author.username,
+                linkedMessage.author.displayAvatarURL({ dynamic: true })
+            )
+            .addField(
+                "Jump",
+                `[Go to message](${linkedMessage.url} "Go to message")`
+            )
+            .setColor("RANDOM")
+            .setFooter(`#${linkedMessage.channel.name}`)
+            .setTimestamp(linkedMessage.createdTimestamp);
+
+        const imageRegex = /^https:\/\/cdn\.discordapp\.com\/attachments\/(\d{18}\/){2}\w+\.((png)|(jpe?g)|(webp)|(gif)|(tiff?)|(bmp)|(heif)|(svg))$/gi;
+
+        if (linkedMessage.attachments.size > 0) {
+            if (imageRegex.test(linkedMessage.attachments.first()!.url))
+                embed = embed.setImage(linkedMessage.attachments.first()!.url);
+        }
+
+        await webhook.send(
             message.content
                 .replace(/https:\/\/discord.com\/channels(\/\d{18}){3}/im, "")
                 .replace(/ +/, " "),
-            new MessageEmbed()
-                .setDescription(linkedMessage.content)
-                .setAuthor(
-                    linkedMessage.member?.nickname ||
-                        linkedMessage.author.username,
-                    linkedMessage.author.displayAvatarURL({ dynamic: true })
-                )
-                .addField(
-                    "Jump",
-                    `[Go to message](${linkedMessage.url} "Go to message")`
-                )
-                .setColor("RANDOM")
-                .setFooter(`#${linkedMessage.channel.name}`)
-                .setTimestamp(linkedMessage.createdTimestamp)
+            [embed, ...message.attachments.array()]
         );
+
+        await webhook.delete("Sent a message and now i go bye bye");
     }
 }
