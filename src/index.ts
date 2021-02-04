@@ -34,6 +34,7 @@ const client = new AeroClient(
         ws: {
             intents: [Intents.NON_PRIVILEGED, "GUILD_MEMBERS"],
         },
+        partials: ["MESSAGE", "REACTION"],
     }
 );
 

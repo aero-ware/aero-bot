@@ -6,39 +6,43 @@ export default async function handleRoleMenu(
     user: User,
     add: boolean
 ) {
+    console.log(`handleRolemenu called to ${add ? "add" : "remove"} role.`);
+    if (reaction.partial) reaction = await reaction.fetch().catch();
     if (user.bot) return;
+
     const { message } = reaction;
     if (!message.guild) return;
 
-    const { roleMenus } = (await guilds.findById(
-        message.guild.id
-    )) as IGuildConfig;
-    if (!roleMenus.has(message.id)) return;
+    const { roleMenus } = (await guilds.findOne({
+        _id: message.guild.id,
+    })) as IGuildConfig;
+    if (roleMenus && !roleMenus.has(message.id)) return;
 
-    const member = message.guild.members.cache.get(user.id);
+    const member = await message.guild.members.cache.get(user.id);
     if (!member) return;
 
-    if (
-        (reaction.emoji.id || reaction.emoji.name) in roleMenus.get(message.id)!
-    ) {
-        let role = message.guild.roles.cache.get(
+    const eName =
+        reaction.emoji instanceof GuildEmoji
+            ? reaction.emoji.id
+            : reaction.emoji.name;
+
+    if (eName in roleMenus.get(message.id)!) {
+        let role = await message.guild.roles.fetch(
             // @ts-ignore
-            roleMenus.get(message.id)![reaction.emoji]
+            roleMenus.get(message.id)![eName]
         );
-        if (reaction.emoji instanceof GuildEmoji && reaction.emoji.guild) {
-            role = message.guild.roles.cache.get(
+        if (reaction.emoji instanceof GuildEmoji) {
+            role = await reaction.emoji.guild.roles.fetch(
                 // @ts-ignore
-                roleMenus.get(message.id)![reaction.emoji.id]
+                roleMenus.get(message.id)![eName]
             );
         }
-        if (!role) throw new Error("Role in rolemenu not a valid role ID");
-        if (add) member.roles.add(role);
-        else member.roles.remove(role);
-
+        if (add) member.roles.add(role!);
+        else member.roles.remove(role!);
         user.send(
             `**${message.guild.name}**: ${
-                add ? "Gave you the" : "Removed"
-            } role **${role.name}**`
-        ).catch();
+                add ? "gave you the" : "removed"
+            } the role **${role!.name}**!`
+        ).catch(() => {});
     }
 }
