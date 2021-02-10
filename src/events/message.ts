@@ -106,9 +106,8 @@ async function blacklistChecker(message: Message, info: IGuildConfig) {
 
 async function messageLinkEmbed(message: Message) {
     if (!message.guild) return;
-    const arr = message.content.match(
-        /https:\/\/discord.com\/channels(\/\d{18}){3}/im
-    );
+    const linkRegex = /https:\/\/discord(app)?\.com\/channels(\/\d{18}){3}/im;
+    const arr = message.content.match(linkRegex);
     if (!arr) return;
     const link = arr[0] || "";
 
@@ -118,9 +117,10 @@ async function messageLinkEmbed(message: Message) {
         if (!channel || !(channel instanceof TextChannel)) return;
         const linkedMessage = await channel.messages.fetch(messageId).catch();
         if (linkedMessage.channel instanceof DMChannel) return;
+        if (message.channel instanceof DMChannel) return;
 
         const webhook = await (message.channel as TextChannel).createWebhook(
-            message.member?.nickname || message.author.username,
+            message.member!.displayName,
             {
                 avatar: message.author.displayAvatarURL({
                     dynamic: true,
@@ -130,7 +130,9 @@ async function messageLinkEmbed(message: Message) {
             }
         );
 
-        if (message.deletable) message.delete().catch();
+        try {
+            if (message.deletable) message.delete();
+        } catch (e) {}
 
         let embed = new MessageEmbed()
             .setDescription(linkedMessage.content)
@@ -154,9 +156,7 @@ async function messageLinkEmbed(message: Message) {
         }
 
         await webhook.send(
-            message.content
-                .replace(/https:\/\/discord.com\/channels(\/\d{18}){3}/im, "")
-                .replace(/ +/, " "),
+            message.content.replace(linkRegex, "").replace(/ +/, " "),
             [embed, ...message.attachments.array()]
         );
 

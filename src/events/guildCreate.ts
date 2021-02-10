@@ -21,6 +21,7 @@ export default {
                     )
                     .setColor("RED")
             );
+            guild.leave();
             return;
         }
 

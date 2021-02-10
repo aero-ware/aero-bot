@@ -24,37 +24,30 @@ export default {
                 .addFields(
                     {
                         name: "Welcome Message Channel",
-                        value: `<#${
-                            guildInfo.welcomeChannelId !== null
-                                ? guildInfo.welcomeChannelId
-                                : "none"
-                        }>`,
+                        value: guildInfo.welcomeChannelId
+                            ? `<#${guildInfo.welcomeChannelId}>`
+                            : "none",
                     },
                     {
                         name: "Welcome Message",
-                        value:
-                            guildInfo.welcomeText !== null
-                                ? guildInfo.welcomeText?.replace(
-                                      /<@>/g,
-                                      "<user ping>"
-                                  )
-                                : "none",
+                        value: guildInfo.welcomeText
+                            ? guildInfo.welcomeText?.replace(
+                                  /<@>/g,
+                                  "<user ping>"
+                              )
+                            : "none",
                     },
                     {
                         name: "Mod Logs Channel",
-                        value: `<#${
-                            guildInfo.logChannelId !== null
-                                ? guildInfo.logChannelId
-                                : "none"
-                        }>`,
+                        value: guildInfo.logChannelId
+                            ? `<#${guildInfo.logChannelId}>`
+                            : "none",
                     },
                     {
                         name: "Muted Role",
-                        value:
-                            guildInfo.mutedRoleId &&
-                            guildInfo.mutedRoleId !== null
-                                ? `<@&${guildInfo.mutedRoleId}>`
-                                : "none",
+                        value: guildInfo.mutedRoleId
+                            ? `<@&${guildInfo.mutedRoleId}>`
+                            : "none",
                     },
                     {
                         name: "Days of Messages to delete on ban",
@@ -63,7 +56,7 @@ export default {
                     {
                         name: "Advertising channels",
                         value:
-                            guildInfo.adChannels !== null
+                            guildInfo.adChannels.length > 0
                                 ? guildInfo.adChannels
                                       ?.map((c: any) => `<#${c}>`)
                                       .join(",\n")
