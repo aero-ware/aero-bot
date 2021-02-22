@@ -1,5 +1,5 @@
 import { Command } from "@aeroware/aeroclient/dist/types";
-import { DAILY } from "../../economy.json";
+import { DAILY } from "../../../economy.json";
 import { addCoins } from "../../utils/economy";
 
 export default {

@@ -3,7 +3,7 @@ import ms from "ms";
 
 export default {
     name: "uptime",
-    category: "Misc",
+    category: "utility",
     description: "shows you the uptime of the bot",
     details: "...",
     callback({ message, client }) {

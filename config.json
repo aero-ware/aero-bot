@@ -1,0 +1,28 @@
+{
+    "CLIENT_ID": "787460489427812363",
+    "DEFAULT_PREFIX": ">",
+    "DEV_PREFIX": "<",
+    "STAFF": ["564930157371195437"],
+    "SUGGESTION_CHANNEL": "804819759287631944",
+    "ERROR_LOG": "806540623850373180",
+    "AEROCLIENT": {
+        "USE_DEFAULTS": true,
+        "LOGGING": true,
+        "LOGGER_HEADER": "aerobot",
+        "COMMANDS_PATH": "commands",
+        "EVENTS_PATH": "events",
+        "MESSAGES_PATH": "../messages.json",
+        "DISABLE_STAFF_COOLDOWNS": true,
+        "RESPONSES": {
+            "cooldown": "Please wait $TIME before running the command again.",
+            "error": "An error occurred.",
+            "usage": "The usage for `$COMMAND` is `$COMMAND $USAGE`",
+            "guild": "This command can only be used in a server.",
+            "dm": "This command can only be used in a DM.",
+            "staff": "This command can only be run by staff",
+            "guarded": "This command cannot be disabled.",
+            "disabled": "This command is disabled in this server.",
+            "perms": "You need to have $PERMS permissions to run this command."
+        }
+    }
+}
