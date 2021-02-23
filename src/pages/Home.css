@@ -1,0 +1,43 @@
+.full-screen {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .aerobot-title {
+    font-size: 4rem;
+} */
+
+.btn {
+    margin: 10px 5px;
+    filter: brightness(1);
+    -webkit-transition: 0.2s -webkit-filter linear;
+    transition: 0.2s filter linear, 0.2s -webkit-filter linear;
+    background-color: black;
+    padding: 10px;
+    border-radius: 0.25rem;
+}
+
+.btn:hover {
+    filter: brightness(0.8);
+}
+
+h2.header {
+    font-family: Montserrat, sans-serif;
+    margin-bottom: 5px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .home {
+        background-color: #222;
+        color: white;
+    }
+
+    .btn {
+        background-color: #ddd;
+        color: black;
+    }
+}

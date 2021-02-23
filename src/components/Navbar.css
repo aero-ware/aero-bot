@@ -1,0 +1,50 @@
+.top-navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    padding: 5px;
+    background: rgb(202, 202, 202);
+    color: black;
+    height: 5vh;
+    width: 100vw;
+}
+
+a.aero-font {
+    font-size: 1.5rem;
+    margin: 0.5rem;
+}
+
+.nav-link {
+    margin: 0.5rem;
+    color: #333;
+    font-family: Montserrat, sans-serif;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.aero-font:hover {
+    text-decoration-color: #e8064d;
+}
+
+.right-icons {
+    margin-left: auto;
+    margin-right: 5px;
+}
+
+.icon-link {
+    font-size: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .top-navbar {
+        background-color: rgb(27, 27, 27);
+        color: white;
+    }
+
+    .nav-link {
+        color: #ddd;
+    }
+}
