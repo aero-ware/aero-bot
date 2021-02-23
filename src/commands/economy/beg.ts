@@ -1,5 +1,5 @@
 import { Command } from "@aeroware/aeroclient/dist/types";
-import { BEG } from "../../economy.json";
+import { BEG } from "../../../economy.json";
 import { addCoins } from "../../utils/economy";
 
 export default {

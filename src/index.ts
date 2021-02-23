@@ -1,6 +1,7 @@
 import AeroClient from "@aeroware/aeroclient";
 import { config as dotenv } from "dotenv";
-import { Intents, TextChannel } from "discord.js";
+import { Intents } from "discord.js";
+import CONFIG from "../config.json";
 import botbans, { IBotBanInfo } from "./models/Botban";
 
 dotenv();
@@ -8,27 +9,26 @@ dotenv();
 const client = new AeroClient(
     {
         token: process.env.token,
-        prefix: process.env.defaultPrefix,
-        useDefaults: true,
-        logging: true,
-        loggerHeader: "aerobot",
-        commandsPath: "commands",
-        eventsPath: "events",
+        prefix:
+            process.env.NODE_ENV === "production"
+                ? CONFIG.DEFAULT_PREFIX
+                : CONFIG.DEV_PREFIX,
+        useDefaults: CONFIG.AEROCLIENT.USE_DEFAULTS,
+        logging: CONFIG.AEROCLIENT.LOGGING,
+        loggerHeader: CONFIG.AEROCLIENT.LOGGER_HEADER,
+        commandsPath: CONFIG.AEROCLIENT.COMMANDS_PATH,
+        eventsPath: CONFIG.AEROCLIENT.EVENTS_PATH,
+        /*
+          todo: make this work, until then responses works
+          messagesPath: CONFIG.AEROCLIENT.MESSAGES_PATH,
+        */
         connectionUri: process.env.mongoPath,
-        persistentCooldowns: true,
+        persistentCooldowns: CONFIG.AEROCLIENT.PERSIST_COOLDOWNS,
         responses: {
-            cooldown: "Please wait $TIME before running the command again.",
-            error: "An error occurred.",
-            usage: "The usage for `$COMMAND` is `$COMMAND $USAGE`",
-            guild: "This command can only be used in a server.",
-            dm: "This command can only be used in a DM.",
-            staff: "This command can only be run by staff",
-            guarded: "This command cannot be disabled.",
-            disabled: "This command is disabled in this server.",
-            perms: "You need to have $PERMS permissions to run this command.",
+            ...CONFIG.AEROCLIENT.RESPONSES,
         },
-        staff: process.env.adminIds!.split(/,\s*/g),
-        disableStaffCooldowns: true,
+        staff: CONFIG.STAFF,
+        disableStaffCooldowns: CONFIG.AEROCLIENT.DISABLE_STAFF_COOLDOWNS,
     },
     {
         ws: {
@@ -38,7 +38,7 @@ const client = new AeroClient(
     }
 );
 
-client.use(async ({ message, args, command }, next) => {
+client.use(async ({ message, args, command }, next, stop) => {
     // shows the current prefix if the bot is mentioned
     const pingRegex = new RegExp(`^<@!?${client.user?.id}>$`);
 
@@ -50,16 +50,16 @@ client.use(async ({ message, args, command }, next) => {
             text: message.content,
             locale: "",
         });
-        return next(true);
+        return stop();
     }
 
     // bot ban checking
     const userban = (await botbans.findOne({
         userId: message.author.id,
     })) as IBotBanInfo;
-    if (userban && command?.category !== "Fun") return next(true);
+    if (userban && command?.category !== "Fun") return stop();
 
     return next();
 });
 
-export default client; // should only be used for generating webpage
+export default client;

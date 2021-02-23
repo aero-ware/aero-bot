@@ -3,7 +3,7 @@ import { Command } from "@aeroware/aeroclient/dist/types";
 export default {
     name: "status",
     staffOnly: true,
-    category: "Misc",
+    category: "utility",
     guarded: true,
     hidden: true,
     minArgs: 1,

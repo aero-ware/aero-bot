@@ -1,5 +1,6 @@
 import { Command } from "@aeroware/aeroclient/dist/types";
 import { MessageEmbed, TextChannel } from "discord.js";
+import CONFIG from "../../../config.json";
 
 export default {
     name: "botsuggest",
@@ -12,9 +13,7 @@ export default {
     usage: "[message]",
     callback({ message, args, client }) {
         const text = args.join(" ");
-        const channel = client.channels.cache.get(
-            process.env.suggestionChannel!
-        );
+        const channel = client.channels.cache.get(CONFIG.SUGGESTION_CHANNEL);
         if (!(channel instanceof TextChannel))
             throw new TypeError(
                 "suggestionChannel in .env is not a TextChannel"

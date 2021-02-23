@@ -4,7 +4,7 @@ export default {
     name: "ping",
     aliases: ["latency"],
     description: "Tells you the latency of bot and API ping",
-    category: "Misc",
+    category: "utility",
     callback({ message, client }) {
         message.channel.send("Calculating ping...").then((m) => {
             const ping = m.createdTimestamp - message.createdTimestamp;
