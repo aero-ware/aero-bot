@@ -7,16 +7,24 @@ import log from "../utils/logging";
 export default {
     name: "guildMemberAdd",
     async callback(member: GuildMember) {
-        autoRoleGiver(member);
-        sendWelcomeMessage(member);
-        log(
-            member.guild,
-            new MessageEmbed()
-                .setTitle("Member Joined")
-                .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
-                .setDescription(`**Member:** ${member}`)
-                .setTimestamp()
-        );
+        const guildConfig = ((await guilds.findById(member.guild.id)) ||
+            (await guilds.create({ _id: member.guild.id }))) as IGuildConfig;
+
+        if (guildConfig) {
+            autoRoleGiver(member, guildConfig);
+            sendWelcomeMessage(member, guildConfig);
+            log(
+                member.guild,
+                new MessageEmbed()
+                    .setTitle("Member Joined")
+                    .setThumbnail(
+                        member.user.displayAvatarURL({ dynamic: true })
+                    )
+                    .setDescription(`**Member:** ${member}`)
+                    .setTimestamp()
+            );
+        }
+
         members.create({
             guildId: member.guild.id,
             userId: member.id,
@@ -24,19 +32,18 @@ export default {
     },
 } as EventHandler;
 
-async function autoRoleGiver(member: GuildMember) {
-    const { autoRole } = (await guilds.findById(
-        member.guild.id
-    )) as IGuildConfig;
+async function autoRoleGiver(member: GuildMember, guildConfig: IGuildConfig) {
+    const { autoRole } = guildConfig;
     if (!autoRole) return;
     if (member.user.bot) return;
     member.roles.add(autoRole);
 }
 
-async function sendWelcomeMessage(member: GuildMember) {
-    const { welcomeChannelId, welcomeText } = (await guilds.findById(
-        member.guild.id
-    )) as IGuildConfig;
+async function sendWelcomeMessage(
+    member: GuildMember,
+    guildConfig: IGuildConfig
+) {
+    const { welcomeChannelId, welcomeText } = guildConfig;
     if (!welcomeChannelId || !welcomeText) return;
     const channel = member.guild.channels.cache.get(welcomeChannelId);
     if (channel instanceof TextChannel)

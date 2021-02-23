@@ -52,8 +52,9 @@ export default {
                     },
                     {
                         name: "Admins",
-                        value: guild.members.cache.filter((m) =>
-                            m.hasPermission("ADMINISTRATOR")
+                        value: guild.members.cache.filter(
+                            (m) =>
+                                m.hasPermission("ADMINISTRATOR") && !m.user.bot
                         ).size,
                         inline: true,
                     },

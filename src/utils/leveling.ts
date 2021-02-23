@@ -38,10 +38,10 @@ export async function handler(message: Message, info: IGuildConfig) {
     const { levelsEnabled } = info;
     if (!levelsEnabled) return;
 
-    const { nextXPAdd } = (await members.findOne({
+    const { nextXPAdd } = ((await members.findOne({
         guildId: message.guild.id,
         userId: message.member!.id,
-    })) as IMemberInfo;
+    })) as IMemberInfo) || { nextXPAdd: null };
     if (nextXPAdd && !isPast(nextXPAdd)) return;
     addXP(
         message.guild.id,
