@@ -35,6 +35,7 @@ export default {
 
         periodic(this);
 
-        repl.start("> ").context.client = this;
+        if (process.env.NODE_ENV === "dev")
+            repl.start("> ").context.client = this;
     },
 } as EventHandler;
