@@ -23,7 +23,7 @@ const client = new AeroClient(
           messagesPath: CONFIG.AEROCLIENT.MESSAGES_PATH,
         */
         connectionUri: process.env.mongoPath,
-        persistentCooldowns: true,
+        persistentCooldowns: CONFIG.AEROCLIENT.PERSIST_COOLDOWNS,
         responses: {
             ...CONFIG.AEROCLIENT.RESPONSES,
         },

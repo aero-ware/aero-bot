@@ -12,6 +12,7 @@
         "COMMANDS_PATH": "commands",
         "EVENTS_PATH": "events",
         "MESSAGES_PATH": "../messages.json",
+        "PERSIST_COOLDOWNS": true,
         "DISABLE_STAFF_COOLDOWNS": true,
         "RESPONSES": {
             "cooldown": "Please wait $TIME before running the command again.",
