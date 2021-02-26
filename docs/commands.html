@@ -1,43 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#90EDAF" />
 
         <!-- OG meta tags for discord embeds when the link is sent -->
         <meta property="og:title" content="AeroBot Commands" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://aero-ware.github.io/aero-bot" />
-        <meta property="og:description" content="AeroBot has many customizable commands for moderation and lots of fun commands for normal users!" />
+        <meta
+            property="og:url"
+            content="https://aero-ware.github.io/aero-bot"
+        />
+        <meta
+            property="og:description"
+            content="AeroBot has many customizable commands for moderation and lots of fun commands for normal users!"
+        />
 
         <!-- Google Fonts -->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+            rel="stylesheet"
+        />
 
         <!-- Bootstrap CSS -->
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-            rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+            rel="stylesheet"
+            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
             crossorigin="anonymous"
         />
 
         <!-- My CSS -->
-        <link
-            href="css/main.css"
-            rel="stylesheet"
-        />
-        <link
-            href="css/commands.css"
-            rel="stylesheet"
-        />
+        <link href="css/main.css" rel="stylesheet" />
+        <link href="css/commands.css" rel="stylesheet" />
 
         <title>AeroBot Commands</title>
     </head>
     <body>
+        <div class="alert alert-danger">
+            Please note that this webpage is being massively remodeled, which
+            explains the incomplete nature of this page.
+        </div>
         <header>
-            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav">
+            <nav
+                class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark top-nav"
+            >
                 <div class="container-fluid">
                     <a class="navbar-brand" href="index.html"><b>AeroBot</b></a>
                     <button
@@ -51,13 +60,21 @@
                     >
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div
+                        class="collapse navbar-collapse"
+                        id="navbarSupportedContent"
+                    >
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
                                 <a class="nav-link" href="index.html">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Commands</a>
+                                <a
+                                    class="nav-link active"
+                                    aria-current="page"
+                                    href="#"
+                                    >Commands</a
+                                >
                             </li>
                         </ul>
                     </div>
@@ -75,60 +92,107 @@
                     <a class="nav-link" href="#moderation">Moderation</a>
 
                     <nav class="nav nav-pills flex-column">
-                        <a class="nav-link ms-3 my-1" href="#setters">Setters</a>
+                        <a class="nav-link ms-3 my-1" href="#setters"
+                            >Setters</a
+                        >
 
                         <nav class="nav nav-pills flex-column">
-                            <a class="nav-link ms-6 my-1" href="#setlogchannel">setlogchannel</a>
-                            <a class="nav-link ms-6 my-1" href="#setblacklist">setblacklist</a>
-                            <a class="nav-link ms-6 my-1" href="#setadchannels">setaddchannels</a>
-                            <a class="nav-link ms-6 my-1" href="#setwelcomemessage">setwelcomemessage</a>
-                            <a class="nav-link ms-6 my-1" href="#setmutedrole">setmutedrole</a>
+                            <a class="nav-link ms-6 my-1" href="#setlogchannel"
+                                >setlogchannel</a
+                            >
+                            <a class="nav-link ms-6 my-1" href="#setblacklist"
+                                >setblacklist</a
+                            >
+                            <a class="nav-link ms-6 my-1" href="#setadchannels"
+                                >setaddchannels</a
+                            >
+                            <a
+                                class="nav-link ms-6 my-1"
+                                href="#setwelcomemessage"
+                                >setwelcomemessage</a
+                            >
+                            <a class="nav-link ms-6 my-1" href="#setmutedrole"
+                                >setmutedrole</a
+                            >
                         </nav>
-
                     </nav>
-
                 </nav>
-
             </nav>
 
             <main>
-                <!-- Moderation -->                
-                <div data-bs-spy="scroll" data-bs-target="#outline-sidebar" data-bs-offset="0" tabindex="0" id="command-content">
+                <!-- Moderation -->
+                <div
+                    data-bs-spy="scroll"
+                    data-bs-target="#outline-sidebar"
+                    data-bs-offset="0"
+                    tabindex="0"
+                    id="command-content"
+                >
                     <h2 id="moderation">Moderation</h2>
-                    <p>This category contains commands that relate to moderation, and thus many have elevated permission requirements.</p>
+                    <p>
+                        This category contains commands that relate to
+                        moderation, and thus many have elevated permission
+                        requirements.
+                    </p>
                     <h3 id="setters">Setters</h3>
-                    <p>This collection of commands has commands that set important information into the database and ALL require ADMINISTRATOR permissions</p>
+                    <p>
+                        This collection of commands has commands that set
+                        important information into the database and ALL require
+                        ADMINISTRATOR permissions
+                    </p>
 
                     <div id="setlogchannel">
                         <h4>setlogchannel</h4>
                         <p>
-                            This command sets the logging channel for the server where important events are logged to. It is recommended that it be a private channel reserved for staff.<br>
-                            You can optionally say 'none' as the argument to unset the log channel.
-                            Aliases: setlogchannel, setmodlog, logchannel<br>
-                            Expected Arguments: &lt;channel&gt;<br>
-                            Example Usage: &gt;setlogchannel #logs<br>
-                            <em>That should be a channel mention and not just the channel name.</em>
+                            This command sets the logging channel for the server
+                            where important events are logged to. It is
+                            recommended that it be a private channel reserved
+                            for staff.<br />
+                            You can optionally say 'none' as the argument to
+                            unset the log channel. Aliases: setlogchannel,
+                            setmodlog, logchannel<br />
+                            Expected Arguments: &lt;channel&gt;<br />
+                            Example Usage: &gt;setlogchannel #logs<br />
+                            <em
+                                >That should be a channel mention and not just
+                                the channel name.</em
+                            >
                         </p>
                     </div>
 
                     <div id="setblacklist">
                         <h4>setblacklist</h4>
                         <p>
-                            This command can add or remove words considered part of this server's swear words list. By default, it has no words. Use 'add' or 'remove' as the first argument and the next argument will be a full string.<br>
-                            For example. If you used <code>&gt;setblacklist add a b c x y z</code>, the string 'a b c x y z' will be added to the database and NOT each word separately. This is to increase flexibility for the end user.
-                            Aliases: swearwords, blacklistedwords, wordblacklist, setblacklist<br>
-                            Expected Arguments: &lt;add/remove&gt; &lt;string&gt;<br>
-                            Example Usage: <code>&gt;setblacklist add djfhjohg</code>
+                            This command can add or remove words considered part
+                            of this server's swear words list. By default, it
+                            has no words. Use 'add' or 'remove' as the first
+                            argument and the next argument will be a full
+                            string.<br />
+                            For example. If you used
+                            <code>&gt;setblacklist add a b c x y z</code>, the
+                            string 'a b c x y z' will be added to the database
+                            and NOT each word separately. This is to increase
+                            flexibility for the end user. Aliases: swearwords,
+                            blacklistedwords, wordblacklist, setblacklist<br />
+                            Expected Arguments: &lt;add/remove&gt;
+                            &lt;string&gt;<br />
+                            Example Usage:
+                            <code>&gt;setblacklist add djfhjohg</code>
                         </p>
                     </div>
 
                     <div id="setadchannels">
                         <h4>setadchannels</h4>
                         <p>
-                            This command allows you to add or remove channels where non admins are allowed to send invites to servers <b>that is not the current server</b><br>
-                            Aliases: setadchannels, adchannels, allowads<br>
-                            Expected Arguments: &lt;add/remove&gt; &lt;channel&gt;<br>
-                            Example Usage: <code>&gt;setadchannels add #advertising</code><br>
+                            This command allows you to add or remove channels
+                            where non admins are allowed to send invites to
+                            servers <b>that is not the current server</b><br />
+                            Aliases: setadchannels, adchannels, allowads<br />
+                            Expected Arguments: &lt;add/remove&gt;
+                            &lt;channel&gt;<br />
+                            Example Usage:
+                            <code>&gt;setadchannels add #advertising</code
+                            ><br />
                             Note: please mention the channel
                         </p>
                     </div>
@@ -136,28 +200,40 @@
                     <div id="setwelcomemessage">
                         <h4>setwelcomemessage</h4>
                         <p>
-                            This command sets the welcome messsage for the server, it will be sent when anyone joins the server.<br>
-                            Aliases: welcome, joinmessage, welcomemessage, setwelcome, setwelcomemessage<br>
-                            Expected Arguments: [channel] &lt;message&gt;<br>
-                            Example Usage <code>&gt;setwelcome #joins Welcome &lt;@&gt; to this server!</code><br>
-                            Note, use &lt;@&gt; to specify a mention of the joining member, it can be used multiple times in the same message. If channel is not mentioned as the first argument, it is assumed that the target channel is the current channel.
+                            This command sets the welcome messsage for the
+                            server, it will be sent when anyone joins the
+                            server.<br />
+                            Aliases: welcome, joinmessage, welcomemessage,
+                            setwelcome, setwelcomemessage<br />
+                            Expected Arguments: [channel] &lt;message&gt;<br />
+                            Example Usage
+                            <code
+                                >&gt;setwelcome #joins Welcome &lt;@&gt; to this
+                                server!</code
+                            ><br />
+                            Note, use &lt;@&gt; to specify a mention of the
+                            joining member, it can be used multiple times in the
+                            same message. If channel is not mentioned as the
+                            first argument, it is assumed that the target
+                            channel is the current channel.
                         </p>
                     </div>
 
                     <div id="setmutedrole">
                         <h4>setmutedrole</h4>
                         <p>
-                            This command sets the muted role for the server. Used for the mute and unmute commands.<br>
-                            Aliases: setmutedrole, setmuterole, muterole<br>
-                            Expected Arguments: &lt;role ping/id&gt;<br>
-                            Example Usage: <code>&gt;setmutedrole @Muted</code><br>
+                            This command sets the muted role for the server.
+                            Used for the mute and unmute commands.<br />
+                            Aliases: setmutedrole, setmuterole, muterole<br />
+                            Expected Arguments: &lt;role ping/id&gt;<br />
+                            Example Usage: <code>&gt;setmutedrole @Muted</code
+                            ><br />
                             Note: ping the role or give its ID.
                         </p>
                     </div>
-
                 </div>
 
-                    <!-- <div class="command-details">
+                <!-- <div class="command-details">
                         <h3>kick</h3>
                         aliases: kick<br />
                         expected args: &lt;user ping&gt; [reason]<br />
