@@ -1,6 +1,6 @@
 import { Command } from "@aeroware/aeroclient/dist/types";
 import { MessageEmbed } from "discord.js";
-import { addCoins, getCoins } from "../../utils/economy";
+import { addCoins, getCoins } from "../../../utils/economy";
 
 export default {
     name: "pay",

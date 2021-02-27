@@ -1,0 +1,209 @@
+@font-face {
+    font-family: "aero";
+    src: url(./fonts/sofachrome.regular.ttf);
+}
+
+html {
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+body {
+    margin: 0;
+    background-color: black;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    padding: 1rem;
+}
+
+a {
+    color: #dc054a;
+    text-decoration: none;
+}
+
+.top-nav {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.nav-title {
+    font-weight: bold;
+    padding-top: 7px;
+    padding-right: 10px;
+}
+
+.aero-bot {
+    font-family: "aero";
+}
+
+.aero {
+    color: #dc054a;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+.buttons a {
+    margin: 1rem;
+
+    color: #fafafa;
+
+    text-decoration: none;
+}
+
+.invite {
+    display: flex;
+    align-items: center;
+
+    color: white;
+}
+
+.invite img {
+    margin-right: 0.25rem;
+}
+
+.invite-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.bot-title {
+    font-family: "aero";
+
+    font-size: 48px;
+    margin: 0px;
+}
+
+.features {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+main {
+    margin-bottom: 2rem;
+
+    min-height: 100vh;
+}
+
+@media (min-width: 800px) {
+    .invite-main {
+        min-height: 600px;
+    }
+}
+
+.documentation {
+    display: flex;
+
+    flex-direction: column-reverse;
+
+    min-height: 100vh;
+}
+
+.documentation section {
+    flex: 1;
+
+    overflow: auto;
+
+    max-height: calc(100vh - 250px - 2rem);
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.documentation section > div {
+    padding: 1rem;
+
+    max-width: 800px;
+}
+
+.documentation section::-webkit-scrollbar {
+    display: none;
+}
+
+#sidebar {
+    display: flex;
+    flex-direction: column;
+
+    padding-left: 0.5rem;
+
+    width: 100%;
+
+    overflow: auto;
+
+    max-height: 250px;
+
+    border-top: 2px solid #dc054a;
+}
+
+#sidebar h3 {
+    margin: 1.5rem 0 0.5rem;
+}
+
+.category {
+    margin-bottom: 2rem;
+}
+
+.category a {
+    display: block;
+}
+
+.links {
+    flex: 1;
+
+    overflow: auto;
+}
+
+.links h4 {
+    margin: 1rem 0;
+}
+
+.links a {
+    color: #fafafa;
+    margin: 0.5rem 0;
+}
+
+@media (min-width: 800px) {
+    .documentation {
+        flex-direction: row;
+    }
+
+    .documentation section {
+        max-height: calc(100vh + 3rem);
+    }
+
+    .documentation section > div {
+        padding: 1.5rem;
+
+        margin-bottom: 3rem;
+    }
+
+    #sidebar {
+        display: flex;
+        flex-direction: column;
+
+        padding-left: 0.5rem;
+
+        width: 200px;
+
+        overflow: auto;
+
+        min-height: 100vh;
+
+        border-top: none;
+        border-right: 2px solid #dc054a;
+    }
+}
+
+.command h3 {
+    margin: 1rem 0 0;
+}
+
+.command p {
+    margin: 0.5rem 0;
+}
