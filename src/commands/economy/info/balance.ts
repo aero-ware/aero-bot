@@ -1,6 +1,6 @@
 import { Command } from "@aeroware/aeroclient/dist/types";
 import { GuildMember, MessageEmbed } from "discord.js";
-import { getCoins } from "../../utils/economy";
+import { getCoins } from "../../../utils/economy";
 
 export default {
     name: "balance",

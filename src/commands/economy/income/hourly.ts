@@ -1,6 +1,6 @@
 import { Command } from "@aeroware/aeroclient/dist/types";
-import { HOURLY } from "../../../economy.json";
-import { addCoins } from "../../utils/economy";
+import { HOURLY } from "../../../../economy.json";
+import { addCoins } from "../../../utils/economy";
 
 export default {
     name: "hourly",
