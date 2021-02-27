@@ -15,9 +15,10 @@ export default async function handleRoleMenu(
     const { roleMenus } = (await guilds.findOne({
         _id: message.guild.id,
     })) as IGuildConfig;
+
     if (roleMenus && !roleMenus.has(message.id)) return;
 
-    const member = await message.guild.members.cache.get(user.id);
+    const member = message.guild.members.cache.get(user.id);
     if (!member) return;
 
     const eName =

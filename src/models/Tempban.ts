@@ -22,4 +22,5 @@ export interface IBanInfo extends mongoose.Document<any> {
     endTime: Date;
 }
 
-export default mongoose.model("tempbans", tempban);
+const tempbans = mongoose.model<IBanInfo>("tempbans", tempban);
+export default tempbans;

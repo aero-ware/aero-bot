@@ -36,6 +36,7 @@ export type Warning = {
     reason: string;
     kind?: string;
 };
+
 export interface IMemberInfo extends mongoose.Document<any> {
     guildId: string;
     userId: string;
@@ -46,4 +47,6 @@ export interface IMemberInfo extends mongoose.Document<any> {
     warnings: Warning[] | null;
 }
 
-export default mongoose.model("members", member);
+const members = mongoose.model<IMemberInfo>("members", member);
+
+export default members;

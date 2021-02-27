@@ -40,7 +40,7 @@ export default {
         const reason = args.join(" ");
 
         const warning = {
-            author: message.author,
+            author: message.author.id,
             timeStamp: new Date().getTime(),
             reason,
             kind: "warning",

@@ -55,7 +55,7 @@ export default {
                     return message.reply(
                         `emoji ${emoji}'s role in rolemenu of message ${messageID} has been removed.`
                     );
-                } else if (!(await message.guild!.roles.cache.get(roleID))) {
+                } else if (!message.guild!.roles.cache.get(roleID)) {
                     return message.reply("invalid role ID.");
                 }
 
@@ -118,6 +118,7 @@ export default {
     },
 } as Command;
 
+//! can i steal pls
 // canta magic
 function getEmote(str: string, client: Client) {
     let emoteName, emoteID, e, n;

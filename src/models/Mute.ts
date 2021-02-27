@@ -22,4 +22,6 @@ export interface IMuteInfo extends mongoose.Document<any> {
     endTime: Date;
 }
 
-export default mongoose.model("mutes", mute);
+const mutes = mongoose.model<IMuteInfo>("mutes", mute);
+
+export default mutes;

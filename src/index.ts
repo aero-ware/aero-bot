@@ -1,6 +1,6 @@
 import AeroClient from "@aeroware/aeroclient";
-import { config as dotenv } from "dotenv";
 import { Intents } from "discord.js";
+import { config as dotenv } from "dotenv";
 import CONFIG from "../config.json";
 import botbans, { IBotBanInfo } from "./models/Botban";
 
@@ -29,6 +29,35 @@ const client = new AeroClient(
         },
         staff: CONFIG.STAFF,
         disableStaffCooldowns: CONFIG.AEROCLIENT.DISABLE_STAFF_COOLDOWNS,
+        dev:
+            process.env.NODE_ENV !== "production"
+                ? {
+                      dontLoad: {
+                          folders: [
+                              "data",
+                              "economy",
+                              "fun",
+                              "leveling",
+                              "misc",
+                              "moderation",
+                              "tools",
+                              "utility",
+                          ],
+                          events: [
+                              "guildCreate",
+                              "guildDelete",
+                              "guildMemberAdd",
+                              "messageDelete",
+                              "messageReactionAdd",
+                              "messageReactionRemove",
+                          ],
+                      },
+                      eval: {
+                          console: true,
+                          command: true,
+                      },
+                  }
+                : undefined,
     },
     {
         ws: {
@@ -49,6 +78,7 @@ client.use(async ({ message, args, command }, next, stop) => {
             message,
             text: message.content,
             locale: "",
+            parsed: [],
         });
         return stop();
     }

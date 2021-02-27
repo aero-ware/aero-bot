@@ -11,9 +11,11 @@ const botban = new mongoose.Schema({
     },
 });
 
-export interface IBotBanInfo extends mongoose.Document<any> {
+export interface IBotBanInfo extends mongoose.Document {
     userId: string;
     endTime: Date | null;
 }
 
-export default mongoose.model("botbans", botban);
+const botbans = mongoose.model<IBotBanInfo>("botbans", botban);
+
+export default botbans;

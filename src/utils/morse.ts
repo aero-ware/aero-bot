@@ -1,4 +1,6 @@
-const KEY = {
+const KEY: {
+    [char: string]: string;
+} = {
     A: ".-",
     B: "-...",
     C: "-.-.",
@@ -36,7 +38,9 @@ const KEY = {
     "9": "----.",
 };
 
-const REVERSE = {
+const REVERSE: {
+    [code: string]: string;
+} = {
     "-----": "0",
     ".----": "1",
     "..---": "2",
@@ -79,29 +83,23 @@ const REVERSE = {
 };
 
 export function toMorse(str: string) {
-    return (
-        str
-            .toUpperCase()
-            .replace(/\s+/g, "/")
-            .split("")
-            // @ts-ignore
-            .map((c) => KEY[c] || c)
-            .join(" ")
-    );
+    return str
+        .toUpperCase()
+        .replace(/\s+/g, "/")
+        .split("")
+        .map((c) => KEY[c] || c)
+        .join(" ");
 }
 
 export function fromMorse(morse: string) {
-    const messageConverted: string[] = [];
-
-    morse.split("   ").map((word) => {
-        word.split(" ").map((letter) => {
-            // @ts-ignore
-            messageConverted.push(REVERSE[letter]);
-        });
-        messageConverted.push(" ");
-    });
-
-    return messageConverted
+    return morse
+        .split("   ")
+        .map((word) =>
+            word
+                .split(" ")
+                .map((letter) => REVERSE[letter])
+                .join(" ")
+        )
         .join(" ")
         .replace(/\s(?!\s)/g, "")
         .toLowerCase();

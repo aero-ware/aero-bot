@@ -56,4 +56,6 @@ export interface IGuildConfig extends mongoose.Document<any> {
     suggestionChannels: string[];
 }
 
-export default mongoose.model("guild-configs", guild);
+const guildConfigs = mongoose.model<IGuildConfig>("guild-configs", guild);
+
+export default guildConfigs;

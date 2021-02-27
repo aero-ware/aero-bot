@@ -1,12 +1,6 @@
 import { Command } from "@aeroware/aeroclient/dist/types";
 import { addMilliseconds } from "date-fns";
-import {
-    Guild,
-    GuildManager,
-    GuildMember,
-    MessageEmbed,
-    User,
-} from "discord.js";
+import { GuildMember, MessageEmbed, User } from "discord.js";
 import ms from "ms";
 import guilds from "../../models/Guild";
 import bans from "../../models/Tempban";
