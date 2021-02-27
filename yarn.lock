@@ -47,6 +47,11 @@
     colors "^1.4.0"
     date-fns "^2.16.1"
 
+"@aeroware/structures@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@aeroware/structures/-/structures-1.0.0.tgz#714ab441c8cf4c62a74efd2902aba010848b0dae"
+  integrity sha512-+7W9qeVChdNUi9IIHyA08Tnb1z8rpg2wdZz4KCi+xP+GbRnfRFMreGjRIbJTzyWunpR1cbET2Hwb02vFflkGhg==
+
 "@canvacord/assets@^1.0.0":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@canvacord/assets/-/assets-1.0.2.tgz#1802be6a48ebaa2e0a8ec90ed76661d1a01766ae"

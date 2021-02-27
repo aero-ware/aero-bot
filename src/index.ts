@@ -18,6 +18,7 @@ const client = new AeroClient(
         loggerHeader: CONFIG.AEROCLIENT.LOGGER_HEADER,
         commandsPath: CONFIG.AEROCLIENT.COMMANDS_PATH,
         eventsPath: CONFIG.AEROCLIENT.EVENTS_PATH,
+        testServers: CONFIG.TEST_SERVERS,
         /*
           todo: make this work, until then responses works
           messagesPath: CONFIG.AEROCLIENT.MESSAGES_PATH,
