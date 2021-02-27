@@ -20,7 +20,9 @@
 
         <title>AeroBot - A customizable, open-source discord bot</title>
 
-        <link href="style.css" rel="stylesheet" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/main.css" />
+        <link rel="stylesheet" href="./css/documentation.css" />
 
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
@@ -28,95 +30,159 @@
             rel="stylesheet"
         />
 
-        <link rel="shortcut icon" href="aero.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="./aero.png" type="image/x-icon" />
     </head>
     <body>
-        <main id="main">
-            <section class="invite-main">
-                <h1 class="bot-title" class="aero-bot">
-                    <span class="aero">Aero</span>Bot
-                </h1>
+        <article>
+            <nav class="tabs">
+                <div class="active tab" data-link="main">Home</div>
+                <div class="tab" data-link="documentation">Documentation</div>
+            </nav>
+            <section class="content">
+                <article id="main">
+                    <div>
+                        <section class="invite-main">
+                            <h1 class="bot-title" class="aero-bot">
+                                <span class="aero">Aero</span>Bot
+                            </h1>
 
-                <p>A general purpose bot that has many functions!</p>
+                            <p>
+                                A general purpose bot that has many functions!
+                            </p>
 
-                <div class="buttons">
-                    <a
-                        href="https://discord.com/api/oauth2/authorize?client_id=787460489427812363&permissions=8&scope=bot"
-                        target="_blank"
-                        class="invite"
-                    >
-                        <img
-                            src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/91_Discord_logo_logos-512.png"
-                            width="32"
-                            height="32"
-                        />
-                        Add to Discord
-                    </a>
+                            <div class="buttons">
+                                <a
+                                    href="https://discord.com/api/oauth2/authorize?client_id=787460489427812363&permissions=8&scope=bot"
+                                    target="_blank"
+                                    class="invite"
+                                >
+                                    <img
+                                        src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/91_Discord_logo_logos-512.png"
+                                        width="32"
+                                        height="32"
+                                    />
+                                    Add to Discord
+                                </a>
 
-                    <a href="#documentation">Documentation</a>
-                </div>
-            </section>
+                                <a href="">Support Server</a>
+                            </div>
+                        </section>
 
-            <section class="features">
-                <h2>What can adding AeroBot do for you?</h2>
+                        <section class="features">
+                            <h2>What can adding AeroBot do for you?</h2>
 
-                <h3>Moderation commands</h3>
+                            <h3>Moderation commands</h3>
 
-                <p>
-                    AeroBot's basic moderation commands are easy to use and
-                    reliable. They include ban, kick, mute, warn, and purge. If
-                    you seek extremely powerful moderation please use
-                    <a
-                        href="https://discord.com/oauth2/authorize?client_id=808056326881280041&scope=bot&permissions=8"
-                        >Kali</a
-                    >
-                    instead.
-                </p>
+                            <p>
+                                AeroBot's basic moderation commands are easy to
+                                use and reliable. They include ban, kick, mute,
+                                warn, and purge. If you seek extremely powerful
+                                moderation please use
+                                <a
+                                    href="https://discord.com/oauth2/authorize?client_id=808056326881280041&scope=bot&permissions=8"
+                                    >Kali</a
+                                >
+                                instead.
+                            </p>
 
-                <h3>Reaction Roles</h3>
+                            <h3>Reaction Roles</h3>
 
-                <p>
-                    AeroBot has a simple and easy to use system to add reaction
-                    roles to ANY message! No need to use a specific message sent
-                    by the bot, you can send your own message to use!
-                </p>
-            </section>
-        </main>
-
-        <article class="documentation" id="documentation">
-            <aside id="sidebar">
-                <h3>Documentation</h3>
-
-                <div class="links">
-                    <h4><a href="">category</a></h4>
-                    <div class="category">
-                        <a href="">command</a>
-                        <a href="">command</a>
-                        <a href="">command</a>
-                        <a href="">command</a>
-                        <a href="">command</a>
+                            <p>
+                                AeroBot has a simple and easy to use system to
+                                add reaction roles to ANY message! No need to
+                                use a specific message sent by the bot, you can
+                                send your own message to use!
+                            </p>
+                        </section>
                     </div>
-                </div>
-            </aside>
+                </article>
 
-            <section>
-                <div>
-                    <h2>Category</h2>
+                <article id="documentation">
+                    <aside class="sidebar">
+                        <h3>Documentation</h3>
 
-                    <div class="command">
-                        <h3>command</h3>
-                        <p>usage: command usage</p>
-                        <p>command description</p>
-                    </div>
-                </div>
+                        <div class="links">
+                            <h4><a href="">category</a></h4>
+                            <div class="category">
+                                <a href="">command</a>
+                                <a href="">command</a>
+                                <a href="">command</a>
+                                <a href="">command</a>
+                                <a href="">command</a>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <section>
+                        <div>
+                            <h2>Category</h2>
+
+                            <div class="command">
+                                <h3>
+                                    command
+                                    <span class="usage">command usage</span>
+                                </h3>
+                                <ul>
+                                    <li>alias</li>
+                                    <li>alias</li>
+                                </ul>
+                                <p>command description</p>
+                            </div>
+
+                            <div class="command">
+                                <h3>
+                                    command
+                                    <span class="usage">command usage</span>
+                                </h3>
+                                <ul>
+                                    <li>alias</li>
+                                    <li>alias</li>
+                                </ul>
+                                <p>command description</p>
+                            </div>
+                        </div>
+                    </section>
+                </article>
             </section>
         </article>
         <script>
-            if (!window.location.hash)
-                window.onbeforeunload = function () {
-                    window.scrollTo(0, 0);
-                };
-            else document.getElementById("main").remove();
+            const active = document.getElementById(
+                atob(window.location.hash.slice(1))
+            );
+
+            if (active) {
+                const tab = document.querySelector(`[data-link=${active.id}]`);
+
+                const old = document.querySelector(".active.tab");
+
+                old.classList.remove("active");
+
+                tab.classList.add("active");
+
+                active.style.zIndex = "10";
+            } else document.getElementById("main").style.zIndex = "10";
+
+            document.querySelectorAll(".tab").forEach((tab) => {
+                tab.addEventListener("click", function () {
+                    if (this.classList.contains("active")) return;
+
+                    const active = document.querySelector(".active.tab");
+
+                    const old = document.getElementById(active.dataset.link);
+
+                    old.style.zIndex = "-10";
+
+                    active.classList.remove("active");
+
+                    const page = document.getElementById(this.dataset.link);
+
+                    page.style.zIndex = "10";
+
+                    this.classList.add("active");
+
+                    window.location.hash = btoa(this.dataset.link);
+                });
+            });
         </script>
     </body>
 </html>

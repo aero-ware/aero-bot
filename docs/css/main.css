@@ -1,0 +1,71 @@
+#main {
+    overflow: auto;
+}
+
+#main > div {
+    margin-bottom: 2rem;
+}
+
+.top-nav {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.nav-title {
+    font-weight: bold;
+    padding-top: 7px;
+    padding-right: 10px;
+}
+
+.aero-bot {
+    font-family: "aero";
+}
+
+.aero {
+    color: #dc054a;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+.buttons a {
+    margin: 1rem;
+
+    color: #fafafa;
+
+    text-decoration: none;
+}
+
+.invite {
+    display: flex;
+    align-items: center;
+
+    color: white;
+}
+
+.invite img {
+    margin-right: 0.25rem;
+}
+
+.invite-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.bot-title {
+    font-family: "aero";
+
+    font-size: 48px;
+    margin: 0px;
+}
+
+.features {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+}

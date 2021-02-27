@@ -1,0 +1,90 @@
+@font-face {
+    font-family: "aero";
+    src: url(./fonts/sofachrome.regular.ttf);
+}
+
+html {
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+body {
+    margin: 0;
+    background-color: black;
+    color: white;
+    font-family: "Open Sans", sans-serif;
+}
+
+a {
+    color: #dc054a;
+    text-decoration: none;
+}
+
+body > article {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+}
+
+body > article article {
+    position: absolute;
+
+    height: 100%;
+
+    width: 100%;
+
+    flex: 1;
+
+    background-color: black;
+}
+
+@media (min-width: 800px) {
+    .invite-main {
+        min-height: 600px;
+    }
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #dc054a;
+}
+
+.tab {
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    width: 200px;
+    padding: 0.75rem 1rem 0.5rem;
+    border-top: 1px solid #dc054a;
+    border-left: 1px solid #dc054a;
+    border-right: 1px solid #dc054a;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.active {
+    cursor: auto;
+
+    color: #dc054a;
+
+    border-bottom: 1px solid black;
+}
+
+.active::after {
+    content: "";
+    position: absolute;
+
+    left: 0;
+    top: calc(100% + 1px);
+
+    height: 1px;
+    width: 100%;
+
+    background-color: black;
+}
+
+.content {
+    flex: 1;
+}
