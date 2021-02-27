@@ -14,13 +14,12 @@
     "license": "MIT",
     "dependencies": {
         "@aeroware/aeroclient": "^3.6.1",
-        "@aeroware/structures": "^1.0.1",
+        "@aeroware/structures": "^1.0.0",
         "@discordjs/opus": "^0.4.0",
         "@top-gg/sdk": "^3.0.6",
         "@types/cors": "^2.8.10",
         "@types/express": "^4.17.11",
         "@types/mongoose-sequence": "^3.0.4",
-        "@types/yt-search": "^2.3.0",
         "axios": "^0.21.1",
         "bufferutil": "^4.0.3",
         "canvacord": "^5.0.8",
@@ -38,7 +37,6 @@
         "topgg-autoposter": "^1.1.3",
         "typescript": "^4.1.2",
         "utf-8-validate": "^5.0.3",
-        "yt-search": "^2.7.3",
         "ytdl-core": "^4.5.0"
     },
     "devDependencies": {
