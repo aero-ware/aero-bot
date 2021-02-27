@@ -117,3 +117,5 @@ dist
 
 # eval command (beta only)
 eval.ts
+
+.idea/discord.xml
