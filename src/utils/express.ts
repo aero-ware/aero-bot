@@ -12,5 +12,5 @@ export default function runExpress() {
         res.status(200).send(client.commands);
     });
 
-    app.listen(3000, () => client.logger.success("Express online"));
+    app.listen(80, () => client.logger.success("Express online"));
 }
