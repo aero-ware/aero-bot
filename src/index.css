@@ -9,6 +9,11 @@
     src: url("./fonts/aero.ttf");
 }
 
+html {
+    overflow-x: hidden;
+    overscroll-behavior: none;
+}
+
 .aero-font {
     font-family: aero;
 }

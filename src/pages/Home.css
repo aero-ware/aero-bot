@@ -32,7 +32,7 @@ h2.header {
 
 @media (prefers-color-scheme: dark) {
     .home {
-        background-color: #222;
+        background-color: #111;
         color: white;
     }
 

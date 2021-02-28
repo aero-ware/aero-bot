@@ -6,8 +6,8 @@
     padding: 5px;
     background: rgb(202, 202, 202);
     color: black;
-    height: 5vh;
-    width: 100vw;
+    height: 64px;
+    width: 100%;
 }
 
 a.aero-font {
@@ -17,7 +17,7 @@ a.aero-font {
 
 .nav-link {
     margin: 0.5rem;
-    color: #333;
+    color: #111;
     font-family: Montserrat, sans-serif;
 }
 
@@ -40,7 +40,7 @@ a.aero-font {
 
 @media (prefers-color-scheme: dark) {
     .top-navbar {
-        background-color: rgb(27, 27, 27);
+        background-color: black;
         color: white;
     }
 
