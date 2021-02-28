@@ -4,10 +4,10 @@ import "./Navbar.css";
 const Navbar = () => {
     return (
         <nav className="top-navbar text-black dark:text-white">
-            <a className="aero-font" href="/#/">
+            <a className="aero-font" href="aero-bot/#/">
                 <span className="aero-red">Aero</span>Bot
             </a>
-            <a className="nav-link" href="/#/commands">
+            <a className="nav-link" href="/aero-bot/#/commands">
                 Commands
             </a>
             <a
