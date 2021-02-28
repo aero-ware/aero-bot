@@ -1,0 +1,50 @@
+.commands {
+    background-color: #111;
+    color: white;
+    padding-top: 0.5rem;
+}
+
+.commands-sidebar {
+    padding-left: 2rem;
+    font-family: Montserrat;
+    padding-right: 6rem;
+    border-right: 3px solid #e8064d;
+}
+
+.commands-sidebar .aside-link {
+    padding-bottom: 0.25rem;
+}
+
+.commands article {
+    padding-left: 1rem;
+    width: 75%;
+}
+
+.commands h3 {
+    font-size: 2rem;
+}
+
+.commands article hr {
+    margin-top: 0.5rem;
+    border: 1px solid #a5a5a5;
+    max-width: 50%;
+}
+
+.commands .pre-commands {
+    font-size: 1.5rem;
+    font-family: Montserrat;
+}
+
+.commands-main code {
+    color: #fafa1bc9;
+}
+
+.command-info {
+    padding-bottom: 0.5rem;
+    max-width: 75%;
+    border-bottom: 1px solid #ccc;
+}
+
+.command-info:last-child {
+    border-bottom: none;
+}
