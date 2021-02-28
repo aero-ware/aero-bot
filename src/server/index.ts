@@ -1,8 +1,8 @@
-import express, { json } from "express";
 import cors from "cors";
+import express, { json } from "express";
 import client from "../index";
 
-export default function runExpress() {
+export default function app() {
     const app = express();
 
     app.use(cors());

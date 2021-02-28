@@ -3,8 +3,10 @@ import { Intents } from "discord.js";
 import { config as dotenv } from "dotenv";
 import CONFIG from "../config.json";
 import botbans, { IBotBanInfo } from "./models/Botban";
+import app from "./server";
 
 dotenv();
+app();
 
 const client = new AeroClient(
     {

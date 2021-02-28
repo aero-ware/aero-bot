@@ -1,10 +1,9 @@
 import AeroClient from "@aeroware/aeroclient";
 import { EventHandler } from "@aeroware/aeroclient/dist/types";
 import { TextChannel } from "discord.js";
-import AutoPoster from "topgg-autoposter";
 import repl from "repl";
+import AutoPoster from "topgg-autoposter";
 import CONFIG from "../../config.json";
-import runExpress from "../utils/express";
 import mongo from "../utils/mongo";
 import periodic from "../utils/periodic";
 
@@ -30,8 +29,6 @@ export default {
         });
 
         await mongo(this, process.env.mongoPath!);
-
-        runExpress();
 
         periodic(this);
 
