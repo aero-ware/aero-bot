@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React from "react";
 import { useEffect } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
@@ -28,15 +29,42 @@ const App: React.FC = () => {
         });
 
         /* @cursorsdottsx's url auth stuff */
-        const url = new URL(window.location.href);
+        // code from holy stack overflow, DO NOT TOUCH
+        // yes theres == instead of === but dont question it
+        const getJsonFromUrl = (url: string) => {
+            let question = url.indexOf("?");
+            let hash = url.indexOf("#");
+            if (hash == -1 && question == -1) return {};
+            if (hash == -1) hash = url.length;
+            let query =
+                question == -1 || hash == question + 1
+                    ? url.substring(hash)
+                    : url.substring(question + 1, hash);
+            let result: any = {};
+            query.split("&").forEach((part) => {
+                if (!part) return;
+                part = part.split("+").join(" ");
+                let eq = part.indexOf("=");
+                let key = eq > -1 ? part.substr(0, eq) : part;
+                let val =
+                    eq > -1 ? decodeURIComponent(part.substr(eq + 1)) : "";
+                let idx = key.indexOf("[");
+                if (idx == -1) result[decodeURIComponent(key)] = val;
+                else {
+                    let to = key.indexOf("]", idx);
+                    let index = decodeURIComponent(key.substring(idx + 1, to));
+                    key = decodeURIComponent(key.substring(0, idx));
+                    if (!result[key]) result[key] = [];
+                    if (!index) result[key].push(val);
+                    else result[key][index] = val;
+                }
+            });
+            return result;
+        };
 
-        let access = url.searchParams.get("access");
-        let refresh = url.searchParams.get("refresh");
+        const { access, refresh } = getJsonFromUrl(window.location.href);
 
         if (access && refresh) {
-            access = decodeURIComponent(access);
-            refresh = decodeURIComponent(refresh);
-
             document.cookie = `access=${access};secure;max-age=31536000`;
             document.cookie = `refresh=${refresh};secure;max-age=31536000`;
 
