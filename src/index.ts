@@ -6,6 +6,7 @@ import botbans, { IBotBanInfo } from "./models/Botban";
 import app from "./server";
 
 dotenv();
+
 app();
 
 const client = new AeroClient(

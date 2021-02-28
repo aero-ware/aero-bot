@@ -12,7 +12,6 @@
         "strictPropertyInitialization": true,
         "noImplicitThis": true,
         "alwaysStrict": true,
-        "noUnusedParameters": true,
         "noImplicitReturns": true,
         "moduleResolution": "node",
         "esModuleInterop": true,
