@@ -1,5 +1,7 @@
 import express, { json } from "express";
 import cors from "cors";
+import https from "https";
+import fs from "fs";
 import client from "../index";
 
 export default function runExpress() {
@@ -12,5 +14,20 @@ export default function runExpress() {
         res.status(200).send(client.commands);
     });
 
-    app.listen(80, () => client.logger.success("Express online"));
+    if (process.env.NODE_ENV === "dev")
+        app.listen(80, () => client.logger.success("Express online"));
+    else if (process.env.NODE_ENV === "production")
+        https
+            .createServer(
+                {
+                    key: fs.readFileSync(
+                        "/etc/letsencrypt/live/aero-host.eastus.cloudapp.azure.com/privkey.pem"
+                    ),
+                    cert: fs.readFileSync(
+                        "/etc/letsencrypt/live/aero-host.eastus.cloudapp.azure.com/fullchain.pem"
+                    ),
+                },
+                app
+            )
+            .listen(80);
 }
