@@ -14,20 +14,21 @@ export default function runExpress() {
         res.status(200).send(client.commands);
     });
 
-    if (process.env.NODE_ENV === "dev")
-        app.listen(80, () => client.logger.success("Express online"));
-    else if (process.env.NODE_ENV === "production")
-        https
-            .createServer(
-                {
-                    key: fs.readFileSync(
-                        "/etc/letsencrypt/live/aero-host.eastus.cloudapp.azure.com/privkey.pem"
-                    ),
-                    cert: fs.readFileSync(
-                        "/etc/letsencrypt/live/aero-host.eastus.cloudapp.azure.com/fullchain.pem"
-                    ),
-                },
-                app
-            )
-            .listen(80);
+    // if (process.env.NODE_ENV === "dev")
+    //     app.listen(80, () => client.logger.success("Express online"));
+    // else if (process.env.NODE_ENV === "production")
+    //     https
+    //         .createServer(
+    //             {
+    //                 key: fs.readFileSync(
+    //                     "/etc/letsencrypt/live/aero-host.eastus.cloudapp.azure.com/privkey.pem"
+    //                 ),
+    //                 cert: fs.readFileSync(
+    //                     "/etc/letsencrypt/live/aero-host.eastus.cloudapp.azure.com/fullchain.pem"
+    //                 ),
+    //             },
+    //             app
+    //         )
+    //         .listen(80);
+    app.listen(80, () => client.logger.success("Express server online"));
 }
