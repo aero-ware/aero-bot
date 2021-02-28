@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/aero-bot/static/css/main.5318e151.chunk.css",
+    "main.js": "/aero-bot/static/js/main.20c3f2a4.chunk.js",
+    "main.js.map": "/aero-bot/static/js/main.20c3f2a4.chunk.js.map",
+    "runtime-main.js": "/aero-bot/static/js/runtime-main.1b811e92.js",
+    "runtime-main.js.map": "/aero-bot/static/js/runtime-main.1b811e92.js.map",
+    "static/js/2.3dcd7a75.chunk.js": "/aero-bot/static/js/2.3dcd7a75.chunk.js",
+    "static/js/2.3dcd7a75.chunk.js.map": "/aero-bot/static/js/2.3dcd7a75.chunk.js.map",
+    "static/js/3.d5545957.chunk.js": "/aero-bot/static/js/3.d5545957.chunk.js",
+    "static/js/3.d5545957.chunk.js.map": "/aero-bot/static/js/3.d5545957.chunk.js.map",
+    "index.html": "/aero-bot/index.html",
+    "static/css/main.5318e151.chunk.css.map": "/aero-bot/static/css/main.5318e151.chunk.css.map",
+    "static/js/2.3dcd7a75.chunk.js.LICENSE.txt": "/aero-bot/static/js/2.3dcd7a75.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/aero-bot/static/media/aero.364d576d.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1b811e92.js",
+    "static/js/2.3dcd7a75.chunk.js",
+    "static/css/main.5318e151.chunk.css",
+    "static/js/main.20c3f2a4.chunk.js"
+  ]
+}
