@@ -16,8 +16,8 @@ export default function runExpress() {
 
     if (process.env.NODE_ENV === "dev")
         app.listen(80, () => client.logger.success("Express online"));
-    else if (process.env.NODE_ENV === "production")
-        https
+    else if (process.env.NODE_ENV === "production") {
+        const server = https
             .createServer(
                 {
                     key: fs.readFileSync(
@@ -29,5 +29,8 @@ export default function runExpress() {
                 },
                 app
             )
-            .listen(80);
+            .listen(443);
+        // @ts-ignore
+        server.on("listening", () => client.logger.success(`Listening on port ${server.address().port}!`));
+    }
 }
