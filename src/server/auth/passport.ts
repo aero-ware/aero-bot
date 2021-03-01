@@ -31,6 +31,8 @@ const strategy = new Strategy(
         scope: ["identify", "guilds"],
     },
     async (accessToken, refreshToken, profile, done) => {
+        console.log(profile);
+        
         try {
             let user = await dashboardUsers.findById(profile.id);
 
