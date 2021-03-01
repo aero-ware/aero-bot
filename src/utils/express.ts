@@ -30,7 +30,13 @@ export default function runExpress() {
                 app
             )
             .listen(443);
-        // @ts-ignore
-        server.on("listening", () => client.logger.success(`Listening on port ${server.address().port}!`));
+
+        server.on("listening", () => {
+            client.logger.success(
+                // @ts-ignore
+                `Backend active on port ${server.address().port}`
+            );
+        });
     }
+    app.listen(3000, () => client.logger.success("Express server online"));
 }
