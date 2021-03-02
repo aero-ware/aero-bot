@@ -3,6 +3,8 @@ import MongoStore from "connect-mongo";
 import cors from "cors";
 import Crypto from "crypto-js";
 import express, { json, urlencoded } from "express";
+import fs from "fs";
+import https from "https";
 import session from "express-session";
 import passport from "passport";
 import client from "../index";
@@ -124,5 +126,31 @@ export default async function app() {
         });
     });
 
-    app.listen(80, () => client.logger.success("Express online"));
+    if (dev) {
+        const server = app.listen(80);
+
+        server.on("listening", () => {
+            client.logger.success(
+                // @ts-ignore
+                `HTTP Server online on port ${server.address().port}`
+            );
+        });
+    } else {
+        const server = https
+            .createServer(
+                {
+                    cert: fs.readFileSync(process.env.SSL_CERT_PATH!),
+                    key: fs.readFileSync(process.env.SSL_KEY_PATH!),
+                },
+                app
+            )
+            .listen(443);
+
+        server.on("listening", () =>
+            client.logger.success(
+                // @ts-ignore
+                `HTTPS Server online on port ${server.address().port}`
+            )
+        );
+    }
 }
