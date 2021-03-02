@@ -3,8 +3,11 @@ import { Intents } from "discord.js";
 import { config as dotenv } from "dotenv";
 import CONFIG from "../config.json";
 import botbans, { IBotBanInfo } from "./models/Botban";
+import app from "./server";
 
 dotenv();
+
+app();
 
 const client = new AeroClient(
     {
@@ -33,26 +36,6 @@ const client = new AeroClient(
         dev:
             process.env.NODE_ENV !== "production"
                 ? {
-                      dontLoad: {
-                          folders: [
-                              "data",
-                              "economy",
-                              "fun",
-                              "leveling",
-                              "misc",
-                              "moderation",
-                              "tools",
-                              "utility",
-                          ],
-                          events: [
-                              "guildCreate",
-                              "guildDelete",
-                              "guildMemberAdd",
-                              "messageDelete",
-                              "messageReactionAdd",
-                              "messageReactionRemove",
-                          ],
-                      },
                       eval: {
                           console: true,
                           command: true,
