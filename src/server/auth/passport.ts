@@ -3,6 +3,7 @@ import passport from "passport";
 import { Strategy } from "passport-discord";
 import refresh from "passport-oauth2-refresh";
 import dashboardUsers from "../../models/DashboardUser";
+import CONFIG from "../../../config.json";
 
 passport.deserializeUser<string>(async (id, done) => {
     try {
@@ -22,8 +23,8 @@ passport.serializeUser<string>(async (user, done) => {
 
 const strategy = new Strategy(
     {
-        clientID: process.env.clientID!,
-        clientSecret: process.env.clientSecret!,
+        clientID: process.env.CLIENT_ID!,
+        clientSecret: process.env.CLIENT_SECRET!,
         callbackURL:
             process.env.NODE_ENV !== "production"
                 ? process.env.DEV_CALLBACK
@@ -32,7 +33,7 @@ const strategy = new Strategy(
     },
     async (accessToken, refreshToken, profile, done) => {
         console.log(profile);
-        
+
         try {
             let user = await dashboardUsers.findById(profile.id);
 

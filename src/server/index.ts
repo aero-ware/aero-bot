@@ -127,14 +127,9 @@ export default async function app() {
     });
 
     if (dev) {
-        const server = app.listen(80);
-
-        server.on("listening", () => {
-            client.logger.success(
-                // @ts-ignore
-                `HTTP Server online on port ${server.address().port}`
-            );
-        });
+        app.listen(80, () =>
+            client.logger.success("HTTP Server online on port 80")
+        );
     } else {
         const server = https
             .createServer(

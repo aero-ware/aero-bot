@@ -11,7 +11,7 @@ export default {
     name: "ready",
     once: true,
     async callback(this: AeroClient) {
-        if (CONFIG.CLIENT_ID! === this.user!.id) {
+        if (process.env.NODE_ENV !== "dev") {
             const ap = AutoPoster(process.env.topGGToken!, this);
 
             ap.on("posted", () => {
@@ -31,8 +31,5 @@ export default {
         await mongo(this, process.env.mongoPath!);
 
         periodic(this);
-
-        if (process.env.NODE_ENV === "dev")
-            repl.start("> ").context.client = this;
     },
 } as EventHandler;
