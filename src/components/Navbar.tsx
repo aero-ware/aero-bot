@@ -1,15 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
     return (
         <nav className="top-navbar text-black dark:text-white">
-            <a className="aero-font" href="aero-bot/#/">
+            <Link className="aero-font" to="/">
                 <span className="aero-red">Aero</span>Bot
-            </a>
-            <a className="nav-link" href="/aero-bot/#/commands">
+            </Link>
+            <Link className="nav-link" to="/commands">
                 Commands
-            </a>
+            </Link>
             <a
                 href="https://top.gg/bot/787460489427812363/invite"
                 className="nav-link"
