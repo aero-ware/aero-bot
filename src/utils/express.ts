@@ -15,17 +15,15 @@ export default function runExpress() {
     });
 
     if (process.env.NODE_ENV === "dev")
-        app.listen(80, () => client.logger.success("Express online"));
+        app.listen(80, () =>
+            client.logger.success("HTTP server online on port 80")
+        );
     else if (process.env.NODE_ENV === "production") {
         const server = https
             .createServer(
                 {
-                    key: fs.readFileSync(
-                        "/etc/letsencrypt/live/aero-host.eastus.cloudapp.azure.com/privkey.pem"
-                    ),
-                    cert: fs.readFileSync(
-                        "/etc/letsencrypt/live/aero-host.eastus.cloudapp.azure.com/fullchain.pem"
-                    ),
+                    key: fs.readFileSync(process.env.SSL_KEY_PATH!),
+                    cert: fs.readFileSync(process.env.SSL_CERT_PATH!),
                 },
                 app
             )
@@ -34,9 +32,8 @@ export default function runExpress() {
         server.on("listening", () => {
             client.logger.success(
                 // @ts-ignore
-                `Backend active on port ${server.address().port}`
+                `HTTPS server online on port ${server.address().port}`
             );
         });
     }
-    app.listen(3000, () => client.logger.success("Express server online"));
 }
