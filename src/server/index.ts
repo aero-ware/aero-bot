@@ -62,7 +62,7 @@ export default async function app() {
                 if (err) return next(err);
 
                 return res.redirect(
-                    `http://aero-ware.github.io/aero-bot/?id=${
+                    `${process.env.WEBPAGE_URL!}/?id=${
                         user._id
                     }&access=${encodeURIComponent(
                         await argon2.hash(
@@ -88,7 +88,8 @@ export default async function app() {
         if (req.user) req.logOut();
 
         return res.redirect(
-            `http://aero-ware.github.io/aero-bot/?id=undefined&access=undefined&refresh=undefined`
+            `${process.env
+                .WEBPAGE_URL!}?id=undefined&access=undefined&refresh=undefined`
         );
     });
 
