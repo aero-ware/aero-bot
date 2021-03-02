@@ -46,12 +46,12 @@ const strategy = new Strategy(
 
             const encryptedAccessToken = Crypto.AES.encrypt(
                 accessToken,
-                process.env.cryptoAccess!
+                process.env.CRYPTO_ACCESS!
             ).toString();
 
             const encryptedRefreshToken = Crypto.AES.encrypt(
                 refreshToken,
-                process.env.cryptoRefresh!
+                process.env.CRYPTO_REFRESH!
             ).toString();
 
             if (user) {

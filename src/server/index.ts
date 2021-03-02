@@ -68,14 +68,14 @@ export default async function app() {
                         await argon2.hash(
                             Crypto.AES.decrypt(
                                 user.accessToken,
-                                process.env.cryptoAccess!
+                                process.env.CRYPTO_ACCESS!
                             ).toString(Crypto.enc.Utf8)
                         )
                     )}&refesh=${encodeURIComponent(
                         await argon2.hash(
                             Crypto.AES.decrypt(
                                 user.refreshToken,
-                                process.env.cryptoRefresh!
+                                process.env.CRYPTO_REFRESH!
                             ).toString(Crypto.enc.Utf8)
                         )
                     )}`
@@ -106,14 +106,14 @@ export default async function app() {
                 accessToken,
                 Crypto.AES.decrypt(
                     user.accessToken,
-                    process.env.cryptoAccess!
+                    process.env.CRYPTO_ACCESS!
                 ).toString(Crypto.enc.Utf8)
             )) ||
             !(await argon2.verify(
                 refreshToken,
                 Crypto.AES.decrypt(
                     user.refreshToken,
-                    process.env.cryptoRefresh!
+                    process.env.CRYPTO_REFRESH!
                 ).toString(Crypto.enc.Utf8)
             ))
         )
