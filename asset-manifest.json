@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/aero-bot/static/css/main.5318e151.chunk.css",
-    "main.js": "/aero-bot/static/js/main.d94f1bdf.chunk.js",
-    "main.js.map": "/aero-bot/static/js/main.d94f1bdf.chunk.js.map",
+    "main.js": "/aero-bot/static/js/main.50cc0c38.chunk.js",
+    "main.js.map": "/aero-bot/static/js/main.50cc0c38.chunk.js.map",
     "runtime-main.js": "/aero-bot/static/js/runtime-main.1b811e92.js",
     "runtime-main.js.map": "/aero-bot/static/js/runtime-main.1b811e92.js.map",
     "static/js/2.3d766134.chunk.js": "/aero-bot/static/js/2.3d766134.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.1b811e92.js",
     "static/js/2.3d766134.chunk.js",
     "static/css/main.5318e151.chunk.css",
-    "static/js/main.d94f1bdf.chunk.js"
+    "static/js/main.50cc0c38.chunk.js"
   ]
 }
