@@ -1,0 +1,14 @@
+.command code {
+    color: #fafa1bc9;
+}
+
+.command {
+    padding-bottom: 0.5rem;
+    max-width: 75%;
+    border-bottom: 1px solid #ccc;
+}
+
+.command:last-child {
+    border-bottom: none;
+    padding-bottom: 1rem;
+}

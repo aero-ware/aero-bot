@@ -1,18 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ms from "ms";
 import "./Commands.css";
+import Command from "../components/Command";
+import { ICommand } from "../types";
 
 const Commands = () => {
-    const [commands, setCommands] = useState<any[]>([]);
+    const [commands, setCommands] = useState<ICommand[]>([]);
 
     const getCommands = async () => {
         const { data } = await axios.get(
             "https://aero-host.eastus.cloudapp.azure.com/commands"
         );
 
-        return data;
+        return data as ICommand[];
     };
 
     useEffect(() => {
@@ -45,41 +46,10 @@ const Commands = () => {
                     experience much better for mods, admins, or even the average
                     discord user!
                 </span>
-                {commands.map((e) => {
-                    if (e.hidden || e.testOnly) return null;
+                {commands.map((c) => {
+                    if (c.hidden || c.testOnly) return null;
 
-                    return (
-                        <div key={e.name} id={e.name} className="command-info">
-                            <h3>
-                                {">"}
-                                {e.name}
-                            </h3>
-                            {e.guildOnly ? <p>Server only</p> : null}
-                            {e.dmOnly ? <p>DM only</p> : null}
-                            {e.guarded ? <p>Cannot be disabled</p> : null}
-                            <p>
-                                <b>Description:</b> {e.description}
-                            </p>
-                            <p>
-                                <b>Details:</b> {e.details}
-                            </p>
-                            <p>
-                                <b>Usage:</b>{" "}
-                                <code>
-                                    {">"}
-                                    {e.name} {e.usage}
-                                </code>
-                            </p>
-                            <p>
-                                <b>Cooldown:</b>{" "}
-                                {e.cooldown
-                                    ? ms(e.cooldown * 1000, {
-                                          long: true,
-                                      })
-                                    : "none"}
-                            </p>
-                        </div>
-                    );
+                    return <Command command={c} key={c.name} />;
                 })}
             </article>
         </div>

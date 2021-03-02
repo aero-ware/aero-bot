@@ -2,6 +2,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import CookieConsent from "react-cookie-consent";
 import Navbar from "./components/Navbar";
 import Commands from "./pages/Commands";
 import Home from "./pages/Home";
@@ -85,6 +86,9 @@ const App: React.FC = () => {
                             <Home />
                         </Route>
                     </Switch>
+                    <CookieConsent
+                        children="This page only uses cookies essential for operation of the website."
+                    />
                 </div>
             </Router>
         </div>
