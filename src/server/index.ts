@@ -71,7 +71,7 @@ export default async function app() {
                                 process.env.CRYPTO_ACCESS!
                             ).toString(Crypto.enc.Utf8)
                         )
-                    )}&refesh=${encodeURIComponent(
+                    )}&refresh=${encodeURIComponent(
                         await argon2.hash(
                             Crypto.AES.decrypt(
                                 user.refreshToken,
@@ -88,7 +88,7 @@ export default async function app() {
         if (req.user) req.logOut();
 
         return res.redirect(
-            `http://aero-ware.github.io/aero-bot/?access=undefined&refesh=undefined`
+            `http://aero-ware.github.io/aero-bot/?id=undefined&access=undefined&refresh=undefined`
         );
     });
 
