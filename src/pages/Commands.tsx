@@ -9,7 +9,7 @@ const Commands = () => {
 
     const getCommands = async () => {
         const { data } = await axios.get(
-            "http://aero-host.eastus.cloudapp.azure.com:3000/commands"
+            "https://aero-host.eastus.cloudapp.azure.com/commands"
         );
 
         return data;
