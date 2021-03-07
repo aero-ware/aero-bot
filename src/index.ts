@@ -1,4 +1,4 @@
-import AeroClient from "@aeroware/aeroclient";
+import AeroClient, { Arguments } from "@aeroware/aeroclient";
 import { Intents } from "discord.js";
 import { config as dotenv } from "dotenv";
 import CONFIG from "../config.json";
@@ -75,5 +75,7 @@ client.use(async ({ message, args, command }, next, stop) => {
 
     return next();
 });
+
+Arguments.use(client);
 
 export default client;

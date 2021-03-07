@@ -7,8 +7,11 @@ import fs from "fs";
 import https from "https";
 import session from "express-session";
 import passport from "passport";
+import { Webhook } from "@top-gg/sdk";
 import client from "../index";
+import CONFIG from "../../config.json";
 import dashboardUsers from "../models/DashboardUser";
+import { MessageEmbed, TextChannel } from "discord.js";
 
 export default async function app() {
     const dev = process.env.NODE_ENV !== "production";
@@ -16,6 +19,8 @@ export default async function app() {
     await import("./auth/passport");
 
     const app = express();
+
+    const topGGWebhook = new Webhook(process.env.TOPGG_WEBHOOK_AUTH);
 
     app.use(cors());
     app.use(json());
@@ -125,6 +130,58 @@ export default async function app() {
             guilds: user.guilds,
         });
     });
+
+    app.post(
+        "/topgg",
+        topGGWebhook.middleware(),
+        async (req, res): Promise<any> => {
+            if (req.get("authorization") !== process.env.TOPGG_WEBHOOK_AUTH)
+                return res.sendStatus(403);
+
+            try {
+                const voteChannel = await client.channels.fetch(
+                    CONFIG.VOTE_LOG_CHANNEL
+                );
+                if (!(voteChannel instanceof TextChannel)) {
+                    client.logger.error(
+                        `Vote log channel ${voteChannel.id} is not a text channel.`
+                    );
+                    return;
+                }
+
+                if (!req.vote) return;
+
+                if (req.vote.type === "upvote") {
+                    const user = await client.users.fetch(req.vote.user);
+
+                    voteChannel.send(
+                        new MessageEmbed()
+                            .setTitle("User Voted")
+                            .setThumbnail(
+                                user.displayAvatarURL({
+                                    dynamic: true,
+                                    format: "png",
+                                })
+                            )
+                            .addField("User", user.tag, true)
+                            .addField(
+                                "Weekend Bonus",
+                                req.vote.isWeekend ? "Yes" : "No",
+                                false
+                            )
+                            .addField("Rewards", "TBA", false)
+                    );
+                } else if (req.vote.type === "test")
+                    client.logger.success("Top.GG Webhook Test Success!");
+            } catch (e) {
+                client.logger.error(
+                    `${CONFIG.VOTE_LOG_CHANNEL} is not a valid channel.`
+                );
+            } finally {
+                res.sendStatus(200);
+            }
+        }
+    );
 
     if (dev) {
         app.listen(80, () =>
