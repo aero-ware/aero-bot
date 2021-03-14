@@ -1,5 +1,17 @@
 import { Command } from "@aeroware/aeroclient/dist/types";
 import { Guild, MessageEmbed } from "discord.js";
+import {
+    REGION_AU,
+    REGION_BR,
+    REGION_EU,
+    REGION_HK,
+    REGION_IN,
+    REGION_JP,
+    REGION_RU,
+    REGION_SA,
+    REGION_SG,
+    REGION_US,
+} from "../../utils/emojis";
 
 export default {
     name: "server",
@@ -9,6 +21,53 @@ export default {
     guildOnly: true,
     callback({ message }) {
         const guild = message.guild!;
+
+        let region: string;
+        switch (guild.region.toLowerCase()) {
+            case "singapore":
+                region = `${REGION_SG} Singapore`;
+                break;
+
+            case "southafrica":
+                region = `${REGION_SA} South Africa`;
+                break;
+
+            case "russia":
+                region = `${REGION_RU} Russia`;
+                break;
+
+            case "japan":
+                region = `${REGION_JP} Japan`;
+                break;
+
+            case "india":
+                region = `${REGION_IN} India`;
+                break;
+
+            case "honkkong":
+                region = `${REGION_HK} Hong Kong`;
+                break;
+
+            case "europe":
+                region = `${REGION_EU} Europe`;
+                break;
+
+            case "brazil":
+                region = `${REGION_BR} Brazil`;
+                break;
+
+            case "sydney":
+                region = `${REGION_AU} Sydney`;
+                break;
+
+            default:
+                region = `${REGION_US} US ${
+                    guild.region.split("-")[1]?.charAt(0).toUpperCase() +
+                    guild.region.split("-")[1]?.substr(1).toLowerCase()
+                }`;
+                break;
+        }
+
         message.channel.send(
             new MessageEmbed()
                 .setTitle(guild.name)
@@ -70,7 +129,7 @@ export default {
                     },
                     {
                         name: "Region",
-                        value: guild.region,
+                        value: region,
                         inline: true,
                     }
                 )

@@ -1,18 +1,19 @@
+import { Arguments } from "@aeroware/aeroclient";
 import { Command } from "@aeroware/aeroclient/dist/types";
+import { GuildMember } from "discord.js";
 
 export default {
     name: "simjoin",
     guildOnly: true,
-    minArgs: 1,
     hidden: true,
     category: "Tools",
     guarded: true,
-    usage: "<member/id>",
+    usage: "[member/id]",
+    metasyntax: Arguments.compile("[member]"),
     staffOnly: true,
-    callback({ client, message, args }) {
-        const mem =
-            message.mentions.members?.first() ||
-            message.guild!.members.cache.get(args[0]);
+    callback({ client, message, parsed }) {
+        const mem = parsed[0] || message.member!;
+        if (!(mem instanceof GuildMember)) return;
         if (mem) client.emit("guildMemberAdd", mem);
         else message.channel.send("Invalid GuildMember");
     },

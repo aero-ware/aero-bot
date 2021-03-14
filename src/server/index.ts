@@ -170,6 +170,8 @@ export default async function app() {
                                 false
                             )
                             .addField("Rewards", "TBA", false)
+                            .setColor("RANDOM")
+                            .setTimestamp()
                     );
                 } else if (req.vote.type === "test")
                     client.logger.success("Top.GG Webhook Test Success!");

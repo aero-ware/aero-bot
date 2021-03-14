@@ -1,6 +1,8 @@
 import { EventHandler } from "@aeroware/aeroclient/dist/types";
 import { DMChannel, GuildChannel, MessageEmbed } from "discord.js";
+import guilds from "../models/Guild";
 import logEmbed from "../utils/logging";
+import muteOverrides from "../utils/mute-overrides";
 
 export default {
     name: "channelCreate",
@@ -22,5 +24,14 @@ export default {
                 .setColor("RANDOM")
                 .setTimestamp()
         );
+
+        handleMuteOverrides(channel);
     },
 } as EventHandler;
+
+async function handleMuteOverrides(channel: GuildChannel) {
+    const mutedRoleId = (await guilds.findById(channel.guild.id))?.mutedRoleId;
+    if (!mutedRoleId) return;
+
+    muteOverrides(channel, mutedRoleId);
+}

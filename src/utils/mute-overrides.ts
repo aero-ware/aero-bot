@@ -6,6 +6,19 @@ import {
     RoleResolvable,
 } from "discord.js";
 
+/**
+ * Applies permission overrides to a channel so that a given role is muted.
+ * Denies the following permissions:
+ *
+ * | Channel Type | Channel Permissions |
+ * | --- | --- |
+ * | VoiceChannel | CONNECT |
+ * | TextChannel | SEND_MESSAGES |
+ * | CategoryChannel | CONNECT, SEND_MESSAGES |
+ *
+ * @param channel The channel to apply muted role overrides to
+ * @param role The role that is being muted
+ */
 export default function muteOverrides(
     channel: GuildChannel,
     role: RoleResolvable
