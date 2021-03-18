@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Home.css";
 
 const Home = () => {
@@ -9,7 +10,10 @@ const Home = () => {
                     <span className="aero-red">Aero</span>Bot
                 </h1>
                 <span className="text-xl">
-                    <h2 className="header">A truly multi-purpose discord bot that can handle all your needs!</h2>
+                    <h2 className="header">
+                        A truly multi-purpose discord bot that can handle all
+                        your needs!
+                    </h2>
                 </span>
                 <div className="flex flex-row place-items-center">
                     <a
@@ -22,9 +26,9 @@ const Home = () => {
                     >
                         <i className="fab fa-discord" /> Add to Discord
                     </a>
-                    <a className="btn" role="button" href="/commands">
+                    <Link className="btn" role="button" to="/commands">
                         See Commands
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
