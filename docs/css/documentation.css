@@ -1,0 +1,134 @@
+#documentation {
+    border-top: 1px solid #dc054a;
+
+    display: flex;
+
+    flex-direction: column-reverse;
+}
+
+#documentation section {
+    flex: 1;
+
+    overflow: auto;
+
+    max-height: calc(100vh - 250px - 2rem);
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#documentation section > div {
+    padding: 1rem;
+
+    max-width: 600px;
+}
+
+#documentation section::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+
+    padding: 1rem;
+
+    width: 100%;
+
+    overflow: auto;
+
+    max-height: 250px;
+
+    border-top: 2px solid #dc054a;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar h3 {
+    margin: 0.5rem 0;
+}
+
+.category {
+    margin-bottom: 2rem;
+}
+
+.category a {
+    display: block;
+}
+
+.links {
+    flex: 1;
+
+    overflow: auto;
+}
+
+.links h4 {
+    margin: 1rem 0;
+}
+
+.links a {
+    color: #fafafa;
+    margin: 0.5rem 0;
+}
+
+@media (min-width: 800px) {
+    #documentation {
+        flex-direction: row;
+    }
+
+    #documentation section {
+        max-height: calc(100vh + 3rem);
+    }
+
+    #documentation section > div {
+        margin-top: 0;
+
+        padding: 1.5rem;
+
+        margin-bottom: 3rem;
+    }
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+
+        padding: 1.5rem;
+
+        width: 200px;
+
+        overflow: auto;
+
+        min-height: 100vh;
+
+        border-top: none;
+        border-right: 2px solid #dc054a;
+    }
+}
+
+.command {
+    margin: 0.5rem 0;
+}
+
+.command h3 {
+    margin: 1rem 0 0;
+}
+
+.usage {
+    font-weight: 300;
+    font-style: italic;
+}
+
+.command p {
+    font-weight: 300;
+    margin: 0.5rem 0;
+}
+
+.command ul {
+    padding-left: 1rem;
+    margin: 0.5rem;
+}

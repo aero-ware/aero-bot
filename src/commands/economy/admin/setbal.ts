@@ -1,15 +1,15 @@
 import { Command } from "@aeroware/aeroclient/dist/types";
-import { addCoins } from "../../utils/economy";
+import { setCoins } from "../../../utils/economy";
 
 export default {
-    name: "addbal",
-    aliases: ["addbalance"],
+    name: "setnal",
+    aliases: ["setbalance"],
     minArgs: 1,
     maxArgs: 2,
     staffOnly: true,
     guildOnly: true,
     usage: "<user/id> <amount>",
-    description: "Adds the specified amount to the user's balance",
+    description: "sets the specified amount to the user's balance",
     category: "Economy",
     async callback({ message, args }) {
         const target =
@@ -25,7 +25,7 @@ export default {
             return;
         }
 
-        const userCoins = await addCoins(message.guild!.id, target.id, coins);
+        const userCoins = await setCoins(message.guild!.id, target.id, coins);
         message.channel.send(
             `You have given ${target} ${coins} coins. They now have ${userCoins} coins.`,
             {

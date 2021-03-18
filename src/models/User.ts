@@ -1,4 +1,5 @@
-import { Schema, Document, model } from "mongoose";
+import { Document, model, Schema } from "mongoose";
+import { itemSchema } from "./Item";
 
 const jobTypes = ["YouTuber", "Chef", "unemployed"];
 
@@ -21,6 +22,10 @@ const userSchema = new Schema({
         type: Number,
         default: 1000,
     },
+    inventory: {
+        type: [itemSchema],
+        default: [],
+    },
     passive: {
         type: Boolean,
         default: false,
@@ -30,6 +35,7 @@ const userSchema = new Schema({
         default: 1,
     },
     job: {
+        type: String,
         enum: jobTypes,
         default: "unemployed",
     },

@@ -1,25 +1,15 @@
-@font-face {
-    font-family: 'aero';
-    src: url(../fonts/sofachrome.regular.ttf);
+#main {
+    overflow: auto;
 }
 
-body {
-    background-color: black;
-    color: white;
-    font-family: 'Open Sans', sans-serif;
-    padding: 5px;
-    padding-top: 15px;
+#main > div {
+    margin-bottom: 2rem;
 }
 
 .top-nav {
     padding: 10px;
     margin-bottom: 10px;
 }
-
-h1, h2, h3, h4, h5, h6 {
-    text-align: center;
-}
-
 
 .nav-title {
     font-weight: bold;
@@ -28,9 +18,54 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .aero-bot {
-    font-family: 'aero';
+    font-family: "aero";
 }
 
 .aero {
-    color: #DC054A;
+    color: #dc054a;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+.buttons a {
+    margin: 1rem;
+
+    color: #fafafa;
+
+    text-decoration: none;
+}
+
+.invite {
+    display: flex;
+    align-items: center;
+
+    color: white;
+}
+
+.invite img {
+    margin-right: 0.25rem;
+}
+
+.invite-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.bot-title {
+    font-family: "aero";
+
+    font-size: 48px;
+    margin: 0px;
+}
+
+.features {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
 }
