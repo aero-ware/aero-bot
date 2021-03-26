@@ -88,6 +88,10 @@ export default {
                                       .map((v) => `<#${v}>`)
                                       .join(", ")
                                 : "none",
+                    },
+                    {
+                        name: "Age Confirmation Required",
+                        value: guildInfo.ageConfirmation ? "Yes" : "No",
                     }
                 )
                 .setColor("RANDOM")
@@ -366,6 +370,30 @@ export default {
                     } the list of suggestions channels.`
                 );
 
+            case "ageconfirmation":
+                if (!args[1])
+                    return message.channel.send(
+                        `Age confirmation is ${
+                            guildInfo.ageConfirmation ? "" : "**not**"
+                        } **required**.`
+                    );
+
+                if (/(enabled?)|(on)|(true)|(y(es)?)/.test(args[1])) {
+                    guildInfo.ageConfirmation = true;
+                    await guildInfo.save();
+
+                    return message.channel.send(
+                        "Age confirmation is now enabled."
+                    );
+                } else if (/(disabled?)|(off)|(false)|(no?)/.test(args[1])) {
+                    guildInfo.ageConfirmation = false;
+                    await guildInfo.save();
+
+                    return message.channel.send(
+                        "Age confirmation is now disabled."
+                    );
+                }
+
             case "help":
                 return message.channel.send(
                     new MessageEmbed()
@@ -420,6 +448,10 @@ export default {
                                 name: "Add suggestion channels",
                                 value:
                                     "Run `config suggestions <add/remove> <channelID(s)>`",
+                            },
+                            {
+                                name: "Toggle age confirmation for new users",
+                                value: "Run `config ageconformation <on/off>",
                             }
                         )
                         .setTimestamp()

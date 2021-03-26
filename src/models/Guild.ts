@@ -39,6 +39,10 @@ const guild = new mongoose.Schema({
         type: [String],
         default: [],
     },
+    ageConfirmation: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 export interface IGuildConfig extends mongoose.Document<any> {
@@ -54,8 +58,7 @@ export interface IGuildConfig extends mongoose.Document<any> {
     autoRole: string | null;
     levelsEnabled: boolean;
     suggestionChannels: string[];
+    ageConfirmation: boolean;
 }
 
-const guildConfigs = mongoose.model<IGuildConfig>("guild-configs", guild);
-
-export default guildConfigs;
+export default mongoose.model<IGuildConfig>("guild-configs", guild);
