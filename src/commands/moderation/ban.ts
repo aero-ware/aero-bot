@@ -44,7 +44,7 @@ export default {
             return message.channel.send(
                 "The member you are trying to ban has a higher or equal role to you."
             );
-        if (target instanceof GuildMember && target.bannable)
+        if (target instanceof GuildMember && !target.bannable)
             return message.channel.send(
                 "This member is not bannable by me (probably due to higher roles)."
             );
